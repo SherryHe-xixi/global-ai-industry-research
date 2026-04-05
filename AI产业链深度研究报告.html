@@ -1,0 +1,2457 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>全球AI产业链深度研究报告 | 2026年4月</title>
+<style>
+  :root {
+    --bg: #0a0e1a;
+    --surface: #111827;
+    --surface2: #1a2236;
+    --border: #1e293b;
+    --text: #e2e8f0;
+    --text2: #94a3b8;
+    --accent: #6366f1;
+    --accent2: #818cf8;
+    --green: #22c55e;
+    --red: #ef4444;
+    --orange: #f59e0b;
+    --cyan: #06b6d4;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, 'SF Pro Text', 'Helvetica Neue', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    font-size: 15px;
+  }
+
+  /* ===== Layout ===== */
+  .page-wrap { display: flex; min-height: 100vh; }
+  .sidebar {
+    width: 260px; flex-shrink: 0;
+    background: var(--surface);
+    border-right: 1px solid var(--border);
+    position: fixed; top: 0; left: 0; bottom: 0;
+    overflow-y: auto; z-index: 200;
+    scrollbar-width: thin; scrollbar-color: var(--border) transparent;
+  }
+  .sidebar::-webkit-scrollbar { width: 4px; }
+  .sidebar::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+  .main-content { flex: 1; margin-left: 260px; }
+  .container { max-width: 1000px; margin: 0 auto; padding: 0 32px; }
+
+  /* ===== Sidebar Nav ===== */
+  .sidebar-logo {
+    padding: 24px 20px 16px;
+    border-bottom: 1px solid var(--border);
+  }
+  .sidebar-logo h2 { font-size: 15px; font-weight: 700; line-height: 1.4; }
+  .sidebar-logo .meta { font-size: 11px; color: var(--text2); margin-top: 6px; }
+
+  .nav-group { padding: 8px 0; border-bottom: 1px solid var(--border); }
+  .nav-group:last-child { border-bottom: none; }
+  .nav-group-title {
+    padding: 10px 20px 6px;
+    font-size: 10px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 1.2px;
+    color: var(--text2);
+  }
+  .nav-item {
+    display: flex; align-items: center; gap: 8px;
+    padding: 8px 20px;
+    color: var(--text2); text-decoration: none;
+    font-size: 13px; font-weight: 500;
+    border-left: 2px solid transparent;
+    transition: all 0.15s;
+    cursor: pointer;
+  }
+  .nav-item:hover { color: var(--text); background: rgba(99,102,241,0.06); }
+  .nav-item.active { color: var(--accent2); border-left-color: var(--accent); background: rgba(99,102,241,0.08); }
+  .nav-item .icon { font-size: 14px; width: 20px; text-align: center; flex-shrink: 0; }
+  .nav-sub .nav-item { padding-left: 36px; font-size: 12px; }
+
+  /* Mobile sidebar toggle */
+  .sidebar-toggle {
+    display: none; position: fixed; top: 12px; left: 12px; z-index: 300;
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 8px; padding: 8px 12px; color: var(--text);
+    font-size: 18px; cursor: pointer;
+  }
+  .sidebar-overlay {
+    display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5);
+    z-index: 150;
+  }
+
+  /* ===== Hero ===== */
+  .hero {
+    background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #0f172a 100%);
+    border-bottom: 1px solid var(--border);
+    padding: 60px 0 48px;
+  }
+  .hero h1 { font-size: 32px; font-weight: 700; margin-bottom: 10px; letter-spacing: -0.5px; }
+  .hero .subtitle { color: var(--text2); font-size: 15px; margin-bottom: 20px; }
+  .hero .badges { display: flex; flex-wrap: wrap; gap: 10px; }
+  .hero .badge {
+    background: var(--surface); padding: 4px 12px; border-radius: 20px;
+    border: 1px solid var(--border); font-size: 12px; color: var(--text2);
+  }
+
+  /* ===== Sections ===== */
+  section { padding: 48px 0; border-bottom: 1px solid var(--border); }
+  section:last-child { border-bottom: none; }
+  .section-header { margin-bottom: 28px; }
+  .section-header h2 {
+    font-size: 22px; font-weight: 700; margin-bottom: 8px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .section-header h2 .icon { font-size: 24px; }
+  .section-header p { color: var(--text2); font-size: 14px; }
+
+  /* ===== Cards ===== */
+  .card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 12px; padding: 24px; margin-bottom: 16px;
+  }
+  .card h3 { font-size: 16px; font-weight: 600; margin-bottom: 12px; }
+  .card p { color: var(--text2); font-size: 14px; }
+
+  /* ===== KPI ===== */
+  .kpi-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 14px; margin-bottom: 24px; }
+  .kpi {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 10px; padding: 18px; text-align: center;
+  }
+  .kpi .label { font-size: 11px; color: var(--text2); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
+  .kpi .value { font-size: 26px; font-weight: 700; }
+  .kpi .change { font-size: 11px; margin-top: 3px; }
+  .kpi .change.up { color: var(--green); }
+  .kpi .change.down { color: var(--red); }
+
+  /* ===== Tables ===== */
+  .table-wrap { overflow-x: auto; margin: 16px 0; border-radius: 10px; border: 1px solid var(--border); }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  thead { background: var(--surface2); }
+  th { padding: 10px 14px; text-align: left; font-weight: 600; color: var(--text2); font-size: 11px; text-transform: uppercase; letter-spacing: 0.3px; white-space: nowrap; }
+  td { padding: 10px 14px; border-top: 1px solid var(--border); white-space: nowrap; }
+  tr:hover { background: rgba(99,102,241,0.04); }
+  .num { text-align: right; font-variant-numeric: tabular-nums; }
+  .pos { color: var(--green); }
+  .neg { color: var(--red); }
+  .tag { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 600; }
+  .tag-green { background: rgba(34,197,94,0.15); color: var(--green); }
+  .tag-red { background: rgba(239,68,68,0.15); color: var(--red); }
+  .tag-orange { background: rgba(245,158,11,0.15); color: var(--orange); }
+  .tag-blue { background: rgba(99,102,241,0.15); color: var(--accent2); }
+
+  /* ===== Collapsible ===== */
+  .collapsible { margin-bottom: 12px; }
+  .collapsible-header {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 10px; padding: 14px 18px;
+    cursor: pointer; display: flex; justify-content: space-between; align-items: center;
+    font-weight: 600; font-size: 14px; transition: all 0.2s; user-select: none;
+  }
+  .collapsible-header:hover { border-color: var(--accent); }
+  .collapsible-header .arrow { transition: transform 0.3s; font-size: 12px; color: var(--text2); }
+  .collapsible.open .collapsible-header .arrow { transform: rotate(90deg); }
+  .collapsible-body {
+    max-height: 0; overflow: hidden; transition: max-height 0.4s ease;
+    border: 1px solid transparent; border-top: none; border-radius: 0 0 10px 10px;
+    background: var(--surface);
+  }
+  .collapsible.open .collapsible-body { max-height: 8000px; border-color: var(--border); }
+  .collapsible-body .inner { padding: 18px; }
+
+  /* ===== Charts (CSS-only) ===== */
+  .chart-bar { margin: 16px 0; }
+  .chart-bar .bar-row {
+    display: flex; align-items: center; gap: 10px; margin-bottom: 10px;
+  }
+  .chart-bar .bar-label {
+    width: 90px; flex-shrink: 0; font-size: 12px; color: var(--text2); text-align: right;
+  }
+  .chart-bar .bar-track {
+    flex: 1; height: 28px; background: var(--surface2); border-radius: 6px; position: relative; overflow: hidden;
+  }
+  .chart-bar .bar-fill {
+    height: 100%; border-radius: 6px; display: flex; align-items: center; padding: 0 10px;
+    font-size: 11px; font-weight: 700; color: #fff; white-space: nowrap;
+    transition: width 0.6s ease;
+  }
+  .chart-bar .bar-fill.grad-blue { background: linear-gradient(90deg, #6366f1, #818cf8); }
+  .chart-bar .bar-fill.grad-green { background: linear-gradient(90deg, #059669, #22c55e); }
+  .chart-bar .bar-fill.grad-orange { background: linear-gradient(90deg, #d97706, #f59e0b); }
+  .chart-bar .bar-fill.grad-red { background: linear-gradient(90deg, #dc2626, #ef4444); }
+  .chart-bar .bar-fill.grad-cyan { background: linear-gradient(90deg, #0891b2, #06b6d4); }
+  .chart-bar .bar-fill.grad-purple { background: linear-gradient(90deg, #7c3aed, #a78bfa); }
+
+  .chart-waterfall { display: flex; align-items: flex-end; gap: 6px; height: 200px; margin: 16px 0; padding: 0 4px; }
+  .chart-waterfall .wf-col {
+    flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; height: 100%;
+  }
+  .chart-waterfall .wf-val { font-size: 11px; font-weight: 700; margin-bottom: 4px; }
+  .chart-waterfall .wf-bar { width: 100%; border-radius: 4px 4px 0 0; min-height: 4px; transition: height 0.5s ease; }
+  .chart-waterfall .wf-label { font-size: 10px; color: var(--text2); margin-top: 6px; text-align: center; line-height: 1.2; }
+
+  .chart-donut {
+    display: flex; align-items: center; gap: 24px; margin: 16px 0; flex-wrap: wrap;
+  }
+  .chart-donut .donut-ring {
+    width: 140px; height: 140px; border-radius: 50%; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .chart-donut .donut-center {
+    width: 80px; height: 80px; background: var(--surface); border-radius: 50%;
+    display: flex; align-items: center; justify-content: center; flex-direction: column;
+  }
+  .chart-donut .donut-center .d-val { font-size: 20px; font-weight: 700; }
+  .chart-donut .donut-center .d-label { font-size: 9px; color: var(--text2); }
+  .chart-donut .donut-legend { display: flex; flex-direction: column; gap: 8px; }
+  .chart-donut .legend-item { display: flex; align-items: center; gap: 8px; font-size: 12px; }
+  .chart-donut .legend-dot { width: 10px; height: 10px; border-radius: 3px; flex-shrink: 0; }
+
+  .chart-timeline { position: relative; margin: 20px 0 20px 20px; padding-left: 24px; border-left: 2px solid var(--border); }
+  .chart-timeline .tl-item { position: relative; padding-bottom: 20px; }
+  .chart-timeline .tl-item:last-child { padding-bottom: 0; }
+  .chart-timeline .tl-dot {
+    position: absolute; left: -31px; top: 2px;
+    width: 14px; height: 14px; border-radius: 50%; border: 2px solid var(--bg);
+  }
+  .chart-timeline .tl-year { font-size: 11px; font-weight: 700; color: var(--accent2); margin-bottom: 2px; }
+  .chart-timeline .tl-text { font-size: 13px; color: var(--text2); }
+  .chart-timeline .tl-val { font-size: 15px; font-weight: 700; margin-top: 2px; }
+
+  .chart-stacked-row { margin: 16px 0; }
+  .chart-stacked-row .sr-label { font-size: 12px; color: var(--text2); margin-bottom: 6px; }
+  .chart-stacked-row .sr-bar {
+    display: flex; height: 32px; border-radius: 6px; overflow: hidden; margin-bottom: 12px;
+  }
+  .chart-stacked-row .sr-seg {
+    display: flex; align-items: center; justify-content: center;
+    font-size: 10px; font-weight: 700; color: #fff; white-space: nowrap;
+    transition: width 0.5s ease;
+  }
+
+  /* ===== Flow ===== */
+  .flow {
+    display: flex; align-items: center; justify-content: center;
+    gap: 0; margin: 28px 0; overflow-x: auto; padding: 12px 0;
+  }
+  .flow-node {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 10px; padding: 14px 16px; min-width: 130px; text-align: center; flex-shrink: 0;
+  }
+  .flow-node .fn-icon { font-size: 22px; margin-bottom: 4px; }
+  .flow-node .fn-title { font-size: 12px; font-weight: 600; margin-bottom: 3px; }
+  .flow-node .fn-sub { font-size: 10px; color: var(--text2); }
+  .flow-node .fn-margin { font-size: 11px; margin-top: 5px; font-weight: 700; }
+  .flow-arrow { color: var(--text2); font-size: 18px; padding: 0 4px; flex-shrink: 0; }
+
+  /* ===== Pyramid ===== */
+  .pyramid { display: flex; flex-direction: column; align-items: center; gap: 4px; margin: 24px 0; }
+  .pyramid-level {
+    display: flex; align-items: center; justify-content: center;
+    border-radius: 6px; padding: 12px; text-align: center; font-size: 12px; font-weight: 600;
+    color: #fff;
+  }
+
+  /* ===== Insight ===== */
+  .insight {
+    background: linear-gradient(135deg, rgba(99,102,241,0.08), rgba(6,182,212,0.08));
+    border: 1px solid rgba(99,102,241,0.2);
+    border-radius: 10px; padding: 18px 22px; margin: 18px 0;
+  }
+  .insight .label { font-size: 11px; font-weight: 700; color: var(--accent2); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px; }
+
+  /* ===== Grid ===== */
+  .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 16px; }
+
+  /* ===== Bar Chart ===== */
+  .bar-chart { margin: 16px 0; }
+  .bar-row { display: flex; align-items: center; gap: 10px; margin-bottom: 7px; }
+  .bar-label { width: 130px; font-size: 12px; text-align: right; flex-shrink: 0; }
+  .bar-track { flex: 1; height: 22px; background: var(--surface2); border-radius: 4px; overflow: hidden; }
+  .bar-fill { height: 100%; border-radius: 4px; display: flex; align-items: center; padding-left: 8px; font-size: 10px; font-weight: 600; color: #fff; min-width: fit-content; }
+  .bar-value { font-size: 12px; width: 65px; text-align: right; flex-shrink: 0; font-weight: 600; }
+
+  /* ===== Sources ===== */
+  .sources a { color: var(--accent2); text-decoration: none; font-size: 13px; }
+  .sources a:hover { text-decoration: underline; }
+  .sources li { margin-bottom: 5px; color: var(--text2); font-size: 13px; }
+
+  /* ===== Responsive ===== */
+  @media (max-width: 900px) {
+    .sidebar { transform: translateX(-100%); transition: transform 0.3s; }
+    .sidebar.open { transform: translateX(0); }
+    .sidebar-toggle { display: block; }
+    .sidebar-overlay.open { display: block; }
+    .main-content { margin-left: 0; }
+    .hero h1 { font-size: 24px; }
+    .kpi-row { grid-template-columns: repeat(2, 1fr); }
+    .flow { flex-direction: column; }
+    .flow-arrow { transform: rotate(90deg); }
+    .grid-2 { grid-template-columns: 1fr; }
+    .container { padding: 0 16px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Mobile toggle -->
+<button class="sidebar-toggle" onclick="toggleSidebar()">&#9776;</button>
+<div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+
+<div class="page-wrap">
+
+<!-- ==================== SIDEBAR ==================== -->
+<nav class="sidebar" id="sidebar">
+  <div class="sidebar-logo">
+    <h2>全球AI产业链<br>深度研究报告</h2>
+    <div class="meta">2026年4月 | v1.0</div>
+  </div>
+
+  <!-- Group 1: 全景概览 -->
+  <div class="nav-group">
+    <div class="nav-group-title">全景概览</div>
+    <a href="#overview" class="nav-item active"><span class="icon">🌐</span> 总览与资金流向</a>
+    <div class="nav-sub">
+      <a href="#energy" class="nav-item"><span class="icon">⚡</span> 能源 / 电力</a>
+      <a href="#chips" class="nav-item"><span class="icon">🔬</span> 芯片 / 半导体</a>
+      <a href="#datacenter" class="nav-item"><span class="icon">🏗️</span> 数据中心 / 算力</a>
+      <a href="#cloud" class="nav-item"><span class="icon">☁️</span> 云平台 / 模型</a>
+      <a href="#apps" class="nav-item"><span class="icon">📱</span> 应用 / C端产品</a>
+    </div>
+    <a href="#pyramid" class="nav-item"><span class="icon">🔺</span> 利润金字塔</a>
+    <a href="#risks" class="nav-item"><span class="icon">🔮</span> 趋势与风险</a>
+  </div>
+
+  <!-- Group 2: 中国AI链 -->
+  <div class="nav-group">
+    <div class="nav-group-title">中国AI产业链</div>
+    <a href="#china" class="nav-item"><span class="icon">🇨🇳</span> A股 / 港股公司</a>
+    <a href="#china-diff" class="nav-item"><span class="icon">⚖️</span> 中美结构性差异</a>
+  </div>
+
+  <!-- Group 3: 机构观点 -->
+  <div class="nav-group">
+    <div class="nav-group-title">机构观点</div>
+    <a href="#inst-sequoia" class="nav-item"><span class="icon">🌲</span> Sequoia Capital</a>
+    <a href="#inst-gs" class="nav-item"><span class="icon">🏦</span> Goldman Sachs</a>
+    <a href="#inst-ms" class="nav-item"><span class="icon">🏦</span> Morgan Stanley</a>
+    <a href="#inst-jpmorgan" class="nav-item"><span class="icon">🏦</span> JP Morgan</a>
+    <a href="#inst-bofa" class="nav-item"><span class="icon">🏦</span> Bank of America</a>
+    <a href="#inst-barclays" class="nav-item"><span class="icon">🏦</span> Barclays</a>
+    <a href="#inst-a16z" class="nav-item"><span class="icon">🚀</span> a16z</a>
+    <a href="#inst-bessemer" class="nav-item"><span class="icon">🚀</span> Bessemer (BVP)</a>
+    <a href="#inst-ark" class="nav-item"><span class="icon">🚀</span> ARK Invest</a>
+    <a href="#inst-coatue" class="nav-item"><span class="icon">🚀</span> Coatue Management</a>
+    <a href="#inst-mckinsey" class="nav-item"><span class="icon">📊</span> McKinsey</a>
+    <a href="#inst-gartner" class="nav-item"><span class="icon">📊</span> Gartner / IDC</a>
+  </div>
+
+  <!-- Group 4: 播客观点 -->
+  <div class="nav-group">
+    <div class="nav-group-title">播客与深度对话</div>
+    <a href="#pod-us" class="nav-item"><span class="icon">🇺🇸</span> 美国核心播客</a>
+    <a href="#pod-cn" class="nav-item"><span class="icon">🇨🇳</span> 中国核心播客</a>
+  </div>
+
+  <!-- Group 5: 数据来源 -->
+  <div class="nav-group">
+    <div class="nav-group-title">附录</div>
+    <a href="#sources" class="nav-item"><span class="icon">📚</span> 数据来源</a>
+  </div>
+</nav>
+
+<!-- ==================== MAIN ==================== -->
+<div class="main-content">
+
+<!-- Hero -->
+<div class="hero">
+  <div class="container">
+    <h1>全球AI产业链深度研究</h1>
+    <p class="subtitle">从能源、芯片到模型、应用的完整价值链 — 谁在赚钱，谁在烧钱，钱从哪来、流向哪里</p>
+    <div class="badges">
+      <span class="badge">更新：2026年4月6日</span>
+      <span class="badge">数据截至 2026 Q1</span>
+      <span class="badge">覆盖 美股 / 港股 / A股</span>
+      <span class="badge">持续研究专题 v1.0</span>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!--  PART 1: 全景概览                                              -->
+<!-- ============================================================ -->
+
+<!-- 1.1 总览 -->
+<section id="overview">
+<div class="container">
+  <div class="section-header">
+    <h2><span class="icon">🌐</span> 总览：产业链资金流向与价值分配</h2>
+    <p>AI产业链的资金流呈现"下游付费 → 中游传导 → 上游获利"的显著特征。以下是从能源到C端的完整价值链路。</p>
+  </div>
+
+  <div class="flow">
+    <div class="flow-node">
+      <div class="fn-icon">⚡</div>
+      <div class="fn-title">能源/电力</div>
+      <div class="fn-sub">核电、天然气、电网</div>
+      <div class="fn-margin" style="color:var(--green)">净利率 10-20%</div>
+    </div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-node">
+      <div class="fn-icon">🔬</div>
+      <div class="fn-title">芯片/半导体</div>
+      <div class="fn-sub">GPU、光刻机、制造</div>
+      <div class="fn-margin" style="color:var(--green)">毛利率 60-75%</div>
+    </div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-node">
+      <div class="fn-icon">🏗️</div>
+      <div class="fn-title">数据中心/网络</div>
+      <div class="fn-sub">机房、冷却、交换机</div>
+      <div class="fn-margin" style="color:var(--green)">毛利率 40-60%</div>
+    </div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-node">
+      <div class="fn-icon">☁️</div>
+      <div class="fn-title">云平台/模型</div>
+      <div class="fn-sub">AWS、Azure、OpenAI</div>
+      <div class="fn-margin" style="color:var(--orange)">运营利润率 20-35%</div>
+    </div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-node">
+      <div class="fn-icon">📱</div>
+      <div class="fn-title">应用/C端</div>
+      <div class="fn-sub">SaaS、消费产品</div>
+      <div class="fn-margin" style="color:var(--red)">毛利率 -10~60%</div>
+    </div>
+  </div>
+
+  <div class="kpi-row">
+    <div class="kpi">
+      <div class="label">2026年全球AI CapEx</div>
+      <div class="value" style="color:var(--accent2)">$5,270亿+</div>
+      <div class="change up">高盛共识预测</div>
+    </div>
+    <div class="kpi">
+      <div class="label">NVIDIA FY2026营收</div>
+      <div class="value" style="color:var(--green)">$2,159亿</div>
+      <div class="change up">↑ 68% YoY (数据中心)</div>
+    </div>
+    <div class="kpi">
+      <div class="label">Sequoia"收入缺口"</div>
+      <div class="value" style="color:var(--red)">$5,000亿</div>
+      <div class="change down">投入 vs 产出差距持续扩大</div>
+    </div>
+    <div class="kpi">
+      <div class="label">ChatGPT周活用户</div>
+      <div class="value" style="color:var(--cyan)">9亿+</div>
+      <div class="change up">付费用户 ~5000万</div>
+    </div>
+  </div>
+
+  <div class="insight">
+    <div class="label">核心发现</div>
+    <p>AI产业链呈现<strong>"利润倒金字塔"</strong>现象：越靠近物理基础设施层（芯片、能源），利润率越高且确定性越强；越靠近应用和模型层，增长越快但盈利能力越弱。NVIDIA单家公司的利润超过了整个AI应用层所有公司利润的总和。这一结构性特征反映了当前AI商业化仍处于"基建先行、应用待验证"的早期阶段。</p>
+  </div>
+</div>
+</section>
+
+<!-- 1.2 能源/电力 -->
+<section id="energy">
+<div class="container">
+  <div class="section-header">
+    <h2><span class="icon">⚡</span> Layer 1：能源与电力</h2>
+    <p>AI数据中心是当代最大的新增电力消费源。到2030年，美国数据中心电力消耗占比将从6%跃升至18-20%。</p>
+  </div>
+
+  <div class="kpi-row">
+    <div class="kpi">
+      <div class="label">2025全球数据中心用电</div>
+      <div class="value">448 TWh</div>
+      <div class="change up">2030E: 980 TWh (Gartner)</div>
+    </div>
+    <div class="kpi">
+      <div class="label">美国电力缺口 (2028)</div>
+      <div class="value" style="color:var(--red)">44-49 GW</div>
+      <div class="change down">Morgan Stanley预测</div>
+    </div>
+    <div class="kpi">
+      <div class="label">AI服务器用电增速</div>
+      <div class="value" style="color:var(--orange)">~5x</div>
+      <div class="change up">93→432 TWh (2025→2030)</div>
+    </div>
+    <div class="kpi">
+      <div class="label">PJM容量市场涨价</div>
+      <div class="value">$93亿</div>
+      <div class="change down">居民月电费 ↑$16-18</div>
+    </div>
+  </div>
+
+  <div class="collapsible open">
+    <div class="collapsible-header" onclick="toggle(this)">
+      <span>能源/电力层代表性上市公司</span><span class="arrow">▶</span>
+    </div>
+    <div class="collapsible-body"><div class="inner">
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>公司</th><th>市场</th><th>核心资产</th><th class="num">FY2025营收</th><th class="num">净利率</th><th class="num">YoY</th><th>AI关联</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Constellation Energy</strong></td><td>美股</td><td>美国最大核电+Calpine天然气</td><td class="num">$255亿</td><td class="num">~9%</td><td class="num pos">+8.3%</td><td><span class="tag tag-green">高</span></td></tr>
+            <tr><td><strong>Vistra (VST)</strong></td><td>美股</td><td>天然气+核电+太阳能+储能</td><td class="num">~$50亿</td><td class="num">~15%</td><td class="num neg">-21%</td><td><span class="tag tag-green">高</span></td></tr>
+            <tr><td><strong>NRG Energy</strong></td><td>美股</td><td>天然气发电+零售电力</td><td class="num">$298亿</td><td class="num">~8%</td><td class="num pos">+5.9%</td><td><span class="tag tag-orange">中</span></td></tr>
+            <tr><td><strong>NextEra Energy</strong></td><td>美股</td><td>全球最大风电+太阳能</td><td class="num">~$280亿</td><td class="num">~18%</td><td class="num pos">+12%</td><td><span class="tag tag-orange">中</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="insight">
+        <div class="label">商业模式洞察</div>
+        <p>能源层的AI受益逻辑在于<strong>电力需求的结构性增长</strong>。Constellation Energy收购Calpine ($266亿)构建"核电+天然气"组合直接为数据中心供电。该层公司处于"卖水给淘金者"的位置，收入确定性高但增速相对温和。</p>
+      </div>
+    </div></div>
+  </div>
+</div>
+</section>
+
+<!-- 1.3 芯片/半导体 -->
+<section id="chips">
+<div class="container">
+  <div class="section-header">
+    <h2><span class="icon">🔬</span> Layer 2：芯片与半导体</h2>
+    <p>芯片层是整条AI产业链中利润最丰厚的环节。NVIDIA独占GPU市场80%+份额，毛利率长期维持在70-75%。</p>
+  </div>
+
+  <div class="kpi-row">
+    <div class="kpi">
+      <div class="label">NVIDIA FY2026 数据中心</div>
+      <div class="value" style="color:var(--green)">$1,940亿</div>
+      <div class="change up">↑ 68% YoY</div>
+    </div>
+    <div class="kpi">
+      <div class="label">NVIDIA 毛利率</div>
+      <div class="value" style="color:var(--green)">75.2%</div>
+      <div class="change up">Q4 FY2026 non-GAAP</div>
+    </div>
+    <div class="kpi">
+      <div class="label">TSMC 2025营收</div>
+      <div class="value">$1,223亿</div>
+      <div class="change up">↑ 38.5% YoY</div>
+    </div>
+    <div class="kpi">
+      <div class="label">ASML Q4订单</div>
+      <div class="value" style="color:var(--cyan)">€132亿</div>
+      <div class="change up">远超预期 €63亿</div>
+    </div>
+  </div>
+
+  <div class="collapsible open">
+    <div class="collapsible-header" onclick="toggle(this)">
+      <span>全球主要芯片/半导体公司财务数据</span><span class="arrow">▶</span>
+    </div>
+    <div class="collapsible-body"><div class="inner">
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>公司</th><th>市场</th><th>定位</th><th class="num">FY2025营收</th><th class="num">毛利率</th><th class="num">净利率</th><th class="num">YoY</th><th class="num">CapEx</th></tr></thead>
+          <tbody>
+            <tr><td><strong>NVIDIA</strong></td><td>美股</td><td>AI GPU垄断者</td><td class="num">$2,159亿</td><td class="num pos">73-75%</td><td class="num pos">~55%</td><td class="num pos">+114%</td><td class="num">~$120亿</td></tr>
+            <tr><td><strong>AMD</strong></td><td>美股</td><td>GPU+CPU挑战者</td><td class="num">$346亿</td><td class="num">50%</td><td class="num">~12%</td><td class="num pos">+14%</td><td class="num">~$12亿</td></tr>
+            <tr><td><strong>TSMC</strong></td><td>美/台</td><td>全球最大晶圆代工</td><td class="num">$1,223亿</td><td class="num pos">~57%</td><td class="num pos">~40%</td><td class="num pos">+38.5%</td><td class="num">$520-560亿</td></tr>
+            <tr><td><strong>ASML</strong></td><td>美/欧</td><td>EUV光刻机垄断</td><td class="num">~€330亿</td><td class="num pos">~52%</td><td class="num pos">~28%</td><td class="num pos">+19%</td><td class="num">~€10亿</td></tr>
+            <tr><td><strong>Broadcom</strong></td><td>美股</td><td>定制AI芯片+网络</td><td class="num">~$560亿</td><td class="num pos">~67%</td><td class="num pos">~30%</td><td class="num pos">+44%</td><td class="num">~$23亿</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h4 style="margin:18px 0 10px;font-size:14px;">AI数据中心GPU市场份额</h4>
+      <div class="bar-chart">
+        <div class="bar-row"><div class="bar-label">NVIDIA</div><div class="bar-track"><div class="bar-fill" style="width:85%;background:var(--green)">~85%</div></div><div class="bar-value">$1,940亿</div></div>
+        <div class="bar-row"><div class="bar-label">AMD</div><div class="bar-track"><div class="bar-fill" style="width:10%;background:var(--orange)">~10%</div></div><div class="bar-value">$166亿</div></div>
+        <div class="bar-row"><div class="bar-label">Intel</div><div class="bar-track"><div class="bar-fill" style="width:3%;background:var(--red);min-width:30px">~3%</div></div><div class="bar-value">~$30亿</div></div>
+        <div class="bar-row"><div class="bar-label">定制芯片(TPU等)</div><div class="bar-track"><div class="bar-fill" style="width:5%;background:var(--cyan);min-width:30px">~5%</div></div><div class="bar-value">增长中</div></div>
+      </div>
+
+      <div class="insight">
+        <div class="label">为什么芯片层利润率如此之高？</div>
+        <p><strong>1) 供给瓶颈</strong> — TSMC先进制程产能有限，ASML EUV光刻机年产能仅约60台；<strong>2) 软件护城河</strong> — NVIDIA CUDA生态锁定开发者，切换成本极高；<strong>3) 需求超级周期</strong> — 超大规模云厂商CapEx军备竞赛推高GPU定价权。</p>
+      </div>
+    </div></div>
+  </div>
+</div>
+</section>
+
+<!-- 1.4 数据中心 -->
+<section id="datacenter">
+<div class="container">
+  <div class="section-header">
+    <h2><span class="icon">🏗️</span> Layer 3：数据中心、算力与网络</h2>
+    <p>数据中心REITs、冷却系统和网络设备公司是AI基建浪潮的直接受益者。</p>
+  </div>
+
+  <div class="kpi-row">
+    <div class="kpi">
+      <div class="label">Mag-7 合计CapEx</div>
+      <div class="value">$4,140亿+</div>
+      <div class="change up">2026E $4,300亿+</div>
+    </div>
+    <div class="kpi">
+      <div class="label">Equinix 5年目标</div>
+      <div class="value" style="color:var(--cyan)">产能翻倍</div>
+      <div class="change up">$40-50亿/年 CapEx</div>
+    </div>
+    <div class="kpi">
+      <div class="label">Arista AI网络营收</div>
+      <div class="value">$15亿</div>
+      <div class="change up">2026E: $32亿</div>
+    </div>
+    <div class="kpi">
+      <div class="label">Vertiv 2026E营收</div>
+      <div class="value">$133-138亿</div>
+      <div class="change up">冷却+电力设备</div>
+    </div>
+  </div>
+
+  <div class="collapsible open">
+    <div class="collapsible-header" onclick="toggle(this)">
+      <span>数据中心/算力基础设施代表公司</span><span class="arrow">▶</span>
+    </div>
+    <div class="collapsible-body"><div class="inner">
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>公司</th><th>细分</th><th class="num">FY2025营收</th><th class="num">毛利率</th><th class="num">YoY</th><th class="num">CapEx</th><th>核心优势</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Equinix</strong></td><td>数据中心REIT</td><td class="num">~$90亿</td><td class="num">~47%</td><td class="num pos">+8%</td><td class="num">$40-50亿/年</td><td>全球270+数据中心</td></tr>
+            <tr><td><strong>Digital Realty</strong></td><td>数据中心REIT</td><td class="num">$61亿</td><td class="num">~45%</td><td class="num pos">+14%</td><td class="num">$33亿→增长中</td><td>超大规模客户</td></tr>
+            <tr><td><strong>Arista Networks</strong></td><td>AI网络交换机</td><td class="num">$90亿</td><td class="num pos">~63%</td><td class="num pos">+29%</td><td class="num">—</td><td>AI Ethernet领导</td></tr>
+            <tr><td><strong>Vertiv</strong></td><td>冷却+电力设备</td><td class="num">~$100亿</td><td class="num">~37%</td><td class="num pos">+70%(3年)</td><td class="num">—</td><td>液冷技术领先</td></tr>
+            <tr><td><strong>NVIDIA网络部</strong></td><td>InfiniBand/以太网</td><td class="num">+263%</td><td class="num">—</td><td class="num pos">+263%</td><td class="num">—</td><td>AI集群互联标准</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="insight">
+        <div class="label">资金流向分析</div>
+        <p>超大规模云厂商是该层最大付费方。AWS 2026年CapEx $2,000亿、Google $1,750-1,850亿。资金分配：<strong>40-50%→GPU/芯片</strong>、<strong>20-25%→建筑与电力</strong>、<strong>15-20%→网络设备</strong>、<strong>10-15%→数据中心租赁</strong>。</p>
+      </div>
+    </div></div>
+  </div>
+</div>
+</section>
+
+<!-- 1.5 云平台/模型 -->
+<section id="cloud">
+<div class="container">
+  <div class="section-header">
+    <h2><span class="icon">☁️</span> Layer 4：云平台与基础模型</h2>
+    <p>该层分两类：拥有AI变现渠道的超大规模云平台（AWS/Azure/GCP），和大量烧钱的纯模型公司（OpenAI/Anthropic）。</p>
+  </div>
+
+  <div class="grid-2">
+    <div class="card">
+      <h3>☁️ 超大规模云平台 — 大规模盈利</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>平台</th><th class="num">2025营收</th><th class="num">运营利润率</th><th class="num">YoY</th><th class="num">份额</th></tr></thead>
+          <tbody>
+            <tr><td><strong>AWS</strong></td><td class="num">~$1,150亿</td><td class="num pos">33%</td><td class="num pos">+24%</td><td class="num">28%</td></tr>
+            <tr><td><strong>Azure</strong></td><td class="num">~$1,000亿</td><td class="num pos">~40%</td><td class="num pos">+39%</td><td class="num">22%</td></tr>
+            <tr><td><strong>Google Cloud</strong></td><td class="num">~$500亿</td><td class="num pos">~18%</td><td class="num pos">+50%</td><td class="num">14%</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="margin-top:10px;color:var(--text2);font-size:13px">Microsoft AI年化营收$130亿，是三大云中最高披露数字。</p>
+    </div>
+    <div class="card">
+      <h3>🧠 纯模型公司 — 大规模烧钱</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>公司</th><th class="num">年化营收</th><th class="num">年亏损</th><th class="num">估值</th><th>盈亏预期</th></tr></thead>
+          <tbody>
+            <tr><td><strong>OpenAI</strong></td><td class="num">$250亿</td><td class="num neg">-$140亿</td><td class="num">$3,000亿</td><td><span class="tag tag-red">2030</span></td></tr>
+            <tr><td><strong>Anthropic</strong></td><td class="num">$190亿</td><td class="num neg">-$30亿</td><td class="num">$1,700-3,500亿</td><td><span class="tag tag-orange">2027-28</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="margin-top:10px;color:var(--text2);font-size:13px">OpenAI毛利率仅33%（推理成本$84亿/年），API份额从50%降至25%。Anthropic Claude Code年化$25亿ARR。</p>
+    </div>
+  </div>
+
+  <div class="insight">
+    <div class="label">关键矛盾</div>
+    <p>云平台既是<strong>最大的CapEx支出方</strong>（合计$5,000亿+/年），也是少数能从AI中直接获利的公司。纯模型公司面临困境：推理成本随用户规模线性增长，缺乏基础设施规模优势。OpenAI每天烧掉超过$1.5亿。</p>
+  </div>
+</div>
+</section>
+
+<!-- 1.6 应用/C端 -->
+<section id="apps">
+<div class="container">
+  <div class="section-header">
+    <h2><span class="icon">📱</span> Layer 5：AI应用与C端产品</h2>
+    <p>AI应用层正经历定价模式革命：从Seat-based转向Usage-based和Outcome-based。</p>
+  </div>
+
+  <div class="grid-2">
+    <div class="card">
+      <h3>🏢 企业AI应用</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>公司</th><th class="num">营收</th><th class="num">AI增速</th><th>AI产品</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Palantir</strong></td><td class="num">$44.8亿</td><td class="num pos">+70% QoQ</td><td>AIP平台</td></tr>
+            <tr><td><strong>ServiceNow</strong></td><td class="num">~$120亿</td><td class="num pos">交易额+20%</td><td>Now Assist</td></tr>
+            <tr><td><strong>Salesforce</strong></td><td class="num">~$380亿</td><td class="num pos">+169%采用率</td><td>Agentforce $8亿ARR</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="card">
+      <h3>👤 消费者AI产品</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>产品</th><th class="num">付费用户</th><th class="num">ARR</th><th class="num">价格</th></tr></thead>
+          <tbody>
+            <tr><td><strong>ChatGPT</strong></td><td class="num">~5,000万</td><td class="num">~$130亿</td><td class="num">$20-200/月</td></tr>
+            <tr><td><strong>GitHub Copilot</strong></td><td class="num">~180万</td><td class="num">~$20亿</td><td class="num">$10-39/月</td></tr>
+            <tr><td><strong>Cursor</strong></td><td class="num">Fortune 500的50%+</td><td class="num">$20亿+</td><td class="num">$20-200/月</td></tr>
+            <tr><td><strong>Claude Code</strong></td><td class="num">快速增长</td><td class="num">$25亿</td><td class="num">按量计费</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="insight">
+    <div class="label">C端付费的关键转折</div>
+    <p>开发者工具成为AI变现最成功的品类。Cursor从零到$20亿ARR仅18个月。通用聊天产品$20/月的ARPU和33%毛利率意味着每个付费用户实际在亏钱。2026年核心命题：能否找到更多"高价值密度"的垂直场景。</p>
+  </div>
+</div>
+</section>
+
+<!-- 1.7 利润金字塔 -->
+<section id="pyramid">
+<div class="container">
+  <div class="section-header">
+    <h2><span class="icon">🔺</span> 利润"倒金字塔"</h2>
+    <p>AI产业链利润分配呈现与传统科技截然不同的倒置结构：越靠近底层基础设施，利润越丰厚。</p>
+  </div>
+
+  <div class="pyramid">
+    <div class="pyramid-level" style="width:95%;background:linear-gradient(90deg,#dc2626,#ef4444)">📱 应用层 — 毛利率 -10%~60% | 多数AI Supernova负毛利</div>
+    <div class="pyramid-level" style="width:80%;background:linear-gradient(90deg,#ea580c,#f97316)">🧠 模型层 — 毛利率 25~33% | OpenAI年亏$140亿</div>
+    <div class="pyramid-level" style="width:65%;background:linear-gradient(90deg,#ca8a04,#eab308)">☁️ 云平台 — 运营利润率 20~40% | AWS/Azure/GCP大规模盈利</div>
+    <div class="pyramid-level" style="width:50%;background:linear-gradient(90deg,#0d9488,#14b8a6)">🏗️ 基础设施 — 毛利率 37~63% | 数据中心/网络/冷却</div>
+    <div class="pyramid-level" style="width:35%;background:linear-gradient(90deg,#4f46e5,#6366f1)">🔬 芯片层 — 毛利率 57~75% | NVIDIA净利率~55%</div>
+    <div class="pyramid-level" style="width:25%;background:linear-gradient(90deg,#047857,#059669)">⚡ 能源层 — 稳定现金流 | 结构性需求增长</div>
+  </div>
+
+  <div class="card" style="margin-top:20px">
+    <h3>为什么会出现利润倒金字塔？</h3>
+    <div class="grid-2" style="margin-top:14px">
+      <div>
+        <p style="font-size:14px;margin-bottom:10px"><strong>1. 供给稀缺性递减</strong></p>
+        <p style="color:var(--text2);font-size:13px">芯片层有CUDA护城河和制程垄断；应用层面临极低切换成本和海量竞争者。</p>
+        <p style="font-size:14px;margin:14px 0 10px"><strong>2. 边际成本结构差异</strong></p>
+        <p style="color:var(--text2);font-size:13px">NVIDIA卖出GPU后边际成本接近零；OpenAI每处理一个查询都产生推理成本。</p>
+      </div>
+      <div>
+        <p style="font-size:14px;margin-bottom:10px"><strong>3. 定价权不对称</strong></p>
+        <p style="color:var(--text2);font-size:13px">GPU供不应求时可提价；ChatGPT面临Claude、Gemini竞争，$20/月已接近上限。</p>
+        <p style="font-size:14px;margin:14px 0 10px"><strong>4. CapEx先行，收入滞后</strong></p>
+        <p style="color:var(--text2);font-size:13px">高盛Phase 4（生产力提升）预计2027年才开始，但CapEx已在2024-2025年爆发。</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>资金流向全景</h3>
+    <div class="bar-chart" style="margin-top:14px">
+      <div class="bar-row"><div class="bar-label" style="width:170px">企业/消费者AI支出</div><div class="bar-track"><div class="bar-fill" style="width:100%;background:linear-gradient(90deg,var(--accent),var(--cyan))">→ 云平台 (AWS/Azure/GCP)</div></div></div>
+      <div class="bar-row"><div class="bar-label" style="width:170px">云平台CapEx</div><div class="bar-track"><div class="bar-fill" style="width:90%;background:linear-gradient(90deg,#6366f1,#8b5cf6)">→ GPU (40-50%) + 基础设施 (50-60%)</div></div></div>
+      <div class="bar-row"><div class="bar-label" style="width:170px">芯片收入</div><div class="bar-track"><div class="bar-fill" style="width:70%;background:linear-gradient(90deg,#059669,#10b981)">→ TSMC代工 + 研发再投入</div></div></div>
+      <div class="bar-row"><div class="bar-label" style="width:170px">基础设施建设</div><div class="bar-track"><div class="bar-fill" style="width:50%;background:linear-gradient(90deg,#ca8a04,#f59e0b)">→ 电力/能源公司 + 设备商</div></div></div>
+      <div class="bar-row"><div class="bar-label" style="width:170px">VC/PE融资</div><div class="bar-track"><div class="bar-fill" style="width:40%;background:linear-gradient(90deg,#dc2626,#f87171)">→ 模型公司 (补贴推理成本)</div></div></div>
+    </div>
+    <p style="color:var(--text2);font-size:13px;margin-top:10px">终端用户每花$1 → ~$0.40流向云平台 → ~$0.20流向NVIDIA（75%变利润）→ ~$0.08流向TSMC → ~$0.05流向电力。模型公司是<strong>净亏损方</strong>，依靠VC补贴。</p>
+  </div>
+</div>
+</section>
+
+<!-- 1.8 趋势与风险 -->
+<section id="risks">
+<div class="container">
+  <div class="section-header">
+    <h2><span class="icon">🔮</span> 未来2-3年关键趋势与风险</h2>
+  </div>
+
+  <div class="grid-2">
+    <div class="card" style="border-left:3px solid var(--green)">
+      <h3 style="color:var(--green)">看多信号</h3>
+      <ul style="list-style:none;padding:0;margin-top:10px">
+        <li style="padding:9px 0;border-bottom:1px solid var(--border);font-size:13px"><strong>Agent化转型加速：</strong>Salesforce Agentforce、ServiceNow Now Assist证明AI可直接转化付费。定价模式转向outcome-based有望打开10x空间。</li>
+        <li style="padding:9px 0;border-bottom:1px solid var(--border);font-size:13px"><strong>开发者工具变现成功：</strong>Cursor ($20亿)、Claude Code ($25亿)、Copilot ($20亿) 证明高价值垂直场景PMF。</li>
+        <li style="padding:9px 0;border-bottom:1px solid var(--border);font-size:13px"><strong>推理成本持续下降：</strong>DeepSeek低成本路线 + 芯片迭代（B系列）正在改善模型层毛利率。</li>
+        <li style="padding:9px 0;font-size:13px"><strong>企业采用加速：</strong>McKinsey数据显示88%企业已采用AI，72%使用GenAI（2024年仅33%）。</li>
+      </ul>
+    </div>
+    <div class="card" style="border-left:3px solid var(--red)">
+      <h3 style="color:var(--red)">风险信号</h3>
+      <ul style="list-style:none;padding:0;margin-top:10px">
+        <li style="padding:9px 0;border-bottom:1px solid var(--border);font-size:13px"><strong>$5,000亿收入缺口：</strong>Sequoia分析显示投入增速远超收入增速，若2027-28年无法闭合可能触发估值修正。</li>
+        <li style="padding:9px 0;border-bottom:1px solid var(--border);font-size:13px"><strong>电力瓶颈硬约束：</strong>Morgan Stanley预测44-49GW缺口，电网扩建需5-10年周期。</li>
+        <li style="padding:9px 0;border-bottom:1px solid var(--border);font-size:13px"><strong>模型层"无限战争"：</strong>OpenAI/Anthropic/Google/Meta/DeepSeek性能趋同，AI API商品化风险上升。</li>
+        <li style="padding:9px 0;font-size:13px"><strong>地缘政治升级：</strong>对华芯片出口管制可能进一步收紧，影响NVIDIA 10-15%中国收入。</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:16px">
+    <h3>关键里程碑时间线</h3>
+    <div style="margin-top:14px">
+      <div style="display:flex;align-items:flex-start;gap:14px;padding:10px 0;border-bottom:1px solid var(--border)">
+        <span class="tag tag-blue" style="min-width:72px;text-align:center">2026 H2</span>
+        <span style="font-size:13px">OpenAI预计IPO | NVIDIA Blackwell Ultra量产 | 观察超大规模CapEx是否继续上调</span>
+      </div>
+      <div style="display:flex;align-items:flex-start;gap:14px;padding:10px 0;border-bottom:1px solid var(--border)">
+        <span class="tag tag-orange" style="min-width:72px;text-align:center">2027</span>
+        <span style="font-size:13px">高盛Phase 4生产力影响显现 | Anthropic停止现金烧毁 | AI对GDP首次可量化</span>
+      </div>
+      <div style="display:flex;align-items:flex-start;gap:14px;padding:10px 0;border-bottom:1px solid var(--border)">
+        <span class="tag tag-orange" style="min-width:72px;text-align:center">2028</span>
+        <span style="font-size:13px">Morgan Stanley电力缺口峰值 | Anthropic现金流盈亏平衡 | Equinix产能翻倍</span>
+      </div>
+      <div style="display:flex;align-items:flex-start;gap:14px;padding:10px 0">
+        <span class="tag tag-red" style="min-width:72px;text-align:center">2030</span>
+        <span style="font-size:13px">OpenAI预计盈亏平衡 | 数据中心用电980 TWh | ChatGPT目标2.2亿付费用户</span>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ============================================================ -->
+<!--  PART 2: 中国AI产业链                                          -->
+<!-- ============================================================ -->
+
+<section id="china">
+<div class="container">
+  <div class="section-header">
+    <h2><span class="icon">🇨🇳</span> 中国AI产业链：芯片·模型·应用全景</h2>
+    <p>芯片受限、模型追平、应用快跑。2025年中国AI市场规模$281.8亿，国产AI芯片份额升至41%。数据来源：公司年报/招股书、券商研报、IDC中国。</p>
+  </div>
+
+  <!-- 市场全景KPI -->
+  <div class="kpi-row">
+    <div class="kpi"><div class="label">中国AI市场规模 (2025)</div><div class="value" style="color:var(--green)">$281.8亿</div><div class="change up">2032E → $2,020亿 CAGR 32.5%</div></div>
+    <div class="kpi"><div class="label">国产AI芯片份额</div><div class="value" style="color:var(--orange)">41%</div><div class="change up">↑ from 30% (2024)</div></div>
+    <div class="kpi"><div class="label">AI总投资 (2025)</div><div class="value" style="color:var(--cyan)">¥8,900亿</div><div class="change up">↑ 18% YoY · 全球占比38%</div></div>
+    <div class="kpi"><div class="label">政府AI投入 (2025)</div><div class="value" style="color:var(--accent2)">¥3,450亿</div><div class="change up">占总投资39%</div></div>
+  </div>
+
+  <!-- 芯片层 -->
+  <div class="collapsible open">
+    <div class="collapsible-header" onclick="toggle(this)"><span>🔩 芯片层：国产替代加速，华为+寒武纪+海光三足鼎立</span><span class="arrow">▶</span></div>
+    <div class="collapsible-body"><div class="inner">
+
+      <div style="margin:12px 0 8px;font-size:12px;font-weight:700;color:var(--text2);text-transform:uppercase;letter-spacing:0.5px">📊 2025年中国AI GPU出货量份额</div>
+      <div class="chart-stacked-row">
+        <div class="sr-label">总计 ~400万张 AI GPU</div>
+        <div class="sr-bar" style="height:36px">
+          <div class="sr-seg" style="width:55%;background:linear-gradient(90deg,#059669,var(--green))">NVIDIA 220万 (55%)</div>
+          <div class="sr-seg" style="width:20%;background:linear-gradient(90deg,var(--red),#f87171)">华为 81.2万 (20%)</div>
+          <div class="sr-seg" style="width:12%;background:linear-gradient(90deg,var(--orange),#fbbf24)">寒武纪+海光 (12%)</div>
+          <div class="sr-seg" style="width:9%;background:linear-gradient(90deg,var(--cyan),#67e8f9)">其他国产 (9%)</div>
+          <div class="sr-seg" style="width:4%;background:var(--surface2);color:var(--text2)">AMD</div>
+        </div>
+      </div>
+
+      <div class="table-wrap" style="margin-top:14px">
+        <table>
+          <thead><tr><th>公司</th><th>市场</th><th class="num">2025全年营收</th><th class="num">YoY</th><th class="num">净利润</th><th>核心数据</th></tr></thead>
+          <tbody>
+            <tr><td><strong>寒武纪 (688256)</strong></td><td>A股</td><td class="num">—</td><td class="num pos">—</td><td class="num">—</td><td>H1 ¥28.8亿 · <strong style="color:var(--green)">+4,348%</strong> · 首次盈利 ¥10.4亿</td></tr>
+            <tr><td><strong>海光信息 (688041)</strong></td><td>A股</td><td class="num">¥143.8亿</td><td class="num pos">+56.9%</td><td class="num pos">¥25.4亿</td><td>"双芯战略"DCU+CPU · 国产AI芯第一梯队</td></tr>
+            <tr><td><strong>华为昇腾</strong></td><td>非上市</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td>ICT ¥3,750亿 · 开发者超400万 · 出货占国产品牌~50%</td></tr>
+            <tr><td><strong>地平线 (9660)</strong></td><td>港股</td><td class="num">—</td><td class="num pos">—</td><td class="num">—</td><td>IPO募资HK$54亿 · 2025目标出货1,000万+芯片</td></tr>
+            <tr><td><strong>中芯国际</strong></td><td>港/A</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td>先进制程受限于EUV · 7nm DUV自研突破中</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="insight" style="margin-top:12px">
+        <div class="label">来源：公司年报、半年报（巨潮资讯网）· IDC · Tom's Hardware · IndexBox</div>
+        <p>寒武纪H1营收暴增43倍，被DeepSeek、阿里、字节大量采购。海光全年营收突破¥143亿，双芯战略奠定国产算力底座。华为昇腾占国产品牌出货量近半。</p>
+      </div>
+    </div></div>
+  </div>
+
+  <!-- 大模型与云平台 -->
+  <div class="collapsible">
+    <div class="collapsible-header" onclick="toggle(this)"><span>🧠 大模型与云平台：巨头AI收入爆发，创业公司冲刺IPO</span><span class="arrow">▶</span></div>
+    <div class="collapsible-body"><div class="inner">
+
+      <div style="margin:12px 0 8px;font-size:12px;font-weight:700;color:var(--text2);text-transform:uppercase;letter-spacing:0.5px">📊 主要AI产品用户规模（MAU/DAU · 2025年末）</div>
+      <div class="chart-bar">
+        <div class="bar-row"><div class="bar-label" style="width:100px">豆包 (字节)</div><div class="bar-track"><div class="bar-fill grad-blue" style="width:100%">2.26亿 MAU · 1亿+ DAU</div></div></div>
+        <div class="bar-row"><div class="bar-label" style="width:100px">文心一言 (百度)</div><div class="bar-track"><div class="bar-fill grad-cyan" style="width:89%">2.02亿 MAU</div></div></div>
+        <div class="bar-row"><div class="bar-label" style="width:100px">通义千问 (阿里)</div><div class="bar-track"><div class="bar-fill grad-orange" style="width:45%">开源30亿+下载 · 10万+衍生模型</div></div></div>
+        <div class="bar-row"><div class="bar-label" style="width:100px">Kimi (月之暗面)</div><div class="bar-track"><div class="bar-fill grad-green" style="width:16%">3,600万 MAU</div></div></div>
+      </div>
+
+      <div class="table-wrap" style="margin-top:14px">
+        <table>
+          <thead><tr><th>公司</th><th>AI业务亮点</th><th class="num">AI相关营收</th><th class="num">YoY</th><th>关键指标</th></tr></thead>
+          <tbody>
+            <tr><td><strong>阿里云</strong></td><td>通义千问 · Qwen3</td><td class="num">Q2 ¥398亿</td><td class="num pos">+34%</td><td>AI收入连续9季度三位数增长 · CapEx过去4季¥1,200亿</td></tr>
+            <tr><td><strong>百度</strong></td><td>文心一言 · 昆仑芯</td><td class="num">AI云 ¥200亿/年</td><td class="num pos">+34%</td><td>ERNIE API 16亿次/天调用 · Q4订阅+143%</td></tr>
+            <tr><td><strong>腾讯</strong></td><td>混元大模型2.0</td><td class="num">—</td><td class="num">—</td><td>406B参数 · 内部900+应用 · 2026.02推出HY-1.8B边缘模型</td></tr>
+            <tr><td><strong>字节跳动</strong></td><td>豆包 · Seed系列</td><td class="num">—</td><td class="num">—</td><td>日处理50万亿+Token · 获客成本全字节最低 · DAU破亿</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="insight" style="margin-top:12px">
+        <div class="label">来源：百度IR · 阿里财报 · 腾讯云 · TechNode · 36氪</div>
+        <p>阿里云AI收入连续9个季度三位数增长，是中国云厂商AI变现最快的。百度文心API日调用16亿次，实际商业化走在前面。字节豆包以极低获客成本突破1亿DAU，成为中国用户量最大的AI助手。</p>
+      </div>
+    </div></div>
+  </div>
+
+  <!-- AI创业公司 -->
+  <div class="collapsible">
+    <div class="collapsible-header" onclick="toggle(this)"><span>🚀 AI创业公司："六小虎"格局分化加速</span><span class="arrow">▶</span></div>
+    <div class="collapsible-body"><div class="inner">
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>公司</th><th>估值/市值</th><th>最新融资</th><th>收入</th><th>核心动态</th></tr></thead>
+          <tbody>
+            <tr><td><strong>智谱AI</strong></td><td>港股已上市</td><td>IPO募资$5.58亿</td><td class="num">¥7.24亿 (+132%)</td><td>中国首个纯AI模型公司IPO（2026.01）· 股价涨35%</td></tr>
+            <tr><td><strong>月之暗面/Kimi</strong></td><td>$43亿</td><td>2026.02 $7亿+</td><td class="num">$2.4亿</td><td>K2.5多模态 · 海外付费用户Q/Q +170%</td></tr>
+            <tr><td><strong>DeepSeek</strong></td><td>非公开</td><td>幻方量化支持</td><td class="num">—</td><td>V3.2达GPT-5水平 · 训练成本$550万 · 推理成本1/10</td></tr>
+            <tr><td><strong>百川智能</strong></td><td>$27亿</td><td>$6.91亿(阿里领投)</td><td class="num">—</td><td>2025.03转型AI医疗 · "超级医生模型"</td></tr>
+            <tr><td><strong>零一万物</strong></td><td>—</td><td>—</td><td class="num">¥1亿+</td><td>2025.03停止自研预训练 · 转向DeepSeek+解决方案</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="insight" style="margin-top:12px">
+        <div class="label">来源：CNBC · SCMP · kr-asia · TechNode · 公司招股书</div>
+        <p>"六小虎"格局已明显分化：智谱率先IPO走通资本化，Kimi凭长文本+多模态海外爆发，DeepSeek以极致成本效率震动全球。百川转医疗找差异化，零一万物放弃自研选择务实。核心分水岭：<strong>有无真实收入和可持续商业模型</strong>。</p>
+      </div>
+    </div></div>
+  </div>
+
+  <!-- 政策 -->
+  <div class="collapsible">
+    <div class="collapsible-header" onclick="toggle(this)"><span>🏛️ 政策驱动："AI+制造"行动计划与国家战略</span><span class="arrow">▶</span></div>
+    <div class="collapsible-body"><div class="inner">
+      <p style="font-size:13px"><strong>工信部"人工智能+制造"行动计划</strong>（2026年1月发布，工信部+8部门联合）</p>
+      <p style="font-size:13px;color:var(--text2);margin-top:6px">时间跨度：2025-2027年。这是中国政府在AI产业落地层面最具体的承诺。</p>
+
+      <div style="margin:16px 0;display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px">
+        <div style="padding:14px;background:var(--surface2);border-radius:8px;text-align:center">
+          <div style="font-size:28px;font-weight:800;color:var(--green)">3-5</div>
+          <div style="font-size:11px;color:var(--text2);margin-top:4px">通用工业AI大模型</div>
+        </div>
+        <div style="padding:14px;background:var(--surface2);border-radius:8px;text-align:center">
+          <div style="font-size:28px;font-weight:800;color:var(--cyan)">1,000</div>
+          <div style="font-size:11px;color:var(--text2);margin-top:4px">工业智能体 (Agent)</div>
+        </div>
+        <div style="padding:14px;background:var(--surface2);border-radius:8px;text-align:center">
+          <div style="font-size:28px;font-weight:800;color:var(--orange)">100</div>
+          <div style="font-size:11px;color:var(--text2);margin-top:4px">高质量制造数据集</div>
+        </div>
+        <div style="padding:14px;background:var(--surface2);border-radius:8px;text-align:center">
+          <div style="font-size:28px;font-weight:800;color:var(--accent2)">500</div>
+          <div style="font-size:11px;color:var(--text2);margin-top:4px">示范/试点场景</div>
+        </div>
+      </div>
+
+      <p style="font-size:12px;color:var(--text2)">覆盖行业：钢铁、石化、汽车、航空航天、制药、消费品。技术方向：预测性维护、智能排产、工业仿真、机器视觉质检。</p>
+      <p style="font-size:12px;color:var(--text2);margin-top:6px">来源：工信部官网 · China-Briefing · CSET Georgetown</p>
+    </div></div>
+  </div>
+</div>
+</section>
+
+<section id="china-diff">
+<div class="container">
+  <div class="section-header">
+    <h2><span class="icon">⚖️</span> 中美AI产业链结构性差异</h2>
+    <p>"芯片卡脖子，模型追平，应用快跑，成本碾压"——不对称竞争格局。</p>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>维度</th><th>美国</th><th>中国</th><th>差距评估</th></tr></thead>
+      <tbody>
+        <tr><td><strong>先进制程芯片</strong></td><td>NVIDIA B200/GB300 (4nm)</td><td>寒武纪思元 / 海光DCU (7nm)</td><td><span class="tag tag-red">2-3代差距</span></td></tr>
+        <tr><td><strong>光刻设备</strong></td><td>ASML EUV (垄断)</td><td>受出口管制限制 · DUV自研中</td><td><span class="tag tag-red">核心卡脖子</span></td></tr>
+        <tr><td><strong>前沿模型能力</strong></td><td>GPT-5, Claude Opus 4</td><td>DeepSeek-V3.2 · Kimi K2</td><td><span class="tag tag-orange">差距收窄至3-6月</span></td></tr>
+        <tr><td><strong>训练成本效率</strong></td><td>GPT-5训练成本~$5,000万+</td><td>DeepSeek-V3训练$550万</td><td><span class="tag tag-green">中国10x成本优势</span></td></tr>
+        <tr><td><strong>应用用户规模</strong></td><td>ChatGPT 9亿WAU</td><td>豆包2.26亿MAU + 文心2.02亿MAU</td><td><span class="tag tag-orange">差距缩小中</span></td></tr>
+        <tr><td><strong>开源生态</strong></td><td>Meta LLaMA</td><td>Qwen 30亿+下载 · DeepSeek</td><td><span class="tag tag-green">中国多模型领先</span></td></tr>
+        <tr><td><strong>AI芯片国产化</strong></td><td>NVIDIA 55%份额</td><td>国产41%份额（+11pp YoY）</td><td><span class="tag tag-blue">快速追赶</span></td></tr>
+        <tr><td><strong>AI VC投资</strong></td><td>$1,940亿（全球75%）</td><td>$139亿（全球5%）</td><td><span class="tag tag-red">15x差距</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Cost Efficiency Comparison -->
+  <div style="margin:20px 0 8px;font-size:12px;font-weight:700;color:var(--text2);text-transform:uppercase;letter-spacing:0.5px">📊 DeepSeek成本效率对比</div>
+  <div style="display:flex;gap:12px;flex-wrap:wrap;margin:12px 0">
+    <div style="flex:1;min-width:200px;background:var(--surface2);border-radius:10px;padding:16px;text-align:center">
+      <div style="font-size:11px;color:var(--text2);font-weight:700;text-transform:uppercase;margin-bottom:6px">训练成本</div>
+      <div style="display:flex;align-items:center;justify-content:center;gap:16px">
+        <div><div style="font-size:24px;font-weight:800;color:var(--red)">$50M+</div><div style="font-size:10px;color:var(--text2)">GPT-5级</div></div>
+        <div style="font-size:16px;color:var(--text2)">vs</div>
+        <div><div style="font-size:24px;font-weight:800;color:var(--green)">$5.5M</div><div style="font-size:10px;color:var(--text2)">DeepSeek-V3</div></div>
+      </div>
+    </div>
+    <div style="flex:1;min-width:200px;background:var(--surface2);border-radius:10px;padding:16px;text-align:center">
+      <div style="font-size:11px;color:var(--text2);font-weight:700;text-transform:uppercase;margin-bottom:6px">推理成本（每百万token）</div>
+      <div style="display:flex;align-items:center;justify-content:center;gap:16px">
+        <div><div style="font-size:24px;font-weight:800;color:var(--red)">$0.28</div><div style="font-size:10px;color:var(--text2)">GPT-5级</div></div>
+        <div style="font-size:16px;color:var(--text2)">vs</div>
+        <div><div style="font-size:24px;font-weight:800;color:var(--green)">$0.028</div><div style="font-size:10px;color:var(--text2)">DeepSeek-V3.2</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="insight" style="margin-top:16px">
+    <div class="label">结构性差异解读</div>
+    <p>中国在芯片硬件层受制于EUV出口管制，存在2-3代制程差距。但DeepSeek以1/10训练成本、1/10推理成本达到GPT-5级水平，形成了"极致成本效率"路线。阿里Qwen开源30亿+下载量领先LLaMA。关键风险：美国可能进一步收紧出口管制，但中国在应用层用户规模和成本效率上正在形成独立优势。</p>
+    <p style="font-size:12px;color:var(--text2);margin-top:6px">来源：Fortune Business Insights · OECD · IndexBox · DeepSeek API · 各公司财报</p>
+  </div>
+</div>
+</section>
+
+<!-- ============================================================ -->
+<!--  PART 3: 机构观点（12家机构深度研究）                              -->
+<!-- ============================================================ -->
+
+<!-- ===== Sequoia Capital ===== -->
+<section id="inst-sequoia">
+<div class="container">
+  <div class="section-header">
+    <h2><span class="icon">🌲</span> Sequoia Capital</h2>
+    <p>硅谷顶级VC，David Cahn主导AI产业经济学研究。核心关注：AI投入产出比、收入缺口、数据中心建设周期。</p>
+  </div>
+
+  <div class="collapsible open">
+    <div class="collapsible-header" onclick="toggle(this)"><span>📄 AI in 2026: A Tale of Two AIs（2025.12）</span><span class="arrow">▶</span></div>
+    <div class="collapsible-body"><div class="inner">
+      <p><strong>核心预测：</strong>2026年将是<strong>"延迟之年"</strong>——数据中心建设和AGI时间线都将延迟，但终端用户AI采用会加速。这两股力量的分化将是2026年的核心叙事。</p>
+
+      <p style="margin-top:14px;font-size:13px;color:var(--text2)"><strong style="color:var(--text1)">1. 从$200B到$600B的收入缺口</strong> — Cahn在2023年提出"AI's $200B Question"，指出基础设施投入与实际AI收入之间存在巨大缺口。到2025年底，这个缺口不但没有缩小反而扩大到了$600B。AI基础设施的年投入已达万亿级别，但终端AI收入仍仅在数百亿量级。</p>
+
+      <p style="margin-top:10px;font-size:13px;color:var(--text2)"><strong style="color:var(--text1)">2. 仅有两个"杀手级应用"</strong> — 截至目前，AI只产生了两个真正的杀手级应用：<strong>编程辅助</strong>和<strong>ChatGPT</strong>，两者都在接近或突破百亿美元年收入。这是支撑AI投资回报的为数不多的确定性锚点。</p>
+
+      <p style="margin-top:10px;font-size:13px;color:var(--text2)"><strong style="color:var(--text1)">3. "$0到$10亿"俱乐部</strong> — 2025年业界开始讨论"$0到$1亿"俱乐部（快速从零增长到1亿美元收入的AI公司）；Cahn预测2026年将开始出现"$0到$10亿"俱乐部，标志着AI应用进入真正的商业化爆发阶段。</p>
+
+      <p style="margin-top:10px;font-size:13px;color:var(--text2)"><strong style="color:var(--text1)">4. 供应链"正面碰撞"</strong> — 大型科技公司飞涨的需求将与尚未充分扩展的供应链正面相撞。三大瓶颈：</p>
+      <ul style="list-style:none;padding:0;margin:6px 0 0 16px">
+        <li style="padding:5px 0;font-size:13px;color:var(--text2)">• <strong>半导体制造</strong>：TSMC自2022年收入增长50%，但CapEx仅增长10%，产能扩张严重滞后于需求；CoWoS先进封装到2026年仍处于满负荷状态</li>
+        <li style="padding:5px 0;font-size:13px;color:var(--text2)">• <strong>工业部件</strong>：数据中心进入最后建设阶段时，发电机和冷却装置成为关键瓶颈</li>
+        <li style="padding:5px 0;font-size:13px;color:var(--text2)">• <strong>劳动力短缺</strong>：完成超大规模建设项目所需的熟练技术工人严重不足</li>
+      </ul>
+
+      <p style="margin-top:10px;font-size:13px;color:var(--text2)"><strong style="color:var(--text1)">5. 数据中心建设的时间现实</strong> — 平均每个AI数据中心需要约<strong>两年</strong>建设周期，这意味着2024-2025年批准的项目最早到2026-2027年才能投入运营，造成了一个基础设施交付的"真空期"。</p>
+
+      <p style="margin-top:10px;font-size:13px;color:var(--text2)"><strong style="color:var(--text1)">6. 企业从"DIY疲劳"转向创业公司方案</strong> — 企业在自建AI解决方案中遭遇挫折，2026年将更多转向采购AI创业公司的成熟产品，而非继续内部开发，这为应用层公司创造了巨大机会窗口。</p>
+
+      <!-- Two AIs Divergence Chart -->
+      <div style="margin:18px 0 8px;font-size:12px;font-weight:700;color:var(--text2);text-transform:uppercase;letter-spacing:0.5px">📊 "两个AI"分化趋势</div>
+      <div style="display:flex;gap:12px;margin:12px 0;flex-wrap:wrap">
+        <div style="flex:1;min-width:200px;background:rgba(239,68,68,0.08);border:1px solid rgba(239,68,68,0.2);border-radius:10px;padding:16px">
+          <div style="font-size:11px;color:var(--red);font-weight:700;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:8px">⬇ 基础设施侧 — 放缓</div>
+          <div class="chart-bar">
+            <div class="bar-row"><div class="bar-label">数据中心建设</div><div class="bar-track"><div class="bar-fill grad-red" style="width:40%">延期6-12月</div></div></div>
+            <div class="bar-row"><div class="bar-label">AGI时间线</div><div class="bar-track"><div class="bar-fill grad-red" style="width:50%">推后</div></div></div>
+            <div class="bar-row"><div class="bar-label">电力供给</div><div class="bar-track"><div class="bar-fill grad-orange" style="width:35%">严重短缺</div></div></div>
+            <div class="bar-row"><div class="bar-label">TSMC产能</div><div class="bar-track"><div class="bar-fill grad-red" style="width:45%">CoWoS满负荷</div></div></div>
+          </div>
+        </div>
+        <div style="flex:1;min-width:200px;background:rgba(34,197,94,0.08);border:1px solid rgba(34,197,94,0.2);border-radius:10px;padding:16px">
+          <div style="font-size:11px;color:var(--green);font-weight:700;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:8px">⬆ 应用侧 — 加速</div>
+          <div class="chart-bar">
+            <div class="bar-row"><div class="bar-label">用户采用</div><div class="bar-track"><div class="bar-fill grad-green" style="width:85%">爆发增长</div></div></div>
+            <div class="bar-row"><div class="bar-label">$0→$10亿</div><div class="bar-track"><div class="bar-fill grad-green" style="width:70%">新俱乐部</div></div></div>
+            <div class="bar-row"><div class="bar-label">编程+ChatGPT</div><div class="bar-track"><div class="bar-fill grad-cyan" style="width:90%">近$100亿级</div></div></div>
+            <div class="bar-row"><div class="bar-label">企业采购</div><div class="bar-track"><div class="bar-fill grad-green" style="width:65%">DIY→买方案</div></div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Revenue Gap Waterfall -->
+      <div style="margin:18px 0 8px;font-size:12px;font-weight:700;color:var(--text2);text-transform:uppercase;letter-spacing:0.5px">📊 AI收入缺口演变（David Cahn系列文章追踪）</div>
+      <div style="display:flex;gap:8px;align-items:flex-end;height:160px;margin:12px 0;padding:0 4px">
+        <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end">
+          <div style="font-size:11px;font-weight:700;color:var(--accent)">$200B</div>
+          <div style="width:100%;height:53px;background:linear-gradient(180deg,#6366f1,#818cf8);border-radius:6px 6px 0 0;margin-top:4px"></div>
+          <div style="font-size:10px;color:var(--text2);margin-top:4px;text-align:center">2023.09<br>$200B Question</div>
+        </div>
+        <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end">
+          <div style="font-size:11px;font-weight:700;color:var(--orange)">$500B</div>
+          <div style="width:100%;height:100px;background:linear-gradient(180deg,#f59e0b,#fbbf24);border-radius:6px 6px 0 0;margin-top:4px"></div>
+          <div style="font-size:10px;color:var(--text2);margin-top:4px;text-align:center">2024.06<br>$600B Question</div>
+        </div>
+        <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end">
+          <div style="font-size:11px;font-weight:700;color:var(--red)">$600B</div>
+          <div style="width:100%;height:130px;background:linear-gradient(180deg,#ef4444,#f87171);border-radius:6px 6px 0 0;margin-top:4px"></div>
+          <div style="font-size:10px;color:var(--text2);margin-top:4px;text-align:center">2025.12<br>Tale of Two AIs</div>
+        </div>
+      </div>
+      <div style="text-align:center;font-size:11px;color:var(--text2);margin-bottom:8px">来源：David Cahn / Sequoia Capital 系列文章</div>
+
+      <p style="margin-top:8px"><a href="https://sequoiacap.com/article/ai-in-2026-the-tale-of-two-ais/" target="_blank" style="color:var(--accent2);font-size:12px">→ 原文链接</a></p>
+    </div></div>
+  </div>
+
+  <div class="collapsible">
+    <div class="collapsible-header" onclick="toggle(this)"><span>📄 AI in 2025: Building Blocks Firmly in Place（2025.01）</span><span class="arrow">▶</span></div>
+    <div class="collapsible-body"><div class="inner">
+      <p><strong>核心观点：</strong>2024年是AI的"原始汤年"（primordial soup year），新想法层出不穷；2025年则是从中筛选——哪些想法真正有效，哪些只是泡沫。AI的基础构建模块已经就位，体现为美国各地拔地而起的数据中心。</p>
+
+      <p style="margin-top:14px;font-size:13px;color:var(--text2)"><strong style="color:var(--text1)">1. 五大玩家整合格局</strong> — AI竞争已经收敛到五大阵营：<strong>Microsoft/OpenAI</strong>、<strong>Amazon/Anthropic</strong>、<strong>Google</strong>、<strong>Meta</strong>、<strong>xAI</strong>。大型科技公司控制着绝大多数为AI提供动力的数据中心，持有大模型公司的重要股权，同时也是新AI创业公司的最大资助者。</p>
+
+      <p style="margin-top:10px;font-size:13px;color:var(--text2)"><strong style="color:var(--text1)">2. 差异化竞争策略正在分化</strong> — 五大阵营在下一轮LLM规模化中各有"超能力"：Google凭借<strong>垂直整合</strong>（自研TPU芯片+自建数据中心+自训模型+内部研究团队），是唯一实现全链路自有的玩家；OpenAI依靠无与伦比的<strong>品牌认知</strong>；Anthropic以<strong>研究人才</strong>见长；xAI押注<strong>数据中心规模</strong>；Meta以<strong>开源模型</strong>建立生态。2025年这些策略将导致截然不同的结果——有人拉开领先，有人被甩在后面。</p>
+
+      <p style="margin-top:10px;font-size:13px;color:var(--text2)"><strong style="color:var(--text1)">3. AI搜索是新的"杀手级应用"</strong> — "AI搜索是对一项迅速成为互联网杀手级应用的技术的强大再发明。传统搜索是基于索引网页的<strong>导航技术</strong>，AI搜索是基于LLM可以阅读和语义理解知识的<strong>信息技术</strong>。"这一根本性转变将重塑搜索市场的竞争格局。</p>
+
+      <p style="margin-top:10px;font-size:13px;color:var(--text2)"><strong style="color:var(--text1)">4. CapEx进入稳定期</strong> — 2025年将是AI资本支出的<strong>稳定之年</strong>，企业从"扩张冲刺"转向"按时按预算交付"。Q3数据显示Microsoft和Google的CapEx趋势线已开始稳定；Amazon和Meta仍在爬坡，但预计2025年初达到稳态。</p>
+
+      <p style="margin-top:10px;font-size:13px;color:var(--text2)"><strong style="color:var(--text1)">5. 数据中心即数字经济的铁路</strong> — "如果数据中心是数字经济的铁路，那么到2025年底新的AI铁路将牢固就位。剩下的问题是：什么样的'货物'将在这些铁路上运行？如何利用这项新技术为客户和终端用户创造价值？"这个比喻也暗示了当前阶段的核心风险——铁路建好了，但货物可能还没准备好。</p>
+
+      <!-- Five Players Strategy Chart -->
+      <div style="margin:18px 0 8px;font-size:12px;font-weight:700;color:var(--text2);text-transform:uppercase;letter-spacing:0.5px">📊 五大阵营差异化策略</div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>阵营</th><th>核心"超能力"</th><th>策略特点</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Google</strong></td><td>垂直整合</td><td>唯一实现自研芯片(TPU)+自建数据中心+自训模型+自有研究团队的全链路玩家</td></tr>
+            <tr><td><strong>Microsoft/OpenAI</strong></td><td>品牌+分发</td><td>OpenAI品牌认知无人能敌，Azure提供企业分发渠道</td></tr>
+            <tr><td><strong>Amazon/Anthropic</strong></td><td>研究人才</td><td>Anthropic汇聚顶尖AI安全研究者，AWS提供规模化基础设施</td></tr>
+            <tr><td><strong>xAI</strong></td><td>数据中心规模</td><td>押注纯粹的算力规模竞赛，快速建设超大规模集群</td></tr>
+            <tr><td><strong>Meta</strong></td><td>开源生态</td><td>通过Llama等开源模型构建开发者生态和行业标准</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p style="margin-top:8px"><a href="https://sequoiacap.com/article/ai-in-2025/" target="_blank" style="color:var(--accent2);font-size:12px">→ 原文链接</a></p>
+    </div></div>
+  </div>
+</div>
+</section>
+
+<!-- ===== Goldman Sachs ===== -->
+<section id="inst-gs">
+<div class="container">
+  <div class="section-header">
+    <h2><span class="icon">🏦</span> Goldman Sachs</h2>
+    <p>全球顶级投行，AI研究覆盖宏观经济影响、行业投资框架、基础设施支出预测。</p>
+  </div>
+
+  <div class="collapsible open">
+    <div class="collapsible-header" onclick="toggle(this)"><span>📄 AI投资四阶段框架（Phase 1-4）</span><span class="arrow">▶</span></div>
+    <div class="collapsible-body"><div class="inner">
+      <p><strong>核心框架：</strong>高盛将AI投资机会拆解为四个依次展开的阶段，每个阶段的核心受益者和兑现程度不同。这一框架已成为华尔街分析AI投资的标准范式。</p>
+
+      <div class="table-wrap" style="margin-top:14px">
+        <table>
+          <thead><tr><th>阶段</th><th>代表</th><th>回报状态</th><th>当前进展</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Phase 1：芯片</strong></td><td>NVIDIA</td><td><span class="tag tag-green">已兑现</span></td><td>FY26营收$2,159亿，利润率75%</td></tr>
+            <tr><td><strong>Phase 2：基础设施</strong></td><td>数据中心/网络/电力</td><td><span class="tag tag-green">正在兑现</span></td><td>基础设施篮子YTD回报44%</td></tr>
+            <tr><td><strong>Phase 3：AI变现</strong></td><td>SaaS公司</td><td><span class="tag tag-orange">刚起步</span></td><td>Salesforce Agentforce $8亿ARR</td></tr>
+            <tr><td><strong>Phase 4：生产力</strong></td><td>全行业</td><td><span class="tag tag-red">尚未到来</span></td><td>预计2027年显现GDP影响</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p style="margin-top:14px;font-size:13px;color:var(--text2)"><strong style="color:var(--text1)">Phase 1的独特性</strong> — 第一阶段本质上就是NVIDIA一家公司。GPU芯片是AI的"卖铲子"生意，NVIDIA在这个位置享有近乎垄断的定价权和利润率，这在科技史上极为罕见。</p>
+
+      <p style="margin-top:10px;font-size:13px;color:var(--text2)"><strong style="color:var(--text1)">Phase 2的广度</strong> — 第二阶段包含的公司远比芯片广泛：半导体设计与制造商、云服务商、计算机与网络设备商、数据中心REITs、公用事业公司、安全软件提供商。等权重的Phase 2股票篮子在过去六个月已上涨14%。高盛强调关注光纤（传输大量数据的高速通道）和网络安全公司。</p>
+
+      <p style="margin-top:10px;font-size:13px;color:var(--text2)"><strong style="color:var(--text1)">Phase 3的关键拐点</strong> — 软件和IT服务公司最有利于通过AI创造增量收入。Phase 3篮子股票过去六个月上涨21%，但真正的大规模收入兑现尚处于早期。这是目前AI投资回报论证中最大的"信仰跳跃"所在。</p>
+
+      <p style="margin-top:10px;font-size:13px;color:var(--text2)"><strong style="color:var(--text1)">Phase 4的终局想象</strong> — 最终阶段的受益者是因AI普及而获得劳动生产力提升的广泛行业，尤其是软件/服务和商业/专业服务领域。这是AI对实体经济产生系统性影响的阶段，目前仍在地平线之外。</p>
+
+      <!-- Phase progression visual -->
+      <div style="margin:18px 0 8px;font-size:12px;font-weight:700;color:var(--text2);text-transform:uppercase;letter-spacing:0.5px">📊 四阶段投资篮子表现</div>
+      <div class="chart-bar">
+        <div class="bar-row"><div class="bar-label">Phase 1 芯片</div><div class="bar-track"><div class="bar-fill grad-green" style="width:95%">NVIDIA YTD ↑ 已充分定价</div></div></div>
+        <div class="bar-row"><div class="bar-label">Phase 2 基础设施</div><div class="bar-track"><div class="bar-fill grad-green" style="width:70%">篮子YTD +44% · 6M +14%</div></div></div>
+        <div class="bar-row"><div class="bar-label">Phase 3 变现</div><div class="bar-track"><div class="bar-fill grad-orange" style="width:40%">篮子6M +21% · 早期兑现</div></div></div>
+        <div class="bar-row"><div class="bar-label">Phase 4 生产力</div><div class="bar-track"><div class="bar-fill grad-red" style="width:12%">预期2027+</div></div></div>
+      </div>
+
+      <p style="margin-top:8px"><a href="https://www.goldmansachs.com/insights/articles/ai-infrastructure-stocks-poised-to-be-next-phase" target="_blank" style="color:var(--accent2);font-size:12px">→ 原文链接</a></p>
+    </div></div>
+  </div>
+
+  <div class="collapsible">
+    <div class="collapsible-header" onclick="toggle(this)"><span>📄 Why AI Companies May Invest More than $500B in 2026</span><span class="arrow">▶</span></div>
+    <div class="collapsible-body"><div class="inner">
+      <p><strong>核心论点：</strong>2026年超大规模企业CapEx共识达<strong>$5,270亿</strong>（从Q3初的$4,650亿大幅上调），逼近历史上电信泡沫时期的$5,000-7,000亿峰值区间。问题不在于企业是否愿意花这么多钱，而在于供应链能否承接。</p>
+
+      <p style="margin-top:14px;font-size:13px;color:var(--text2)"><strong style="color:var(--text1)">1. 共识连续两年严重低估</strong> — 2024年初和2025年初，市场对当年CapEx的共识预测都暗示约20%的增长率，但实际增长均超过50%。这意味着$5,270亿的2026年预测可能仍然偏低，实际数字可能更高。</p>
+
+      <p style="margin-top:10px;font-size:13px;color:var(--text2)"><strong style="color:var(--text1)">2. Big Five各自突破$1,000亿</strong> — Amazon、Microsoft、Alphabet、Meta、Oracle五大超大规模企业预计2026年CapEx总计超过$6,000亿（同比+36%），其中约75%（$4,500亿）专门用于AI基础设施。每家公司的单独支出都可能突破$1,000亿。</p>
+
+      <p style="margin-top:10px;font-size:13px;color:var(--text2)"><strong style="color:var(--text1)">3. 增速见顶但绝对额继续攀升</strong> — CapEx增速预计从2025年的50%+放缓至Q4的49%，再到2026年底的25%左右。但增速放缓≠绝对额下降——以$5,000亿+的基数计算，即便25%的增速也意味着巨额增量。</p>
+
+      <p style="margin-top:10px;font-size:13px;color:var(--text2)"><strong style="color:var(--text1)">4. 电信泡沫的类比与区别</strong> — $5,000-7,000亿的支出规模在历史上只有2000年电信泡沫时期可以类比。关键区别在于：当年电信公司是举债扩张、收入基础薄弱，而今天的AI投资者（Big Tech）自由现金流充沛、资产负债表健康。但风险信号不可忽视——如果AI收入增长不能在2026-2027年实质性加速，这一叙事可能反转。</p>
+
+      <!-- Hyperscaler CapEx Growth Bar Chart -->
+      <div style="margin:18px 0 8px;font-size:12px;font-weight:700;color:var(--text2);text-transform:uppercase;letter-spacing:0.5px">📊 超大规模企业AI CapEx增长轨迹（$亿）</div>
+      <div class="chart-bar">
+        <div class="bar-row"><div class="bar-label">2022</div><div class="bar-track"><div class="bar-fill grad-blue" style="width:18%">$1,200</div></div></div>
+        <div class="bar-row"><div class="bar-label">2023</div><div class="bar-track"><div class="bar-fill grad-blue" style="width:24%">$1,600</div></div></div>
+        <div class="bar-row"><div class="bar-label">2024</div><div class="bar-track"><div class="bar-fill grad-blue" style="width:38%">$2,500</div></div></div>
+        <div class="bar-row"><div class="bar-label">2025E</div><div class="bar-track"><div class="bar-fill grad-purple" style="width:60%">$4,000+</div></div></div>
+        <div class="bar-row"><div class="bar-label"><strong>2026E</strong></div><div class="bar-track"><div class="bar-fill grad-orange" style="width:80%">$5,270</div></div></div>
+        <div class="bar-row"><div class="bar-label" style="color:var(--text2);font-style:italic">电信泡沫峰值</div><div class="bar-track"><div class="bar-fill" style="width:90%;background:repeating-linear-gradient(90deg,rgba(239,68,68,0.3) 0,rgba(239,68,68,0.3) 6px,transparent 6px,transparent 12px);border:1px dashed var(--red)">$5,000-7,000 ⚠️</div></div></div>
+      </div>
+      <div style="text-align:center;font-size:11px;color:var(--text2);margin-bottom:8px">来源：Goldman Sachs Research (2025-2026)</div>
+
+      <p style="margin-top:8px"><a href="https://www.goldmansachs.com/insights/articles/why-ai-companies-may-invest-more-than-500-billion-in-2026" target="_blank" style="color:var(--accent2);font-size:12px">→ 原文链接</a></p>
+    </div></div>
+  </div>
+
+  <div class="collapsible">
+    <div class="collapsible-header" onclick="toggle(this)"><span>📄 What to Expect From AI in 2026: Personal Agents, Mega Alliances, Gigawatt Ceiling</span><span class="arrow">▶</span></div>
+    <div class="collapsible-body"><div class="inner">
+      <p><strong>核心观点：</strong>高盛CIO团队对2026年AI产业的五大预测，涵盖产品形态、竞争格局和物理约束三个维度。</p>
+
+      <p style="margin-top:14px;font-size:13px;color:var(--text2)"><strong style="color:var(--text1)">1. 个人AI Agent：模型即操作系统</strong> — AI模型不再是"问答聊天框"，而是能够浏览互联网、访问文件、执行多步骤任务的<strong>实体（Agent）</strong>。高盛认为这代表了计算模式的根本转变：模型就是新的操作系统。2026年Agent将开始处理复杂的长周期任务，人机混合团队成为现实。</p>
+
+      <p style="margin-top:10px;font-size:13px;color:var(--text2)"><strong style="color:var(--text1)">2. 上下文窗口的飞跃</strong> — 2026年最大的技术突破之一将是模型能够处理<strong>大幅增加的上下文长度</strong>——跨越文档库、长时间对话、以及"你读过的一切、你写过的一切"。这不仅是技术参数的提升，而是使AI从"单次问答"进化为"持续协作伙伴"的关键。</p>
+
+      <p style="margin-top:10px;font-size:13px;color:var(--text2)"><strong style="color:var(--text1)">3. 超大规模联盟重塑格局</strong> — 前所未有的战略联盟甚至合并将出现在科技"超大规模企业"与公用事业公司之间。能源成为终极竞争货币，形成<strong>"赢家通吃"</strong>的格局。这些联盟将从根本上改变AI产业的竞争结构——没有电力伙伴的公司将被挤出竞争。</p>
+
+      <p style="margin-top:10px;font-size:13px;color:var(--text2)"><strong style="color:var(--text1)">4. "Gigawatt天花板"</strong> — AI数据中心所需的庞大基础设施规模、新电力设施上线的多年前置期、以及AI模型的快速迭代，三者叠加将在2026年形成<strong>千兆瓦级的电力天花板</strong>。数据中心用电量到2030年将比2023年增长175%。每一兆瓦的电力分配都将被企业视为最高回报率的优化问题。</p>
+
+      <p style="margin-top:10px;font-size:13px;color:var(--text2)"><strong style="color:var(--text1)">5. 专家模型（LEM）崛起</strong> — 通用大模型之外，针对特定领域深度优化的<strong>Large Expert Models</strong>将在医学、金融、材料科学、法律等垂直领域出现。这些模型不追求"什么都会"，而是在特定领域达到或超越人类专家水平。</p>
+
+      <!-- Five Predictions Visual -->
+      <div style="margin:18px 0 8px;font-size:12px;font-weight:700;color:var(--text2);text-transform:uppercase;letter-spacing:0.5px">📊 2026年五大预测维度</div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin:12px 0">
+        <div style="flex:1;min-width:120px;background:rgba(99,102,241,0.1);border:1px solid rgba(99,102,241,0.25);border-radius:10px;padding:12px;text-align:center">
+          <div style="font-size:20px;margin-bottom:6px">🤖</div>
+          <div style="font-size:11px;font-weight:700;color:var(--accent)">Agent OS</div>
+          <div style="font-size:10px;color:var(--text2);margin-top:4px">模型=操作系统<br>多步骤自主执行</div>
+        </div>
+        <div style="flex:1;min-width:120px;background:rgba(34,197,94,0.1);border:1px solid rgba(34,197,94,0.25);border-radius:10px;padding:12px;text-align:center">
+          <div style="font-size:20px;margin-bottom:6px">📚</div>
+          <div style="font-size:11px;font-weight:700;color:var(--green)">超长上下文</div>
+          <div style="font-size:10px;color:var(--text2);margin-top:4px">跨文档库推理<br>持续协作伙伴</div>
+        </div>
+        <div style="flex:1;min-width:120px;background:rgba(245,158,11,0.1);border:1px solid rgba(245,158,11,0.25);border-radius:10px;padding:12px;text-align:center">
+          <div style="font-size:20px;margin-bottom:6px">🤝</div>
+          <div style="font-size:11px;font-weight:700;color:var(--orange)">超级联盟</div>
+          <div style="font-size:10px;color:var(--text2);margin-top:4px">科技+能源合并<br>赢家通吃格局</div>
+        </div>
+        <div style="flex:1;min-width:120px;background:rgba(239,68,68,0.1);border:1px solid rgba(239,68,68,0.25);border-radius:10px;padding:12px;text-align:center">
+          <div style="font-size:20px;margin-bottom:6px">⚡</div>
+          <div style="font-size:11px;font-weight:700;color:var(--red)">GW天花板</div>
+          <div style="font-size:10px;color:var(--text2);margin-top:4px">电力=硬约束<br>2030年用电+175%</div>
+        </div>
+        <div style="flex:1;min-width:120px;background:rgba(168,85,247,0.1);border:1px solid rgba(168,85,247,0.25);border-radius:10px;padding:12px;text-align:center">
+          <div style="font-size:20px;margin-bottom:6px">🧠</div>
+          <div style="font-size:11px;font-weight:700;color:#a855f7">专家模型</div>
+          <div style="font-size:10px;color:var(--text2);margin-top:4px">垂直领域LEM<br>医学/金融/法律</div>
+        </div>
+      </div>
+
+      <p style="margin-top:8px"><a href="https://www.goldmansachs.com/insights/articles/what-to-expect-from-ai-in-2026-personal-agents-mega-alliances" target="_blank" style="color:var(--accent2);font-size:12px">→ 原文链接</a></p>
+    </div></div>
+  </div>
+
+</div>
+</section>
+
+<!-- ===== Morgan Stanley ===== -->
+<section id="inst-ms">
+<div class="container">
+  <div class="section-header">
+    <h2><span class="icon">🏦</span> Morgan Stanley</h2>
+    <p>全球顶级投行，AI研究侧重能源/电力基础设施、半导体硬件支出、GenAI收入预测。</p>
+  </div>
+
+  <div class="collapsible open">
+    <div class="collapsible-header" onclick="toggle(this)"><span>📄 AI电力缺口与价值创造预测</span><span class="arrow">▶</span></div>
+    <div class="collapsible-body"><div class="inner">
+      <p><strong>核心论点：</strong>大摩"Intelligence Factory"模型揭示，美国电网容量正面临<strong>9-18GW</strong>的结构性短缺（占AI所需电力的12%-25%），这一能源缺口将成为AI发展的根本性基础设施约束。</p>
+      <div class="kpi-row" style="margin-top:14px">
+        <div class="kpi"><div class="label">数据中心需求 (2028)</div><div class="value" style="color:var(--orange)">74 GW</div></div>
+        <div class="kpi"><div class="label">供给缺口</div><div class="value" style="color:var(--red)">44-49 GW</div></div>
+        <div class="kpi"><div class="label">GenAI能源年增速</div><div class="value" style="color:var(--cyan)">70%</div></div>
+        <div class="kpi"><div class="label">电力链价值创造</div><div class="value" style="color:var(--green)">$3,500亿</div></div>
+      </div>
+
+      <p style="margin-top:14px;font-size:13px;color:var(--text2)"><strong style="color:var(--text1)">1. 用电占比的历史性跳变</strong> — 数据中心占美国总用电从当前的6%跃升至2030-33年的<strong>18-20%</strong>。这意味着一个此前微不足道的用电品类将在不到十年内占据近五分之一的电力消耗，这在能源史上史无前例。</p>
+
+      <p style="margin-top:10px;font-size:13px;color:var(--text2)"><strong style="color:var(--text1)">2. 电力价差与发电公司盈利</strong> — 电力价差上升<strong>15%</strong>，直接推动发电公司盈利上调。投资者正将目光投向天然气、储能和核能——以及"离网"选项——作为数据中心扩张的配套投资。</p>
+
+      <p style="margin-top:10px;font-size:13px;color:var(--text2)"><strong style="color:var(--text1)">3. "离网"数据中心趋势</strong> — 企业开始采用分布式和自有发电来维持AI运转，燃料电池技术和涡轮发电机提供超越电网可用性的补充电力。储能已成为新建数据中心的标准配置。大型科技公司仅2025-2026年的支出承诺就可能超过<strong>$1万亿</strong>。</p>
+
+      <p style="margin-top:10px;font-size:13px;color:var(--text2)"><strong style="color:var(--text1)">4. 核电复兴</strong> — 大摩特别看好核能作为AI数据中心的长期稳定电力来源，小型模块化反应堆（SMR）和大型传统核电站都在被重新评估。这是一个被低估的投资主题。</p>
+
+      <!-- Power Demand Stacked Bar -->
+      <div style="margin:18px 0 8px;font-size:12px;font-weight:700;color:var(--text2);text-transform:uppercase;letter-spacing:0.5px">📊 数据中心占美国总用电比例演变</div>
+      <div class="chart-stacked-row">
+        <div class="sr-label">2024 · 数据中心占比 <strong>6%</strong></div>
+        <div class="sr-bar">
+          <div class="sr-seg" style="width:6%;background:var(--accent)">6%</div>
+          <div class="sr-seg" style="width:94%;background:var(--surface2);color:var(--text2)">其他用电 94%</div>
+        </div>
+        <div class="sr-label">2030E · 数据中心占比 <strong style="color:var(--orange)">18-20%</strong></div>
+        <div class="sr-bar">
+          <div class="sr-seg" style="width:19%;background:linear-gradient(90deg,var(--orange),#f59e0b)">18-20%</div>
+          <div class="sr-seg" style="width:81%;background:var(--surface2);color:var(--text2)">其他用电 80-82%</div>
+        </div>
+      </div>
+      <div style="text-align:center;font-size:11px;color:var(--text2);margin-bottom:8px">来源：Morgan Stanley Research, "Powering the AI Revolution"</div>
+
+      <p style="margin-top:8px"><a href="https://www.morganstanley.com/ideas/ai-energy-demand-infrastructure" target="_blank" style="color:var(--accent2);font-size:12px">→ 原文链接</a></p>
+    </div></div>
+  </div>
+
+  <div class="collapsible">
+    <div class="collapsible-header" onclick="toggle(this)"><span>📄 AI Breakthrough Coming in 2026（2026.03）</span><span class="arrow">▶</span></div>
+    <div class="collapsible-body"><div class="inner">
+      <p><strong>核心预警：</strong>大摩预测2026年上半年将出现<strong>重大AI突破</strong>，由美国顶级AI实验室前所未有的算力积累驱动。</p>
+
+      <p style="margin-top:10px;font-size:13px;color:var(--text2)"><strong style="color:var(--text1)">1. "变革性跳跃"迫在眉睫</strong> — 这不是渐进式改善，而是AI能力的突变。大摩认为当前积累的算力规模已达到触发质变的临界点，突破可能来自推理能力、多模态或自主性方面。</p>
+
+      <p style="margin-top:10px;font-size:13px;color:var(--text2)"><strong style="color:var(--text1)">2. 世界尚未做好准备</strong> — 这一突破将对电网和就业市场产生冲击，而多数政策制定者、行业和基础设施供应商尚未做好准备。AI进展速度超出了几乎所有人的预期——包括许多业内人士。</p>
+
+      <p style="margin-top:10px;font-size:13px;color:var(--text2)"><strong style="color:var(--text1)">3. 投资含义</strong> — 如果突破确实发生，当前对AI基础设施的投资可能仍然<strong>低估</strong>了实际需求。同时，突破带来的能力跃升将加速应用层的商业化进程，缩短Sequoia所说的"收入缺口"的弥合时间。</p>
+      <p style="margin-top:8px"><a href="https://fortune.com/2026/03/13/elon-musk-morgan-stanley-ai-leap-2026/" target="_blank" style="color:var(--accent2);font-size:12px">→ Fortune报道链接</a></p>
+    </div></div>
+  </div>
+
+  <div class="collapsible">
+    <div class="collapsible-header" onclick="toggle(this)"><span>📄 GenAI Revenue Could Surpass $1T by 2028</span><span class="arrow">▶</span></div>
+    <div class="collapsible-body"><div class="inner">
+      <p><strong>核心论点：</strong>GenAI收入将从2024年$450亿增长到2028年<strong>$1.1万亿</strong>——三年增长超20倍。更关键的是，2025年将是GenAI首次实现正向投资回报的拐点年。</p>
+
+      <p style="margin-top:14px;font-size:13px;color:var(--text2)"><strong style="color:var(--text1)">1. 收入三年20倍增长</strong> — 2024年GenAI收入约$450亿，2025年预测$1,530亿（其中企业软件$590亿、消费平台$940亿），到2028年达$1.1万亿。消费平台（ChatGPT、Gemini等）目前贡献更大，但企业软件将加速追赶。</p>
+
+      <p style="margin-top:10px;font-size:13px;color:var(--text2)"><strong style="color:var(--text1)">2. 2025年首次盈利拐点</strong> — GenAI预计2025年实现<strong>34%的贡献利润率</strong>，对应约$510亿的利润。到2028年，利润率将升至<strong>67%</strong>，对应$7,220亿回报。这意味着AI从"烧钱阶段"转向"正向现金流阶段"的时间点比市场预期更早。</p>
+
+      <p style="margin-top:10px;font-size:13px;color:var(--text2)"><strong style="color:var(--text1)">3. 硬件支出近三倍增长</strong> — 硬件/网络/存储的GenAI支出从$980亿(2024)增至<strong>$2,760亿(2028)</strong>。但收入增速远快于硬件支出增速——这是投资回报兑现的核心逻辑，也是对"收入缺口"叙事最直接的回应。</p>
+
+      <p style="margin-top:10px;font-size:13px;color:var(--text2)"><strong style="color:var(--text1)">4. $3万亿基础设施投资浪潮</strong> — 近$3万亿AI相关基础设施投资将在2028年前流入全球经济，其中<strong>80%以上尚未落地</strong>。这意味着AI基础设施建设远未达到峰值，增量投资空间巨大。</p>
+
+      <!-- GenAI Revenue vs Hardware Spend Waterfall -->
+      <div style="margin:18px 0 8px;font-size:12px;font-weight:700;color:var(--text2);text-transform:uppercase;letter-spacing:0.5px">📊 GenAI收入 vs 硬件支出增长对比（$亿）</div>
+      <div style="display:flex;gap:16px;flex-wrap:wrap;margin:12px 0">
+        <div style="flex:1;min-width:180px">
+          <div style="font-size:11px;color:var(--green);font-weight:700;margin-bottom:6px">GenAI 潜在收入</div>
+          <div class="chart-bar">
+            <div class="bar-row"><div class="bar-label">2024</div><div class="bar-track"><div class="bar-fill grad-green" style="width:4%">$450</div></div></div>
+            <div class="bar-row"><div class="bar-label">2026E</div><div class="bar-track"><div class="bar-fill grad-green" style="width:30%">$3,300</div></div></div>
+            <div class="bar-row"><div class="bar-label"><strong>2028E</strong></div><div class="bar-track"><div class="bar-fill grad-green" style="width:100%">$11,000</div></div></div>
+          </div>
+        </div>
+        <div style="flex:1;min-width:180px">
+          <div style="font-size:11px;color:var(--cyan);font-weight:700;margin-bottom:6px">硬件/网络/存储 GenAI支出</div>
+          <div class="chart-bar">
+            <div class="bar-row"><div class="bar-label">2024</div><div class="bar-track"><div class="bar-fill grad-cyan" style="width:36%">$980</div></div></div>
+            <div class="bar-row"><div class="bar-label">2026E</div><div class="bar-track"><div class="bar-fill grad-cyan" style="width:65%">$1,800</div></div></div>
+            <div class="bar-row"><div class="bar-label"><strong>2028E</strong></div><div class="bar-track"><div class="bar-fill grad-cyan" style="width:100%">$2,760</div></div></div>
+          </div>
+        </div>
+      </div>
+      <div class="insight" style="margin-top:8px">
+        <div class="label">关键拐点</div>
+        <p style="font-size:13px">GenAI预计<strong>2025年开始盈利</strong>（估计利润率34%）。到2028年，收入增速将远超硬件支出增速——这是投资回报兑现的核心逻辑。</p>
+      </div>
+      <div style="text-align:center;font-size:11px;color:var(--text2);margin:8px 0">来源：Morgan Stanley Research, "GenAI Revenue Could Surpass $1T by 2028"</div>
+
+      <p style="margin-top:8px"><a href="https://www.morganstanley.com/insights/articles/genai-revenue-growth-and-profitability" target="_blank" style="color:var(--accent2);font-size:12px">→ 原文链接</a></p>
+    </div></div>
+  </div>
+
+  <div class="collapsible">
+    <div class="collapsible-header" onclick="toggle(this)"><span>📄 AI Market Trends 2026: Global Investment, Risks, and Buildout</span><span class="arrow">▶</span></div>
+    <div class="collapsible-body"><div class="inner">
+      <p><strong>核心观点：</strong>全球AI市场趋势综合报告，覆盖投资规模、地缘风险、物理基础设施瓶颈。大摩认为AI投资不仅面临技术和商业风险，还面临被严重低估的<strong>物理环境风险</strong>。</p>
+
+      <p style="margin-top:10px;font-size:13px;color:var(--text2)"><strong style="color:var(--text1)">1. 数据中心的物理脆弱性</strong> — 全球超过一半的顶级数据中心枢纽位于已面临<strong>中等物理风险</strong>的地区——包括干旱、洪水和水质下降。AI数据中心对冷却水的需求巨大，而水资源短缺正在成为选址的硬约束。</p>
+
+      <p style="margin-top:10px;font-size:13px;color:var(--text2)"><strong style="color:var(--text1)">2. 地缘政治对AI供应链的影响</strong> — 芯片制造集中于台湾、先进封装产能高度垄断、稀土材料供应链的脆弱性——这些地缘风险尚未被市场充分定价。大摩建议投资者将供应链韧性纳入AI投资评估框架。</p>
+
+      <p style="margin-top:10px;font-size:13px;color:var(--text2)"><strong style="color:var(--text1)">3. AI扩散创造$40万亿市场</strong> — 大摩的"AI技术扩散"模型预测，AI从科技行业向传统行业渗透将创造一个<strong>$40万亿</strong>的长期市场机会。关键扩散路径包括医疗诊断、金融风控、制造业自动化和科研加速。</p>
+      <p style="margin-top:8px"><a href="https://www.morganstanley.com/insights/articles/ai-market-trends-institute-2026" target="_blank" style="color:var(--accent2);font-size:12px">→ 原文链接</a></p>
+    </div></div>
+  </div>
+</div>
+</section>
+
+<!-- ===== JP Morgan ===== -->
+<section id="inst-jpmorgan">
+<div class="container">
+  <div class="section-header">
+    <h2><span class="icon">🏦</span> JP Morgan</h2>
+    <p>全球最大银行之一，AI研究覆盖宏观经济展望、企业采用实态、融资与债务市场影响。</p>
+  </div>
+
+  <div class="collapsible open">
+    <div class="collapsible-header" onclick="toggle(this)"><span>📄 2026 Market Outlook: AI Supercycle</span><span class="arrow">▶</span></div>
+    <div class="collapsible-body"><div class="inner">
+      <p><strong>核心框架：</strong>摩根大通认为AI正在催生一个<strong>"超级周期"</strong>——不仅限于科技行业，而是正在向公用事业、银行、医疗、物流等传统行业扩散。这一动能将推动美国GDP增长的约40%。</p>
+
+      <p style="margin-top:14px;font-size:13px;color:var(--text2)"><strong style="color:var(--text1)">1. CapEx五年增5倍</strong> — 超大规模企业CapEx从2022年约$1,400亿增至2025年超$4,000亿，2026年接近<strong>$7,000亿</strong>。这是企业史上最大规模的投资扩张之一。摩根大通的预测比高盛的$5,270亿更为激进。</p>
+
+      <p style="margin-top:10px;font-size:13px;color:var(--text2)"><strong style="color:var(--text1)">2. 盈利增长的持续性</strong> — AI超级周期推动企业盈利增长<strong>13-15%</strong>，且至少持续2年以上。这意味着AI不是一次性的盈利脉冲，而是结构性的利润提升驱动力。</p>
+
+      <p style="margin-top:10px;font-size:13px;color:var(--text2)"><strong style="color:var(--text1)">3. 指数级前沿 vs 线性采用</strong> — AI前沿能力呈指数级提升，但企业实际采用更为<strong>线性、参差不齐、充满组织瓶颈</strong>。技术能力和企业吸收能力之间的鸿沟，正是高绩效和低绩效企业差距拉大的根源。</p>
+
+      <p style="margin-top:10px;font-size:13px;color:var(--text2)"><strong style="color:var(--text1)">4. Agent部署率爆发</strong> — AI Agent部署率在2025年内从11%翻倍至<strong>26%</strong>。Agent从概念走向生产环境的速度超出预期，但仍有3/4的企业尚未部署。</p>
+
+      <p style="margin-top:10px;font-size:13px;color:var(--text2)"><strong style="color:var(--text1)">5. 融资方式的转变</strong> — 超大规模企业自由现金流预计大幅下降，债券发行将从2025年$1,200亿升至2026年<strong>$2,850亿</strong>。AI投资正从"用利润投资"转向"用债务投资"的阶段——这是一个值得关注的风险信号。</p>
+
+      <!-- JPM CapEx & Agent Adoption Charts -->
+      <div style="display:flex;gap:12px;flex-wrap:wrap;margin:16px 0">
+        <div style="flex:1;min-width:200px;background:var(--surface2);border-radius:10px;padding:16px">
+          <div style="font-size:11px;color:var(--accent2);font-weight:700;text-transform:uppercase;margin-bottom:10px">超大规模CapEx（$亿）· 5年增5倍</div>
+          <div class="chart-waterfall" style="height:140px">
+            <div class="wf-col"><div class="wf-val" style="color:var(--text2)">$1,400</div><div class="wf-bar" style="height:20%;background:var(--accent)"></div><div class="wf-label">2022</div></div>
+            <div class="wf-col"><div class="wf-val" style="color:var(--text2)">$1,800</div><div class="wf-bar" style="height:26%;background:var(--accent)"></div><div class="wf-label">2023</div></div>
+            <div class="wf-col"><div class="wf-val" style="color:var(--accent2)">$2,800</div><div class="wf-bar" style="height:40%;background:var(--accent2)"></div><div class="wf-label">2024</div></div>
+            <div class="wf-col"><div class="wf-val" style="color:var(--cyan)">$4,000</div><div class="wf-bar" style="height:57%;background:var(--cyan)"></div><div class="wf-label">2025E</div></div>
+            <div class="wf-col"><div class="wf-val" style="color:var(--orange);font-weight:800">$7,000</div><div class="wf-bar" style="height:100%;background:linear-gradient(180deg,var(--orange),#92400e)"></div><div class="wf-label"><strong>2026E</strong></div></div>
+          </div>
+        </div>
+        <div style="flex:1;min-width:200px;background:var(--surface2);border-radius:10px;padding:16px">
+          <div style="font-size:11px;color:var(--green);font-weight:700;text-transform:uppercase;margin-bottom:10px">AI Agent部署率 · 2025年内翻倍</div>
+          <div style="display:flex;align-items:flex-end;gap:24px;justify-content:center;height:140px;padding-bottom:20px">
+            <div style="text-align:center">
+              <div style="font-size:24px;font-weight:800;color:var(--text2)">11%</div>
+              <div style="width:60px;height:44px;background:var(--accent);border-radius:6px 6px 0 0;margin:8px auto 0"></div>
+              <div style="font-size:11px;color:var(--text2);margin-top:6px">2025 H1</div>
+            </div>
+            <div style="font-size:20px;color:var(--text2);padding-bottom:30px">→</div>
+            <div style="text-align:center">
+              <div style="font-size:24px;font-weight:800;color:var(--green)">26%</div>
+              <div style="width:60px;height:104px;background:linear-gradient(180deg,var(--green),#059669);border-radius:6px 6px 0 0;margin:8px auto 0"></div>
+              <div style="font-size:11px;color:var(--text2);margin-top:6px">2025 H2</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <p style="margin-top:8px"><a href="https://www.jpmorgan.com/insights/global-research/outlook/market-outlook" target="_blank" style="color:var(--accent2);font-size:12px">→ 原文链接</a></p>
+    </div></div>
+  </div>
+
+  <div class="collapsible">
+    <div class="collapsible-header" onclick="toggle(this)"><span>📄 Eye on the Market: Outlook 2026 "Smothering Heights"</span><span class="arrow">▶</span></div>
+    <div class="collapsible-body"><div class="inner">
+      <p><strong>核心观点：</strong>标题"Smothering Heights"（窒息的高度）暗示AI投资热潮已达到令人窒息的规模，既是巨大机会也隐含风险。</p>
+
+      <p style="margin-top:10px;font-size:13px;color:var(--text2)"><strong style="color:var(--text1)">1. 与2000年科技泡沫的异同</strong> — 相似点：投资速度和规模都超出常规，估值隐含极其乐观的未来预期。关键区别：当年科技公司靠债务扩张，今天的Big Tech拥有充裕的自由现金流和健康的资产负债表——但这一优势正在随着债券发行加速而削弱。</p>
+
+      <p style="margin-top:10px;font-size:13px;color:var(--text2)"><strong style="color:var(--text1)">2. AI投入的可持续性问题</strong> — 报告质疑：如果AI收入增长在2027年前不能实质性地追赶上CapEx增速，企业是否有理由继续加码？资管部门的视角比卖方研究更为审慎，强调投资回报的时间维度。</p>
+
+      <p style="margin-top:10px;font-size:13px;color:var(--text2)"><strong style="color:var(--text1)">3. 杠杆扩张的信号</strong> — 大型科技公司正在从"用现金流投资"转向"举债投资"，这在历史上往往是投资周期进入后半段的标志。投资者需要关注自由现金流的变化趋势。</p>
+      <p style="margin-top:8px"><a href="https://am.jpmorgan.com/content/dam/jpm-am-aem/global/en/insights/eye-on-the-market/smothering-heights-amv.pdf" target="_blank" style="color:var(--accent2);font-size:12px">→ PDF原文</a></p>
+    </div></div>
+  </div>
+</div>
+</section>
+
+<!-- ===== Bank of America ===== -->
+<section id="inst-bofa">
+<div class="container">
+  <div class="section-header">
+    <h2><span class="icon">🏦</span> Bank of America</h2>
+    <p>美国最大银行之一，半导体行业研究深度领先。分析师Vivek Arya是AI芯片领域最具影响力的卖方分析师之一。</p>
+  </div>
+
+  <div class="collapsible open">
+    <div class="collapsible-header" onclick="toggle(this)"><span>📄 2026 Semiconductor Outlook: Chip Sales to Exceed $1 Trillion</span><span class="arrow">▶</span></div>
+    <div class="collapsible-body"><div class="inner">
+      <p><strong>核心论点：</strong>分析师Vivek Arya认为AI半导体热潮远未降温——行业仅处于"十年变革的中点"。2026年将是全球芯片行业首次突破万亿美元收入的历史性年份。</p>
+
+      <p style="margin-top:14px;font-size:13px;color:var(--text2)"><strong style="color:var(--text1)">1. 半导体行业首破万亿</strong> — 2026年全球半导体行业收入预计跳增<strong>30%</strong> YoY，首次突破<strong>$1万亿</strong>大关。其中AI半导体再增<strong>50%+</strong>，是增长的核心引擎。</p>
+
+      <p style="margin-top:10px;font-size:13px;color:var(--text2)"><strong style="color:var(--text1)">2. AI芯片增长的四重驱动</strong> — 四股力量同时推动AI芯片需求：数据中心高利用率（产能持续满负荷）、供给紧张（TSMC先进制程供不应求）、企业AI采用加速、以及主权客户涌入（各国政府建设国家级AI基础设施）。</p>
+
+      <p style="margin-top:10px;font-size:13px;color:var(--text2)"><strong style="color:var(--text1)">3. NVIDIA和Broadcom的双极格局</strong> — NVIDIA是"AI的大脑"——GPU售价约$3万，BofA认为尽管市值庞大但从自由现金流看"仍然极为便宜"，未来三年FCF预计达<strong>$5,000亿</strong>。Broadcom是"AI的神经系统"——市值$1.6万亿，核心驱动力是为Google、Meta等超大规模企业定制ASIC芯片。</p>
+
+      <p style="margin-top:10px;font-size:13px;color:var(--text2)"><strong style="color:var(--text1)">4. 垄断性市场份额</strong> — 六大首选股（NVIDIA、Broadcom、Lam Research、KLA、Analog Devices、Cadence）的共同特征是在各自细分市场拥有<strong>70-75%的垄断性市场份额</strong>。在AI投资浪潮中，这种市场地位意味着确定性极高的收入增长。</p>
+
+      <p style="margin-top:10px;font-size:13px;color:var(--text2)"><strong style="color:var(--text1)">5. AI数据中心系统TAM</strong> — 到2030年，AI数据中心系统TAM超过<strong>$1.2万亿</strong>（CAGR 38%），其中AI加速器芯片单独构成$9,000亿的市场机会。</p>
+
+      <!-- Semiconductor Market Growth -->
+      <div style="margin:18px 0 8px;font-size:12px;font-weight:700;color:var(--text2);text-transform:uppercase;letter-spacing:0.5px">📊 半导体行业收入增长路径（$亿）</div>
+      <div class="chart-bar">
+        <div class="bar-row"><div class="bar-label">2024</div><div class="bar-track"><div class="bar-fill grad-blue" style="width:58%">$6,300</div></div></div>
+        <div class="bar-row"><div class="bar-label">2025E</div><div class="bar-track"><div class="bar-fill grad-purple" style="width:73%">$7,700 (+22%)</div></div></div>
+        <div class="bar-row"><div class="bar-label"><strong>2026E</strong></div><div class="bar-track"><div class="bar-fill grad-green" style="width:95%"><strong>$10,000+ (+30%)</strong> 🎯 首破万亿</div></div></div>
+      </div>
+      <div style="margin:10px 0;font-size:11px;color:var(--text2);text-transform:uppercase;letter-spacing:0.5px;font-weight:700">AI数据中心系统TAM</div>
+      <div class="chart-bar">
+        <div class="bar-row"><div class="bar-label">2025</div><div class="bar-track"><div class="bar-fill grad-cyan" style="width:25%">$3,000</div></div></div>
+        <div class="bar-row"><div class="bar-label"><strong>2030E</strong></div><div class="bar-track"><div class="bar-fill grad-orange" style="width:100%"><strong>$12,000+</strong> CAGR 38%</div></div></div>
+      </div>
+      <div style="text-align:center;font-size:11px;color:var(--text2);margin-bottom:8px">来源：Bank of America, Vivek Arya, "2026 Semiconductor Outlook"</div>
+
+      <p style="margin-top:8px"><a href="https://www.cnbc.com/2025/12/16/bank-of-americas-top-chip-stocks-to-play-ai-in-2026.html" target="_blank" style="color:var(--accent2);font-size:12px">→ CNBC报道</a></p>
+    </div></div>
+  </div>
+</div>
+</section>
+
+<!-- ===== Barclays ===== -->
+<section id="inst-barclays">
+<div class="container">
+  <div class="section-header">
+    <h2><span class="icon">🏦</span> Barclays</h2>
+    <p>欧洲顶级投行，AI研究聚焦GPU/ASIC需求预测、Agent时代框架、宏观经济影响。</p>
+  </div>
+
+  <div class="collapsible open">
+    <div class="collapsible-header" onclick="toggle(this)"><span>📄 The Next Wave of AI Demand and Adoption</span><span class="arrow">▶</span></div>
+    <div class="collapsible-body"><div class="inner">
+      <p><strong>核心论点：</strong>Barclays的需求预测是华尔街最激进的之一——认为市场严重低估了AI芯片需求，且Agent时代的到来将使推理算力需求呈指数级爆发。</p>
+
+      <p style="margin-top:14px;font-size:13px;color:var(--text2)"><strong style="color:var(--text1)">1. 需求比共识高250%</strong> — 2025年GPU和ASIC的实际需求比市场共识预测高出<strong>250%</strong>。Barclays估计2026年芯片CapEx需要达到当前共识的<strong>4倍</strong>。到2027年，总需求将达当前水平的<strong>14倍</strong>。这是卖方中最激进的需求预测。</p>
+
+      <p style="margin-top:10px;font-size:13px;color:var(--text2)"><strong style="color:var(--text1)">2. AI采用的三阶段路线图</strong> — Barclays定义了清晰的AI演进路径：当前的"聊天机器人/助手时代" → 2025-2026年的<strong>"AI Agent时代"</strong>（AI系统可自主完成端到端任务） → 2027年进入<strong>"数字员工与机器人时代"</strong>。每一阶段的算力需求都是前一阶段的数倍。</p>
+
+      <p style="margin-top:10px;font-size:13px;color:var(--text2)"><strong style="color:var(--text1)">3. 推理算力主导</strong> — 随着AI应用普及，推理计算需求预计到2026年超过总算力的<strong>70%</strong>。每一次人类查询都会被Agent系统自主传递多次——这意味着1个用户查询可能触发5-10次模型推理调用，推理需求是传统预测的数倍。</p>
+
+      <p style="margin-top:10px;font-size:13px;color:var(--text2)"><strong style="color:var(--text1)">4. NVIDIA份额将被稀释</strong> — NVIDIA目前占推理市场的80%，但到2028年可能降至50%。原因是大型云服务商纷纷推出自研ASIC（Google TPU、Amazon Trainium、Microsoft Maia），定制芯片在特定工作负载上的性价比优势将逐步显现。</p>
+
+      <p style="margin-top:10px;font-size:13px;color:var(--text2)"><strong style="color:var(--text1)">5. 10亿DAU</strong> — 随着Agent嵌入各类AI应用提升质量和性能，Barclays预测消费者AI应用将在2026年达到<strong>10亿日活跃用户</strong>。AI正在从专业工具走向大众消费品。</p>
+
+      <!-- GPU/ASIC Demand Explosion Chart -->
+      <div style="margin:18px 0 8px;font-size:12px;font-weight:700;color:var(--text2);text-transform:uppercase;letter-spacing:0.5px">📊 GPU+ASIC需求增长（相对2024年基准=1x）</div>
+      <div class="chart-bar">
+        <div class="bar-row"><div class="bar-label">2024 基准</div><div class="bar-track"><div class="bar-fill grad-blue" style="width:7%">1x</div></div></div>
+        <div class="bar-row"><div class="bar-label">2025E</div><div class="bar-track"><div class="bar-fill grad-purple" style="width:25%">3.5x（市场共识高250%）</div></div></div>
+        <div class="bar-row"><div class="bar-label">2026E</div><div class="bar-track"><div class="bar-fill grad-orange" style="width:50%">7x</div></div></div>
+        <div class="bar-row"><div class="bar-label"><strong>2027E</strong></div><div class="bar-track"><div class="bar-fill grad-red" style="width:100%"><strong>14x</strong> 🔥</div></div></div>
+      </div>
+      <div style="text-align:center;font-size:11px;color:var(--text2);margin-bottom:8px">来源：Barclays Research, "The Next Wave of AI Demand"</div>
+
+      <p style="margin-top:8px"><a href="https://www.ib.barclays/our-insights/3-point-perspective/the-next-wave-of-AI-demand-and-adoption.html" target="_blank" style="color:var(--accent2);font-size:12px">→ 原文链接</a></p>
+    </div></div>
+  </div>
+
+  <div class="collapsible">
+    <div class="collapsible-header" onclick="toggle(this)"><span>📄 Q1 2026 Global Outlook: As Goes AI</span><span class="arrow">▶</span></div>
+    <div class="collapsible-body"><div class="inner">
+      <p><strong>核心观点：</strong>标题"As Goes AI"的含义是——AI已经不仅仅是一个科技行业话题，它已成为全球宏观经济的核心变量。AI投资走向决定了经济增长、利率环境和行业轮动的方向。</p>
+
+      <p style="margin-top:10px;font-size:13px;color:var(--text2)"><strong style="color:var(--text1)">1. AI对GDP的直接贡献</strong> — 2025年经济增长中约<strong>1个百分点</strong>来自AI相关CapEx（数据中心、芯片、电网、网络设备）。Barclays预测到2026年，AI CapEx对GDP增长的直接贡献将进一步扩大，成为美国经济增速高于趋势的主要推手。</p>
+
+      <p style="margin-top:10px;font-size:13px;color:var(--text2)"><strong style="color:var(--text1)">2. 利率与AI投资的联动</strong> — AI投资热潮推动经济保持韧性，这也意味着降息空间受限。Barclays将AI投资视为理解当前"高利率但经济不衰退"格局的关键变量。</p>
+
+      <p style="margin-top:10px;font-size:13px;color:var(--text2)"><strong style="color:var(--text1)">3. 行业轮动正在发生</strong> — AI红利正从纯科技股扩散至公用事业、工业、能源等传统板块。Barclays的私人银行部门特别看好"AI行业扩散"路径上的受益者。</p>
+      <p style="margin-top:8px"><a href="https://www.ib.barclays/research/global-outlook/q1-2026-as-goes-ai.html" target="_blank" style="color:var(--accent2);font-size:12px">→ 原文链接</a></p>
+    </div></div>
+  </div>
+</div>
+</section>
+
+<!-- ===== a16z ===== -->
+<section id="inst-a16z">
+<div class="container">
+  <div class="section-header">
+    <h2><span class="icon">🚀</span> Andreessen Horowitz (a16z)</h2>
+    <p>硅谷顶级VC，AI研究覆盖消费端、企业端、基础设施趋势，拥有大量一手创业公司数据。</p>
+  </div>
+
+  <div class="collapsible open">
+    <div class="collapsible-header" onclick="toggle(this)"><span>📄 Big Ideas 2026（Part 1 & Part 2）</span><span class="arrow">▶</span></div>
+    <div class="collapsible-body"><div class="inner">
+      <p><strong>核心框架：</strong>a16z的年度"Big Ideas"系列分三部分发布，覆盖AI、消费科技、生物、加密、安全等领域。AI部分的核心主线是：2026年AI从"工具"进化为"协作者"，基础设施需要彻底重建。</p>
+
+      <p style="margin-top:14px;font-size:13px;color:var(--text2)"><strong style="color:var(--text1)">1. Agent原生基础设施</strong> — 2026年意味着为Agent重新架构控制平面：从人速流量转向Agent速工作负载（递归、突发、大规模并行）。下一代基础设施必须将"惊群效应"作为默认状态——冷启动缩短、延迟方差压缩、并发限制提升数个数量级。瓶颈变成了<strong>协调层</strong>：路由、锁定、状态管理和大规模并行执行中的策略执行。</p>
+
+      <p style="margin-top:10px;font-size:13px;color:var(--text2)"><strong style="color:var(--text1)">2. "多人模式"解锁</strong> — Agent间协作通过跨利益相关者协调来改变价值创造：路由到功能专家、维持上下文、同步变更。当多人类+多Agent协作的价值增加时，切换成本上升，<strong>协作层本身成为护城河</strong>。这是a16z对"AI应用层如何建立壁垒"的核心回答。</p>
+
+      <p style="margin-top:10px;font-size:13px;color:var(--text2)"><strong style="color:var(--text1)">3. 视频理解突破</strong> — 2026年视频将从被动观看的媒介变为可以"走入"的空间——系统可以长时间维持角色、物体和物理一致性。这将视频变成一个可以构建的介质：机器人可以在其中练习，游戏可以进化，设计师可以原型化，Agent可以通过"做"来学习。</p>
+
+      <p style="margin-top:10px;font-size:13px;color:var(--text2)"><strong style="color:var(--text1)">4. AI打破网络安全人才缺口</strong> — AI将自动化网络安全团队中大量的重复性工作，使安全专家能够专注于追踪恶意行为者、构建新系统和修复漏洞。在全球网安人才短缺数百万的背景下，这是AI最直接的企业价值创造场景之一。</p>
+
+      <p style="margin-top:10px;font-size:13px;color:var(--text2)"><strong style="color:var(--text1)">5. 十年一遇的消费科技淘金潮</strong> — OpenAI Apps SDK + ChatGPT群聊功能 = 消费开发者可以直接触达ChatGPT的<strong>9亿用户</strong>。这像极了2008年App Store开放时的场景——一个新的分发平台打开，引发应用创业的爆发式增长。</p>
+      <p style="margin-top:8px"><a href="https://a16z.com/newsletter/big-ideas-2026-part-1/" target="_blank" style="color:var(--accent2);font-size:12px">→ Part 1</a> &nbsp; <a href="https://a16z.com/newsletter/big-ideas-2026-part-2/" target="_blank" style="color:var(--accent2);font-size:12px">→ Part 2</a></p>
+    </div></div>
+  </div>
+
+  <div class="collapsible">
+    <div class="collapsible-header" onclick="toggle(this)"><span>📄 State of AI: 100 Trillion Token Empirical Study</span><span class="arrow">▶</span></div>
+    <div class="collapsible-body"><div class="inner">
+      <p><strong>核心价值：</strong>a16z基于OpenRouter平台的实际数据（从年处理约10万亿token增长到<strong>100万亿+</strong>），是目前最大规模的AI模型真实使用行为研究。</p>
+
+      <p style="margin-top:10px;font-size:13px;color:var(--text2)"><strong style="color:var(--text1)">1. 模型使用的真实分布</strong> — 不同于市场传闻和媒体叙事，100万亿token的真实数据揭示了用户实际选择哪些模型、在什么场景下使用、以及模型之间的市场份额如何动态变化。这是理解AI竞争格局最可靠的一手数据来源。</p>
+
+      <p style="margin-top:10px;font-size:13px;color:var(--text2)"><strong style="color:var(--text1)">2. 推理成本的急剧下降</strong> — 数据显示推理成本正在以远超市场预期的速度下降，这意味着AI应用的单位经济模型持续改善，对Bessemer所述的"毛利率压力"是一个积极信号。</p>
+
+      <p style="margin-top:10px;font-size:13px;color:var(--text2)"><strong style="color:var(--text1)">3. 多模型策略成为常态</strong> — 企业普遍采用多家供应商策略，而非押注单一模型。这既降低了供应商锁定风险，也加速了模型的商品化趋势。</p>
+      <p style="margin-top:8px"><a href="https://a16z.com/state-of-ai/" target="_blank" style="color:var(--accent2);font-size:12px">→ 原文链接</a></p>
+    </div></div>
+  </div>
+
+  <div class="collapsible">
+    <div class="collapsible-header" onclick="toggle(this)"><span>📄 State of Consumer AI 2025 + Notes on AI Apps in 2026</span><span class="arrow">▶</span></div>
+    <div class="collapsible-body"><div class="inner">
+      <p><strong>核心发现：</strong>消费AI正在经历"App Store式"的爆发时刻。a16z的企业AI调研和消费AI分析构成了理解AI应用层最全面的数据集。</p>
+
+      <p style="margin-top:10px;font-size:13px;color:var(--text2)"><strong style="color:var(--text1)">1. 消费AI新星</strong> — xAI (Grok) 从0到3,800万MAU的速度令人瞩目；Cursor（AI编程）、Suno（AI音乐）、ElevenLabs（AI语音）等垂直应用证明了AI在消费端的PMF已经成立。这些应用的共同特征是<strong>AI不是附加功能，而是核心产品</strong>。</p>
+
+      <p style="margin-top:10px;font-size:13px;color:var(--text2)"><strong style="color:var(--text1)">2. 企业AI模型渗透率排名</strong> — OpenAI以66%的生产环境使用率领先，但Anthropic增速最快（+25%达到44%）。Google 38%，Meta开源模型32%。<strong>多模型并行</strong>是企业AI部署的常态。</p>
+
+      <!-- Enterprise AI Provider Market Share -->
+      <div style="margin:18px 0 8px;font-size:12px;font-weight:700;color:var(--text2);text-transform:uppercase;letter-spacing:0.5px">📊 企业AI模型厂商生产环境渗透率</div>
+      <div class="chart-bar">
+        <div class="bar-row"><div class="bar-label">OpenAI</div><div class="bar-track"><div class="bar-fill grad-green" style="width:66%">66%</div></div></div>
+        <div class="bar-row"><div class="bar-label">Anthropic</div><div class="bar-track"><div class="bar-fill grad-cyan" style="width:44%">44% <span style="font-size:10px;opacity:0.8">↑ 增速最快 +25%</span></div></div></div>
+        <div class="bar-row"><div class="bar-label">Google</div><div class="bar-track"><div class="bar-fill grad-blue" style="width:38%">38%</div></div></div>
+        <div class="bar-row"><div class="bar-label">Meta (开源)</div><div class="bar-track"><div class="bar-fill grad-purple" style="width:32%">32%</div></div></div>
+        <div class="bar-row"><div class="bar-label">Mistral</div><div class="bar-track"><div class="bar-fill grad-orange" style="width:15%">15%</div></div></div>
+      </div>
+      <div style="text-align:center;font-size:11px;color:var(--text2);margin-bottom:8px">来源：a16z Enterprise AI Survey, 2025</div>
+
+      <p style="margin-top:8px"><a href="https://a16z.com/state-of-consumer-ai-2025-product-hits-misses-and-whats-next/" target="_blank" style="color:var(--accent2);font-size:12px">→ Consumer AI</a> &nbsp; <a href="https://a16z.com/notes-on-ai-apps-in-2026/" target="_blank" style="color:var(--accent2);font-size:12px">→ AI Apps 2026</a></p>
+    </div></div>
+  </div>
+
+  <div class="collapsible">
+    <div class="collapsible-header" onclick="toggle(this)"><span>📄 Enterprise AI Arms Race: Leaders, Gainers & Unexpected Winners</span><span class="arrow">▶</span></div>
+    <div class="collapsible-body"><div class="inner">
+      <p><strong>核心发现：</strong>企业AI正在经历激烈的市场份额争夺战。这篇报告基于a16z对企业客户的持续调研，追踪了"谁在崛起、谁在失去份额、谁是意外赢家"。</p>
+
+      <p style="margin-top:10px;font-size:13px;color:var(--text2)"><strong style="color:var(--text1)">1. Anthropic的快速崛起</strong> — 自2025年5月以来，Anthropic的企业渗透率增长最大，达<strong>44%生产使用率</strong>（+25%增幅）。Claude在企业场景中的采用速度超出了许多人的预期，尤其在编程辅助和复杂推理任务上表现突出。</p>
+
+      <p style="margin-top:10px;font-size:13px;color:var(--text2)"><strong style="color:var(--text1)">2. 开源模型的稳步渗透</strong> — Meta的开源模型Llama系列在企业生产环境中的使用率达到32%。开源不仅仅是"试验工具"——一些企业已将开源模型用于核心生产场景，尤其是对延迟敏感或需要本地部署的工作负载。</p>
+
+      <p style="margin-top:10px;font-size:13px;color:var(--text2)"><strong style="color:var(--text1)">3. 意外赢家</strong> — 报告揭示了一些市场讨论较少但实际增长强劲的AI服务商，表明企业AI市场远未固化，竞争格局仍在快速演变。</p>
+      <p style="margin-top:8px"><a href="https://a16z.com/leaders-gainers-and-unexpected-winners-in-the-enterprise-ai-arms-race/" target="_blank" style="color:var(--accent2);font-size:12px">→ 原文链接</a></p>
+    </div></div>
+  </div>
+</div>
+</section>
+
+<!-- ===== Bessemer ===== -->
+<section id="inst-bessemer">
+<div class="container">
+  <div class="section-header">
+    <h2><span class="icon">🚀</span> Bessemer Venture Partners (BVP)</h2>
+    <p>硅谷顶级VC，以Cloud 100榜单闻名。AI研究聚焦创业公司毛利率、增长曲线、定价模式。</p>
+  </div>
+
+  <div class="collapsible open">
+    <div class="collapsible-header" onclick="toggle(this)"><span>📄 The State of AI 2025</span><span class="arrow">▶</span></div>
+    <div class="collapsible-body"><div class="inner">
+      <p><strong>核心框架：</strong>Bessemer定义了AI创业公司的两种截然不同的增长原型，并指出AI时代的经济学与SaaS有根本性差异。这一研究对理解"AI公司如何估值"至关重要。</p>
+      <p style="margin-top:10px;font-size:13px;color:var(--text2)"><strong>两种AI创业公司增长原型：</strong></p>
+      <div class="table-wrap" style="margin-top:10px">
+        <table>
+          <thead><tr><th>原型</th><th>Y1 ARR</th><th>Y2 ARR</th><th>毛利率</th><th>特征</th></tr></thead>
+          <tbody>
+            <tr><td><strong>AI Supernova</strong></td><td class="num">~$4,000万</td><td class="num">~$1.25亿</td><td class="num neg">~25%</td><td>爆发式增长，用分发换利润</td></tr>
+            <tr><td><strong>Shooting Star</strong></td><td class="num">~$300万</td><td class="num">~$1,200万</td><td class="num pos">~60%</td><td>稳健SaaS式增长，健康毛利</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <!-- AI vs SaaS Gross Margin Comparison -->
+      <div style="margin:18px 0 8px;font-size:12px;font-weight:700;color:var(--text2);text-transform:uppercase;letter-spacing:0.5px">📊 AI公司 vs 传统SaaS毛利率对比</div>
+      <div class="chart-stacked-row">
+        <div class="sr-label">传统SaaS 毛利率 <strong style="color:var(--green)">80-90%</strong></div>
+        <div class="sr-bar">
+          <div class="sr-seg" style="width:85%;background:linear-gradient(90deg,#059669,var(--green))">利润 85%</div>
+          <div class="sr-seg" style="width:15%;background:var(--surface2);color:var(--text2)">COGS</div>
+        </div>
+        <div class="sr-label">AI Supernova 毛利率 <strong style="color:var(--red)">~25%</strong></div>
+        <div class="sr-bar">
+          <div class="sr-seg" style="width:25%;background:linear-gradient(90deg,#dc2626,var(--red))">利润 25%</div>
+          <div class="sr-seg" style="width:75%;background:var(--surface2);color:var(--text2)">计算成本 75%</div>
+        </div>
+        <div class="sr-label">AI Shooting Star 毛利率 <strong style="color:var(--cyan)">~60%</strong></div>
+        <div class="sr-bar">
+          <div class="sr-seg" style="width:60%;background:linear-gradient(90deg,#0891b2,var(--cyan))">利润 60%</div>
+          <div class="sr-seg" style="width:40%;background:var(--surface2);color:var(--text2)">计算成本</div>
+        </div>
+      </div>
+
+      <p style="margin-top:14px;font-size:13px;color:var(--text2)"><strong style="color:var(--text1)">1. Supernova的爆发力</strong> — AI Supernova公司平均第一年达到约$4,000万ARR，第二年达$1.25亿——增速远超传统SaaS。代表案例包括Anthropic、Cursor和fal。但代价是极低的毛利率（~25%），本质上是"用计算成本换取分发速度"。其人均ARR达到惊人的<strong>$113万</strong>，是传统SaaS的4-5倍。</p>
+
+      <p style="margin-top:10px;font-size:13px;color:var(--text2)"><strong style="color:var(--text1)">2. Shooting Star的可持续性</strong> — Shooting Star公司增速更"慢"（第一年~$300万ARR），但毛利率健康（~60%），增长模式更像传统SaaS的升级版。Bessemer提出AI时代的增长基准应从SaaS的"T2D3"（3×3×2×2×2）升级为<strong>"Q2T3*"</strong>（4×4×3×3×3），反映AI公司更快的增长节奏。</p>
+
+      <p style="margin-top:10px;font-size:13px;color:var(--text2)"><strong style="color:var(--text1)">3. AI经济学的根本差异</strong> — 每次AI查询都产生真实计算成本（不像SaaS的边际成本接近零），AI公司毛利率50-60%远低于传统SaaS的80-90%。这意味着AI公司需要更高的收入规模才能达到同等利润水平，也意味着整个估值体系需要重新校准。</p>
+
+      <p style="margin-top:10px;font-size:13px;color:var(--text2)"><strong style="color:var(--text1)">4. 收入与推理成本脱钩</strong> — 前沿公司正在探索将收入来源与AI推理成本脱钩的方式：通过运行时、带宽、存储、域名和私有化部署等方式提升ARPU。Bolt和Replit是这种"解耦"策略的典型案例。</p>
+
+      <div class="insight" style="margin-top:12px">
+        <div class="label">关键洞察</div>
+        <p>Bessemer预计2025-2026年将出现大规模AI公司M&A浪潮——低毛利率的Supernova需要大公司的分发能力和基础设施来实现盈利。</p>
+      </div>
+      <p style="margin-top:8px"><a href="https://www.bvp.com/atlas/the-state-of-ai-2025" target="_blank" style="color:var(--accent2);font-size:12px">→ 原文链接</a></p>
+    </div></div>
+  </div>
+
+  <div class="collapsible">
+    <div class="collapsible-header" onclick="toggle(this)"><span>📄 The AI Pricing and Monetization Playbook</span><span class="arrow">▶</span></div>
+    <div class="collapsible-body"><div class="inner">
+      <p><strong>核心论点：</strong>AI正在从根本上颠覆软件定价模式。传统SaaS的seat-based定价在AI时代失去意义——因为AI Agent没有"座位"，一个Agent可能在几秒内完成原本需要多个人力小时的工作。</p>
+
+      <p style="margin-top:10px;font-size:13px;color:var(--text2)"><strong style="color:var(--text1)">1. 定价范式的三阶演进</strong> — 从seat-based（按用户数）→ usage-based（按使用量）→ <strong>outcome-based</strong>（按结果收费）。但"结果"往往难以精确衡量，实践中多数公司采用<strong>"代理指标定价"</strong>——选择一个与业务价值高度相关、且容易计量的指标作为收费基础。</p>
+
+      <p style="margin-top:10px;font-size:13px;color:var(--text2)"><strong style="color:var(--text1)">2. 典型案例</strong> — Salesforce的<strong>"Agentic Work Units"</strong>是最具创新性的AI定价实践之一——按Agent完成的工作单元收费而非按用户席位。ServiceNow采用价值导向定价，将AI能力定价与其带来的效率提升直接挂钩。</p>
+
+      <p style="margin-top:10px;font-size:13px;color:var(--text2)"><strong style="color:var(--text1)">3. 对投资者的启示</strong> — AI公司的收入增长将不再遵循传统SaaS的线性预测模型。outcome-based定价使得收入曲线可能更加波动但天花板更高——一个AI Agent如果真正替代了一个$15万年薪的员工，其定价空间远超传统SaaS的$100-300/seat/月。</p>
+      <p style="margin-top:8px"><a href="https://www.bvp.com/atlas/the-ai-pricing-and-monetization-playbook" target="_blank" style="color:var(--accent2);font-size:12px">→ 原文链接</a></p>
+    </div></div>
+  </div>
+</div>
+</section>
+
+<!-- ===== ARK Invest ===== -->
+<section id="inst-ark">
+<div class="container">
+  <div class="section-header">
+    <h2><span class="icon">🚀</span> ARK Invest</h2>
+    <p>Cathie Wood创立的创新投资公司，以极度看多颠覆性技术闻名。Big Ideas年度报告是科技界最受关注的前瞻性研究之一。</p>
+  </div>
+
+  <div class="collapsible open">
+    <div class="collapsible-header" onclick="toggle(this)"><span>📄 Big Ideas 2026（第10版旗舰报告）</span><span class="arrow">▶</span></div>
+    <div class="collapsible-body"><div class="inner">
+      <p><strong>核心论点：</strong>由AI驱动的技术投资周期将是<strong>人类历史上最大的一轮</strong>。ARK称之为<strong>"The Great Acceleration"</strong>——AI与其他新兴基础设施技术相互催化，共同加速经济增长。</p>
+
+      <p style="margin-top:14px;font-size:13px;color:var(--text2)"><strong style="color:var(--text1)">1. 颠覆性创新对GDP的贡献</strong> — ARK认为颠覆性创新平台的资本投入将在本十年为年化实际GDP增长贡献<strong>1.9个百分点</strong>。到2030年，创新从实验室走向实体经济可将全球经济增速推至<strong>7.3%/年</strong>——远超当前趋势水平。ARK对颠覆性创新未来五年的目标年化收益率为<strong>35%</strong>。</p>
+
+      <p style="margin-top:10px;font-size:13px;color:var(--text2)"><strong style="color:var(--text1)">2. Robotaxi：$8-10万亿市场</strong> — 全球自动驾驶出租车市场到2030年可达<strong>$8-10万亿</strong>，是科技史上最大的潜在市场之一。每英里出行成本：个人汽车$0.7-0.8 → Robotaxi <strong>$0.25</strong>（降低60%+）。ARK预测Robotaxi运营可能占Tesla总价值的90%。</p>
+
+      <p style="margin-top:10px;font-size:13px;color:var(--text2)"><strong style="color:var(--text1)">3. 13个Big Ideas涵盖五大领域</strong> — 报告覆盖AI（Agent、推理模型、多模态重塑软件和服务业）、自动驾驶（Robotaxi网络加速部署）、机器人+能源（具身智能与核电复兴交汇）、多组学+生物技术（AI加速药物发现）、区块链+金融科技（DeFi与AI融合）。核心论点是：这些技术不再孤立发展，而是正在相互<strong>复合加速</strong>。</p>
+
+      <p style="margin-top:10px;font-size:13px;color:var(--text2)"><strong style="color:var(--text1)">4. 最激进的乐观派</strong> — ARK的对AI的乐观程度在所有机构中居于最激进的一端。这既是其研究的价值（提供了最大的想象空间），也是其风险（预测时间线常常过于乐观）。投资者应将ARK的预测视为"可能性的上界"而非"共识预期"。</p>
+      <p style="margin-top:8px"><a href="https://www.ark-invest.com/big-ideas-2026" target="_blank" style="color:var(--accent2);font-size:12px">→ 原文链接</a></p>
+    </div></div>
+  </div>
+</div>
+</section>
+
+<!-- ===== Coatue ===== -->
+<section id="inst-coatue">
+<div class="container">
+  <div class="section-header">
+    <h2><span class="icon">🚀</span> Coatue Management</h2>
+    <p>管理规模~$700亿的科技对冲基金/风投，在AI投资领域极为活跃。创始人Philippe Laffont对AI产业有系统性布局。</p>
+  </div>
+
+  <div class="collapsible open">
+    <div class="collapsible-header" onclick="toggle(this)"><span>📄 Decoding the Decade of AI</span><span class="arrow">▶</span></div>
+    <div class="collapsible-body"><div class="inner">
+      <p><strong>核心框架：</strong>管理$700亿资产的Coatue是AI领域最活跃的大型基金之一。这份报告是对"AI十年"的系统性框架构建，核心论点是：AI产品已经在创造真实收入，而非停留在概念阶段。</p>
+
+      <p style="margin-top:14px;font-size:13px;color:var(--text2)"><strong style="color:var(--text1)">1. AI已验证商业可行性</strong> — AI编程工具在发布约1年内即达到<strong>$10亿ARR</strong>。ChatGPT达到5亿周活跃用户。OpenAI 2025年完成$400亿融资——超过2018-2024年所有顶级融资的总和。OpenAI估值在6个月内从$1,570亿飙升至$3,000亿。</p>
+
+      <p style="margin-top:10px;font-size:13px;color:var(--text2)"><strong style="color:var(--text1)">2. 5-10年$1.9万亿收入</strong> — Coatue预测AI公司在5-10年内将达到$1.9万亿年收入规模。这不是泛泛的市场规模预测，而是基于当前收入增长曲线的外推——他们认为AI收入增速将快于历史上任何一个技术周期。</p>
+
+      <p style="margin-top:10px;font-size:13px;color:var(--text2)"><strong style="color:var(--text1)">3. 基础设施优先于应用</strong> — Coatue明确表示<strong>更看好AI基础设施而非应用</strong>。其投资覆盖全栈：AI实验室（模型层）、Agent（中间层）、基础设施和云服务（底层）。战略布局包括Synopsys（芯片设计EDA工具）和Applied Materials（半导体制造设备）——这些公司受益于整个AI价值链的投资扩张。</p>
+
+      <p style="margin-top:10px;font-size:13px;color:var(--text2)"><strong style="color:var(--text1)">4. AI占美股市值75%</strong> — Coatue框架中最激进的长期预测：AI相关公司可能最终占据美国股市<strong>75%的总市值</strong>。OpenAI有望在2030年进入全球市值Top 10——今天的Top 10榜单未来将包含目前还是私有公司的AI企业。</p>
+
+      <p style="margin-top:10px;font-size:13px;color:var(--text2)"><strong style="color:var(--text1)">5. 投资视角的独特性</strong> — 与纯卖方研究不同，Coatue是用真金白银下注的。他们同时投资公开市场和私募市场，使得他们对AI公司估值、增长节奏和退出路径的判断具有更高的利益一致性。</p>
+
+      <!-- Coatue AI Market Projection -->
+      <div style="margin:18px 0 8px;font-size:12px;font-weight:700;color:var(--text2);text-transform:uppercase;letter-spacing:0.5px">📊 Coatue: AI收入规模与市值占比预测</div>
+      <div style="display:flex;gap:12px;flex-wrap:wrap;margin:12px 0">
+        <div style="flex:1;min-width:180px;background:var(--surface2);border-radius:10px;padding:16px;text-align:center">
+          <div style="font-size:11px;color:var(--text2);font-weight:700;text-transform:uppercase;margin-bottom:8px">AI公司收入规模（5-10年）</div>
+          <div style="font-size:42px;font-weight:800;background:linear-gradient(135deg,var(--green),var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent">$1.9T</div>
+          <div style="font-size:12px;color:var(--text2);margin-top:4px">万亿美元年收入</div>
+        </div>
+        <div style="flex:1;min-width:180px;background:var(--surface2);border-radius:10px;padding:16px;text-align:center">
+          <div style="font-size:11px;color:var(--text2);font-weight:700;text-transform:uppercase;margin-bottom:8px">AI占美股市值（长期）</div>
+          <div style="font-size:42px;font-weight:800;background:linear-gradient(135deg,var(--orange),var(--red));-webkit-background-clip:text;-webkit-text-fill-color:transparent">75%</div>
+          <div style="font-size:12px;color:var(--text2);margin-top:4px">最激进预测</div>
+        </div>
+        <div style="flex:1;min-width:180px;background:var(--surface2);border-radius:10px;padding:16px;text-align:center">
+          <div style="font-size:11px;color:var(--text2);font-weight:700;text-transform:uppercase;margin-bottom:8px">OpenAI 2030年</div>
+          <div style="font-size:42px;font-weight:800;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent">Top10</div>
+          <div style="font-size:12px;color:var(--text2);margin-top:4px">全球市值排名</div>
+        </div>
+      </div>
+      <div style="text-align:center;font-size:11px;color:var(--text2);margin-bottom:8px">来源：Coatue Management, "Decoding the Decade of AI"</div>
+
+      <p style="margin-top:8px"><a href="https://catalaize.substack.com/p/coatue-report-decoding-the-decade" target="_blank" style="color:var(--accent2);font-size:12px">→ 报告解读链接</a></p>
+    </div></div>
+  </div>
+</div>
+</section>
+
+<!-- ===== McKinsey ===== -->
+<section id="inst-mckinsey">
+<div class="container">
+  <div class="section-header">
+    <h2><span class="icon">📊</span> McKinsey & Company</h2>
+    <p>全球顶级管理咨询公司，AI研究侧重企业采用实态、经济价值量化、组织变革。State of AI是年度标杆报告。</p>
+  </div>
+
+  <div class="collapsible open">
+    <div class="collapsible-header" onclick="toggle(this)"><span>📄 The State of AI 2025: Agents, Innovation, and Transformation</span><span class="arrow">▶</span></div>
+    <div class="collapsible-body"><div class="inner">
+      <div class="kpi-row">
+        <div class="kpi"><div class="label">使用AI的组织</div><div class="value" style="color:var(--green)">88%</div><div class="change up">↑ from 78% (2024)</div></div>
+        <div class="kpi"><div class="label">使用GenAI</div><div class="value" style="color:var(--cyan)">72%</div><div class="change up">↑ from 33% (2024)</div></div>
+        <div class="kpi"><div class="label">全组织规模化AI</div><div class="value" style="color:var(--orange)">1/3</div><div class="change down">2/3仍在试点阶段</div></div>
+        <div class="kpi"><div class="label">AI高绩效企业</div><div class="value" style="color:var(--accent2)">5.5%</div><div class="change up">EBIT影响>5%</div></div>
+      </div>
+      <p style="margin-top:14px;font-size:13px;color:var(--text2)"><strong style="color:var(--text1)">1. 采用的广度 vs 深度</strong> — 88%的组织使用AI（+10pp），72%使用GenAI（从33%翻倍），但仅<strong>1/3实现了全组织规模化</strong>。2/3仍停留在试点阶段。"大家都在用AI"和"AI真正改变了企业运作"之间存在巨大鸿沟。</p>
+
+      <p style="margin-top:10px;font-size:13px;color:var(--text2)"><strong style="color:var(--text1)">2. Agent部署率快速攀升</strong> — <strong>23%</strong>的企业正在规模化部署AI Agent系统，<strong>39%</strong>在试验中（合计62%）。Agent是AI从"辅助工具"到"自主行动者"的关键跃迁，但组织准备度远落后于技术准备度。</p>
+
+      <p style="margin-top:10px;font-size:13px;color:var(--text2)"><strong style="color:var(--text1)">3. 高绩效企业的秘密</strong> — 仅<strong>5.5%</strong>的企业是AI高绩效者（EBIT影响>5%）。这些企业的共同特征不是技术更先进，而是<strong>从根本上重新设计了工作流程</strong>——高绩效企业进行彻底的流程重塑的概率是普通企业的近3倍。</p>
+
+      <p style="margin-top:10px;font-size:13px;color:var(--text2)"><strong style="color:var(--text1)">4. "行为问题，不是技术问题"</strong> — McKinsey最具洞察力的结论：AI成功首先是一个<strong>组织行为问题</strong>——领导层承诺、人才转型、流程变革的重要性远超模型选择和技术架构。"能使用AI的人将取代不能使用AI的人"——这不仅适用于个人，也适用于整个组织。</p>
+
+      <p style="margin-top:10px;font-size:13px;color:var(--text2)"><strong style="color:var(--text1)">5. EBIT影响的现实</strong> — 39%的受访企业报告AI产生了EBIT影响，但绝大多数情况下影响不到总EBIT的5%。这说明AI的价值创造目前仍处于早期——巨大潜力已被验证，但规模化兑现尚需时日。</p>
+
+      <!-- McKinsey AI Adoption Funnel -->
+      <div style="margin:18px 0 8px;font-size:12px;font-weight:700;color:var(--text2);text-transform:uppercase;letter-spacing:0.5px">📊 企业AI采用漏斗（2025）</div>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:4px;margin:12px 0">
+        <div style="width:100%;max-width:500px;background:linear-gradient(90deg,rgba(34,197,94,0.2),rgba(34,197,94,0.1));border:1px solid rgba(34,197,94,0.3);border-radius:8px;padding:12px 20px;display:flex;justify-content:space-between;align-items:center">
+          <span style="font-size:13px;font-weight:600">使用AI的组织</span>
+          <span style="font-size:22px;font-weight:800;color:var(--green)">88%</span>
+        </div>
+        <div style="width:85%;max-width:425px;background:linear-gradient(90deg,rgba(6,182,212,0.2),rgba(6,182,212,0.1));border:1px solid rgba(6,182,212,0.3);border-radius:8px;padding:12px 20px;display:flex;justify-content:space-between;align-items:center">
+          <span style="font-size:13px;font-weight:600">使用GenAI</span>
+          <span style="font-size:22px;font-weight:800;color:var(--cyan)">72%</span>
+        </div>
+        <div style="width:65%;max-width:325px;background:linear-gradient(90deg,rgba(245,158,11,0.2),rgba(245,158,11,0.1));border:1px solid rgba(245,158,11,0.3);border-radius:8px;padding:12px 20px;display:flex;justify-content:space-between;align-items:center">
+          <span style="font-size:13px;font-weight:600">部署/试验AI Agent</span>
+          <span style="font-size:22px;font-weight:800;color:var(--orange)">62%</span>
+        </div>
+        <div style="width:45%;max-width:225px;background:linear-gradient(90deg,rgba(99,102,241,0.2),rgba(99,102,241,0.1));border:1px solid rgba(99,102,241,0.3);border-radius:8px;padding:12px 20px;display:flex;justify-content:space-between;align-items:center">
+          <span style="font-size:13px;font-weight:600">全组织规模化</span>
+          <span style="font-size:22px;font-weight:800;color:var(--accent2)">33%</span>
+        </div>
+        <div style="width:25%;max-width:125px;background:linear-gradient(90deg,rgba(239,68,68,0.2),rgba(239,68,68,0.1));border:1px solid rgba(239,68,68,0.3);border-radius:8px;padding:12px 20px;display:flex;justify-content:space-between;align-items:center">
+          <span style="font-size:12px;font-weight:600">高绩效</span>
+          <span style="font-size:22px;font-weight:800;color:var(--red)">5.5%</span>
+        </div>
+      </div>
+      <div style="text-align:center;font-size:11px;color:var(--text2);margin-bottom:8px">来源：McKinsey "The State of AI 2025" 全球企业调研</div>
+
+      <p style="margin-top:8px"><a href="https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-state-of-ai" target="_blank" style="color:var(--accent2);font-size:12px">→ 原文链接</a></p>
+    </div></div>
+  </div>
+
+</div>
+</section>
+
+<!-- ===== Gartner / IDC ===== -->
+<section id="inst-gartner">
+<div class="container">
+  <div class="section-header">
+    <h2><span class="icon">📊</span> Gartner / IDC</h2>
+    <p>全球最权威的IT市场研究机构，提供AI支出、数据中心电力需求、市场规模的定量预测。</p>
+  </div>
+
+  <div class="collapsible open">
+    <div class="collapsible-header" onclick="toggle(this)"><span>📄 Gartner: Worldwide AI Spending Forecasts</span><span class="arrow">▶</span></div>
+    <div class="collapsible-body"><div class="inner">
+      <p><strong>核心预测：</strong>Gartner是全球IT支出预测的权威来源。其数据显示AI正在从IT预算的"增量项目"变成<strong>"最大单一类目"</strong>——2026年AI将占IT总支出的41.5%，这意味着近一半的企业IT投资将直接或间接与AI相关。</p>
+
+      <div class="kpi-row" style="margin-top:14px">
+        <div class="kpi"><div class="label">2025全球AI支出</div><div class="value">$1.76万亿</div></div>
+        <div class="kpi"><div class="label">2026全球AI支出</div><div class="value" style="color:var(--green)">$2.52万亿</div><div class="change up">↑ 44% YoY</div></div>
+        <div class="kpi"><div class="label">AI占IT总支出</div><div class="value" style="color:var(--cyan)">41.5%</div><div class="change up">↑ from 31.7% (2025)</div></div>
+      </div>
+
+      <p style="margin-top:14px;font-size:13px;color:var(--text2)"><strong style="color:var(--text1)">1. 44%的年增速</strong> — 全球AI支出从2025年$1.76万亿增至2026年$2.52万亿（+44%），这一增速远超整体IT支出增速（10.8%）。AI正在"吸走"其他IT领域的预算。</p>
+
+      <p style="margin-top:10px;font-size:13px;color:var(--text2)"><strong style="color:var(--text1)">2. 基础设施占比过半</strong> — $2.52万亿中，基础设施$1.37万亿（54%），软件$0.66万亿（26%），服务$0.49万亿（20%）。基础设施仍是最大的支出类别，但软件和服务的增速更快——这与高盛"Phase 3变现"阶段的判断一致。</p>
+
+      <p style="margin-top:10px;font-size:13px;color:var(--text2)"><strong style="color:var(--text1)">3. 不可逆的预算结构变化</strong> — AI占IT总支出从31.7%(2025)跃至41.5%(2026)，意味着企业IT预算正在发生结构性重组。Gartner预计这一比例将继续攀升，AI最终将成为IT支出的主导品类。</p>
+      <!-- AI Spending Composition Donut-like -->
+      <div style="margin:18px 0 8px;font-size:12px;font-weight:700;color:var(--text2);text-transform:uppercase;letter-spacing:0.5px">📊 2026全球AI支出构成 · 总计$2.52万亿</div>
+      <div class="chart-stacked-row">
+        <div class="sr-label">AI支出构成（$2.52万亿）</div>
+        <div class="sr-bar" style="height:40px">
+          <div class="sr-seg" style="width:54%;background:linear-gradient(90deg,var(--accent),var(--accent2))">基础设施 $1.37T (54%)</div>
+          <div class="sr-seg" style="width:26%;background:linear-gradient(90deg,var(--cyan),#67e8f9)">软件 $0.66T</div>
+          <div class="sr-seg" style="width:20%;background:linear-gradient(90deg,var(--green),#86efac)">服务 $0.49T</div>
+        </div>
+      </div>
+      <div style="margin:12px 0">
+        <div style="font-size:11px;color:var(--text2);margin-bottom:6px">AI占IT总支出比例</div>
+        <div style="display:flex;gap:12px;align-items:center">
+          <div style="flex:1;height:24px;background:var(--surface2);border-radius:6px;overflow:hidden;position:relative">
+            <div style="width:31.7%;height:100%;background:var(--accent);border-radius:6px;display:flex;align-items:center;padding-left:8px;font-size:11px;font-weight:700;color:#fff">2025: 31.7%</div>
+          </div>
+          <span style="color:var(--text2);font-size:14px">→</span>
+          <div style="flex:1;height:24px;background:var(--surface2);border-radius:6px;overflow:hidden;position:relative">
+            <div style="width:41.5%;height:100%;background:linear-gradient(90deg,var(--green),var(--cyan));border-radius:6px;display:flex;align-items:center;padding-left:8px;font-size:11px;font-weight:700;color:#fff">2026: 41.5%</div>
+          </div>
+        </div>
+      </div>
+      <div style="text-align:center;font-size:11px;color:var(--text2);margin-bottom:8px">来源：Gartner, "Worldwide AI Spending Forecast" (2026.01)</div>
+
+      <p style="margin-top:8px"><a href="https://www.gartner.com/en/newsroom/press-releases/2026-1-15-gartner-says-worldwide-ai-spending-will-total-2-point-5-trillion-dollars-in-2026" target="_blank" style="color:var(--accent2);font-size:12px">→ 原文链接</a></p>
+    </div></div>
+  </div>
+
+  <div class="collapsible">
+    <div class="collapsible-header" onclick="toggle(this)"><span>📄 Gartner: Data Center Electricity Demand</span><span class="arrow">▶</span></div>
+    <div class="collapsible-body"><div class="inner">
+      <p><strong>核心发现：</strong>Gartner预测数据中心总用电到2030年将翻倍（从448 TWh到980 TWh），其中AI的用电占比从21%飙升至<strong>44%</strong>。这是理解"AI对物理世界的真实影响"最权威的数据来源。</p>
+
+      <p style="margin-top:10px;font-size:13px;color:var(--text2)"><strong style="color:var(--text1)">1. AI用电量翻4.6倍</strong> — AI相关数据中心用电从2025年的93 TWh增至2030年的432 TWh，增幅达<strong>365%</strong>。相比之下，非AI数据中心用电仅增长55%。AI是数据中心用电增长的绝对主驱动力。</p>
+
+      <p style="margin-top:10px;font-size:13px;color:var(--text2)"><strong style="color:var(--text1)">2. 与高盛和大摩预测的交叉验证</strong> — 这一数据与高盛的"Gigawatt Ceiling"和大摩的"9-18GW缺口"预测相互印证，从不同角度确认了电力将成为AI发展的硬约束。</p>
+
+      <!-- Data Center Electricity Demand -->
+      <div style="margin:18px 0 8px;font-size:12px;font-weight:700;color:var(--text2);text-transform:uppercase;letter-spacing:0.5px">📊 全球数据中心用电（TWh）· AI份额扩张</div>
+      <div style="margin:12px 0">
+        <div style="font-size:11px;color:var(--text2);margin-bottom:6px;font-weight:600">2025 · 总计 448 TWh</div>
+        <div class="sr-bar" style="height:32px;display:flex;border-radius:6px;overflow:hidden">
+          <div class="sr-seg" style="width:21%;background:linear-gradient(90deg,var(--orange),#f59e0b)">AI 93TWh (21%)</div>
+          <div class="sr-seg" style="width:79%;background:var(--surface2);color:var(--text2)">非AI 355TWh (79%)</div>
+        </div>
+        <div style="font-size:11px;color:var(--text2);margin:10px 0 6px;font-weight:600">2030E · 总计 980 TWh（翻倍）</div>
+        <div class="sr-bar" style="height:32px;display:flex;border-radius:6px;overflow:hidden">
+          <div class="sr-seg" style="width:44%;background:linear-gradient(90deg,var(--red),var(--orange))">AI 432TWh (44%)</div>
+          <div class="sr-seg" style="width:56%;background:var(--surface2);color:var(--text2)">非AI 548TWh (56%)</div>
+        </div>
+      </div>
+      <div style="text-align:center;font-size:11px;color:var(--text2);margin-bottom:8px">来源：Gartner, "Data Center Electricity Demand" (2025.11)</div>
+
+      <p style="margin-top:8px"><a href="https://www.gartner.com/en/newsroom/press-releases/2025-11-17-gartner-says-electricity-demand-for-data-centers-to-grow-16-percent-in-2025-and-double-by-2030" target="_blank" style="color:var(--accent2);font-size:12px">→ 原文链接</a></p>
+    </div></div>
+  </div>
+
+  <div class="collapsible">
+    <div class="collapsible-header" onclick="toggle(this)"><span>📄 Gartner: Top Predictions for 2026 and Beyond</span><span class="arrow">▶</span></div>
+    <div class="collapsible-body"><div class="inner">
+      <p><strong>核心观点：</strong>Gartner年度预测中，AI相关预测占据绝对主导地位。2026年全球IT支出将达<strong>$6.15万亿</strong>（+10.8%），AI驱动的增长占最大份额。</p>
+
+      <p style="margin-top:10px;font-size:13px;color:var(--text2)"><strong style="color:var(--text1)">1. AI治理的紧迫性</strong> — Gartner特别强调，随着AI渗透率从试点走向规模化，企业需要在AI治理（模型审计、偏差监控、合规框架）上投入与技术部署同等的资源。缺乏治理的AI部署将带来重大声誉和合规风险。</p>
+
+      <p style="margin-top:10px;font-size:13px;color:var(--text2)"><strong style="color:var(--text1)">2. 人才战略的重构</strong> — Gartner预测到2027年，<strong>80%</strong>的企业将重新定义知识工作者的角色描述以纳入AI协作。人才战略的核心问题不再是"招更多AI工程师"，而是"如何让现有员工有效地与AI协作"——这与McKinsey"行为问题而非技术问题"的结论一致。</p>
+
+      <p style="margin-top:10px;font-size:13px;color:var(--text2)"><strong style="color:var(--text1)">3. 基础设施规划的长周期视角</strong> — Gartner建议企业以5年而非1年的周期规划AI基础设施。鉴于数据中心建设需要2年、电力供应需要更长前置期，现在的规划决策将决定2028-2030年的竞争力。</p>
+      <p style="margin-top:8px"><a href="https://www.gartner.com/en/newsroom/press-releases/2025-10-21-gartner-unveils-top-predictions-for-it-organizations-and-users-in-2026-and-beyond" target="_blank" style="color:var(--accent2);font-size:12px">→ 原文链接</a></p>
+    </div></div>
+  </div>
+</div>
+</section>
+
+<!-- ============================================================ -->
+<!--  PART 3.5: 播客与深度对话                                        -->
+<!-- ============================================================ -->
+
+<!-- ===== 美国核心播客 ===== -->
+<section id="pod-us">
+<div class="container">
+  <div class="section-header">
+    <h2><span class="icon">🇺🇸</span> 美国核心播客与深度对话</h2>
+    <p>硅谷创始人、顶级投资人、技术研究者的一手观点。涵盖CEO战略访谈、VC投资逻辑、深度技术分析。</p>
+  </div>
+
+  <!-- Dwarkesh Podcast -->
+  <div class="collapsible open">
+    <div class="collapsible-header" onclick="toggle(this)"><span>🎙️ Dwarkesh Podcast · 创始人深度对话（2-3小时长访谈）</span><span class="arrow">▶</span></div>
+    <div class="collapsible-body"><div class="inner">
+      <p style="font-size:13px;color:var(--text2)">主持人 Dwarkesh Patel。以超长深度对话著称，嘉宾包括全球最顶级的AI创始人和CEO。</p>
+
+      <div style="margin:14px 0;padding:14px;background:var(--surface2);border-radius:8px;border-left:3px solid var(--cyan)">
+        <div style="font-size:12px;font-weight:700;color:var(--cyan)">Satya Nadella (Microsoft CEO) · 2025.02 & 2025.11</div>
+        <p style="font-size:13px;margin-top:6px">"I don't believe in AGI, but I do believe in 10% economic growth."</p>
+        <p style="font-size:12px;color:var(--text2);margin-top:4px">独家参观Fairwater 2数据中心（目前最强AI数据中心）。讨论Office是否会把LLM商品化、量子计算拓扑量子比特突破。</p>
+        <p style="margin-top:6px"><a href="https://www.dwarkesh.com/p/satya-nadella-2" target="_blank" style="color:var(--accent2);font-size:11px">→ 访谈原文</a></p>
+      </div>
+
+      <div style="margin:10px 0;padding:14px;background:var(--surface2);border-radius:8px;border-left:3px solid var(--green)">
+        <div style="font-size:12px;font-weight:700;color:var(--green)">Mark Zuckerberg (Meta CEO) · 2025</div>
+        <p style="font-size:13px;margin-top:6px">Meta开源前沿模型Llama-3的战略逻辑：基础设施投入作为竞争壁垒，开源生态形成平台锁定。</p>
+      </div>
+
+      <div style="margin:10px 0;padding:14px;background:var(--surface2);border-radius:8px;border-left:3px solid var(--accent2)">
+        <div style="font-size:12px;font-weight:700;color:var(--accent2)">Dario Amodei (Anthropic CEO) · 2025</div>
+        <p style="font-size:13px;margin-top:6px">AI突破背后的隐藏规律。详细讨论Claude能力边界、AGI时间线、安全对齐策略。</p>
+      </div>
+    </div></div>
+  </div>
+
+  <!-- BG2 Pod -->
+  <div class="collapsible">
+    <div class="collapsible-header" onclick="toggle(this)"><span>🎙️ BG2 Pod · Bill Gurley & Brad Gerstner（传奇投资人）</span><span class="arrow">▶</span></div>
+    <div class="collapsible-body"><div class="inner">
+      <p style="font-size:13px;color:var(--text2)">Benchmark传奇GP Bill Gurley + Altimeter创始人Brad Gerstner，聚焦AI投资的宏观资本配置逻辑。</p>
+
+      <div style="margin:14px 0;padding:14px;background:var(--surface2);border-radius:8px;border-left:3px solid var(--orange)">
+        <div style="font-size:12px;font-weight:700;color:var(--orange)">Sam Altman + Satya Nadella · "$3 Trillion AI Buildout" · 2025.10</div>
+        <p style="font-size:13px;margin-top:6px">OpenAI CEO与Microsoft CEO罕见同台，讨论AI基础设施投资的万亿级规模、回报逻辑及合作关系走向。</p>
+        <p style="margin-top:6px"><a href="https://www.bg2pod.com/" target="_blank" style="color:var(--accent2);font-size:11px">→ BG2 Pod</a></p>
+      </div>
+
+      <div style="margin:10px 0;padding:14px;background:var(--surface2);border-radius:8px;border-left:3px solid var(--cyan)">
+        <div style="font-size:12px;font-weight:700;color:var(--cyan)">Ali Ghodsi (Databricks) + Arvind Jain (Glean) · 2025.12</div>
+        <p style="font-size:13px;margin-top:6px">"为什么95%的AI项目仍然失败" — 讨论企业AI落地的真实困境，以及LLM商品化的趋势。</p>
+      </div>
+
+      <div style="margin:10px 0;padding:14px;background:var(--surface2);border-radius:8px;border-left:3px solid var(--red)">
+        <div style="font-size:12px;font-weight:700;color:var(--red)">Dylan Patel (SemiAnalysis) · 2025</div>
+        <p style="font-size:13px;margin-top:6px">AI算力扩张的<strong>三大瓶颈</strong>：逻辑芯片、内存、电力。深入解析半导体供应链制约因素。</p>
+      </div>
+    </div></div>
+  </div>
+
+  <!-- All-In Podcast -->
+  <div class="collapsible">
+    <div class="collapsible-header" onclick="toggle(this)"><span>🎙️ All-In Podcast · Chamath / Sacks / Calacanis / Friedberg</span><span class="arrow">▶</span></div>
+    <div class="collapsible-body"><div class="inner">
+      <p style="font-size:13px;color:var(--text2)">四位硅谷顶级投资人的圆桌讨论，覆盖AI商业、政策、地缘政治，影响力巨大。</p>
+
+      <div style="margin:14px 0;padding:14px;background:var(--surface2);border-radius:8px;border-left:3px solid var(--accent2)">
+        <div style="font-size:12px;font-weight:700;color:var(--accent2)">Satya Nadella · LIVE from Davos · 2026.01</div>
+        <p style="font-size:13px;margin-top:6px">Microsoft如何通过AI实现<strong>营收/利润增长但人员零增长</strong>。深入讨论AI Copilot/Agent战略、OpenAI合作IP归属、开源AI的胜出逻辑。</p>
+        <p style="margin-top:6px"><a href="https://open.spotify.com/episode/7BxBtQTQvXK37rGjsubrjz" target="_blank" style="color:var(--accent2);font-size:11px">→ Spotify</a></p>
+      </div>
+
+      <div style="margin:10px 0;padding:14px;background:var(--surface2);border-radius:8px;border-left:3px solid var(--orange)">
+        <div style="font-size:12px;font-weight:700;color:var(--orange)">Winning the AI Race Summit · Washington D.C. · 2025.07</div>
+        <p style="font-size:13px;margin-top:6px">Trump第二任期首次AI政策峰会。科技领袖与政策制定者的直接对话，影响AI监管走向。</p>
+      </div>
+    </div></div>
+  </div>
+
+  <!-- Lex Fridman -->
+  <div class="collapsible">
+    <div class="collapsible-header" onclick="toggle(this)"><span>🎙️ Lex Fridman Podcast · 深度技术+哲学对话</span><span class="arrow">▶</span></div>
+    <div class="collapsible-body"><div class="inner">
+      <p style="font-size:13px;color:var(--text2)">MIT研究员Lex Fridman主持，2-3小时深度对话，探索AI的技术前沿和哲学维度。</p>
+
+      <div style="margin:14px 0;padding:14px;background:var(--surface2);border-radius:8px;border-left:3px solid var(--green)">
+        <div style="font-size:12px;font-weight:700;color:var(--green)">#494 Jensen Huang (NVIDIA CEO) · 2026.03</div>
+        <p style="font-size:13px;margin-top:6px">从芯片设计到机架级系统的演进。Vera Rubin平台（7芯片、5种机架配置）实现"极致协同设计"——同等算力下GPU数量仅需Blackwell的1/4，推理吞吐量/瓦提升10x。</p>
+        <p style="margin-top:6px"><a href="https://singjupost.com/lex-fridman-podcast-494-w-nvidias-ceo-jensen-huang-transcript/" target="_blank" style="color:var(--accent2);font-size:11px">→ 完整文稿</a></p>
+      </div>
+
+      <div style="margin:10px 0;padding:14px;background:var(--surface2);border-radius:8px;border-left:3px solid var(--cyan)">
+        <div style="font-size:12px;font-weight:700;color:var(--cyan)">#490 State of AI 2026 · Nathan Lambert + Sebastian Raschka</div>
+        <p style="font-size:13px;margin-top:6px">全面技术综述：LLM、编程、Scaling Laws、中国AI、Agent、GPU供应链、AGI路径。开源模型生态的技术深度解析。</p>
+      </div>
+
+      <div style="margin:10px 0;padding:14px;background:var(--surface2);border-radius:8px;border-left:3px solid var(--accent2)">
+        <div style="font-size:12px;font-weight:700;color:var(--accent2)">#452 Dario Amodei (Anthropic) · 2025</div>
+        <p style="font-size:13px;margin-top:6px">Claude的能力边界与安全对齐的深层逻辑。AGI时间线、Constitutional AI方法论。</p>
+      </div>
+    </div></div>
+  </div>
+
+  <!-- No Priors -->
+  <div class="collapsible">
+    <div class="collapsible-header" onclick="toggle(this)"><span>🎙️ No Priors · Elad Gil & Sarah Guo（创业者转型投资人）</span><span class="arrow">▶</span></div>
+    <div class="collapsible-body"><div class="inner">
+      <p style="font-size:13px;color:var(--text2)">连续创业者Elad Gil + Conviction VC创始人Sarah Guo，深度技术+商业化视角。</p>
+
+      <div style="margin:14px 0;padding:14px;background:var(--surface2);border-radius:8px;border-left:3px solid var(--green)">
+        <div style="font-size:12px;font-weight:700;color:var(--green)">Jensen Huang · 2026 AI State · 2026.01</div>
+        <p style="font-size:13px;margin-top:6px">2025年最大惊喜：推理能力的快速进步。推理Token的盈利能力成为核心指标。芯片供给演进的深度讨论。</p>
+      </div>
+
+      <div style="margin:10px 0;padding:14px;background:var(--surface2);border-radius:8px;border-left:3px solid var(--orange)">
+        <div style="font-size:12px;font-weight:700;color:var(--orange)">2026 AI Forecast · 基础模型 / IPO / 机器人 · 2025.12</div>
+        <p style="font-size:13px;margin-top:6px">定义下一个AI时代的关键趋势。机器人/自动驾驶时间线的分歧、科学问题求解的突破方向。</p>
+        <p style="margin-top:6px"><a href="https://open.spotify.com/episode/5ugCP5CKYIbIY5d9QPTKqg" target="_blank" style="color:var(--accent2);font-size:11px">→ Spotify</a></p>
+      </div>
+    </div></div>
+  </div>
+
+  <!-- a16z Podcast -->
+  <div class="collapsible">
+    <div class="collapsible-header" onclick="toggle(this)"><span>🎙️ a16z Podcast · Andreessen Horowitz（一线VC观察）</span><span class="arrow">▶</span></div>
+    <div class="collapsible-body"><div class="inner">
+      <p style="font-size:13px;color:var(--text2)">顶级VC的合伙人级洞察，覆盖早期创业趋势到行业预测，早于市场识别新兴模式。</p>
+
+      <div style="margin:14px 0;padding:14px;background:var(--surface2);border-radius:8px;border-left:3px solid var(--accent2)">
+        <div style="font-size:12px;font-weight:700;color:var(--accent2)">Marc Andreessen's 2026 Outlook · 2026.01</div>
+        <p style="font-size:13px;margin-top:6px">模型成本下降正在重塑定价、分发和竞争格局。AI Agent原生基础设施需要从人速流量转向Agent速工作负载。</p>
+        <p style="margin-top:6px"><a href="https://a16z.com/newsletter/big-ideas-2026-part-1/" target="_blank" style="color:var(--accent2);font-size:11px">→ Big Ideas 2026</a></p>
+      </div>
+
+      <div style="margin:10px 0;padding:14px;background:var(--surface2);border-radius:8px;border-left:3px solid var(--cyan)">
+        <div style="font-size:12px;font-weight:700;color:var(--cyan)">消费AI年终盘点 · 2025.12</div>
+        <p style="font-size:13px;margin-top:6px">嘉宾：Anish Acharya, Olivia Moore, Justine Moore, Bryan Kim。回顾2025年消费AI产品成败，预测2026年趋势。</p>
+      </div>
+    </div></div>
+  </div>
+
+  <!-- Acquired -->
+  <div class="collapsible">
+    <div class="collapsible-header" onclick="toggle(this)"><span>🎙️ Acquired · Ben Gilbert & David Rosenthal（商业史诗级叙事）</span><span class="arrow">▶</span></div>
+    <div class="collapsible-body"><div class="inner">
+      <p style="font-size:13px;color:var(--text2)">每集4小时+的深度公司研究，将当前AI动态置于商业史的宏观语境中。每集50万+下载。</p>
+
+      <div style="margin:14px 0;padding:14px;background:var(--surface2);border-radius:8px;border-left:3px solid var(--green)">
+        <div style="font-size:12px;font-weight:700;color:var(--green)">Google Part III: The AI Company · 2025.10</div>
+        <p style="font-size:13px;margin-top:6px">Google如何将整个公司围绕AI进行重组。从搜索公司到AI公司的战略转型深度解析。</p>
+        <p style="margin-top:6px"><a href="https://www.acquired.fm/episodes" target="_blank" style="color:var(--accent2);font-size:11px">→ Acquired</a></p>
+      </div>
+
+      <div style="margin:10px 0;padding:14px;background:var(--surface2);border-radius:8px;border-left:3px solid var(--orange)">
+        <div style="font-size:12px;font-weight:700;color:var(--orange)">NVIDIA · 4小时深度 · 2025</div>
+        <p style="font-size:13px;margin-top:6px">从GPU供应链全景到Jensen Huang十年AI计算豪赌——如何打造$3万亿公司。</p>
+      </div>
+    </div></div>
+  </div>
+
+  <!-- Stratechery / Big Technology / 20VC -->
+  <div class="collapsible">
+    <div class="collapsible-header" onclick="toggle(this)"><span>🎙️ 更多高质量来源 · Stratechery / Big Tech / Latent Space / 20VC</span><span class="arrow">▶</span></div>
+    <div class="collapsible-body"><div class="inner">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:10px;margin:10px 0">
+        <div style="padding:12px;background:var(--surface2);border-radius:8px">
+          <div style="font-size:12px;font-weight:700;color:var(--accent2)">Stratechery (Ben Thompson)</div>
+          <p style="font-size:12px;color:var(--text2);margin-top:4px">Jensen Huang独家专访（2026）：Vera Rubin、芯片管控、AI工厂、中国战略。科技战略分析的黄金标准。</p>
+          <p style="margin-top:4px"><a href="https://stratechery.com/" target="_blank" style="color:var(--accent2);font-size:11px">→ stratechery.com</a></p>
+        </div>
+        <div style="padding:12px;background:var(--surface2);border-radius:8px">
+          <div style="font-size:12px;font-weight:700;color:var(--green)">Big Technology (Alex Kantrowitz)</div>
+          <p style="font-size:12px;color:var(--text2);margin-top:4px">Sam Altman深度访谈（2025.12）："Compute is the lifeblood"。企业增长超越消费。IPO不会在2026发生。</p>
+          <p style="margin-top:4px"><a href="https://podcasts.apple.com/us/podcast/big-technology-podcast/id1522960417" target="_blank" style="color:var(--accent2);font-size:11px">→ Apple Podcasts</a></p>
+        </div>
+        <div style="padding:12px;background:var(--surface2);border-radius:8px">
+          <div style="font-size:12px;font-weight:700;color:var(--orange)">Latent Space · AI Engineer Podcast</div>
+          <p style="font-size:12px;color:var(--text2);margin-top:4px">1000万+听众。工程师视角的前沿技术实现，从单体LLM到复合AI系统的转型。186+期。</p>
+          <p style="margin-top:4px"><a href="https://www.latent.space/podcast/archive" target="_blank" style="color:var(--accent2);font-size:11px">→ latent.space</a></p>
+        </div>
+        <div style="padding:12px;background:var(--surface2);border-radius:8px">
+          <div style="font-size:12px;font-weight:700;color:var(--cyan)">20VC (Harry Stebbings)</div>
+          <p style="font-size:12px;color:var(--text2);margin-top:4px">"App层公司是长期赢家"。Dario Amodei获评2025年度创始人。AI可能是最大的技术革命，同时也在焚烧资本。</p>
+          <p style="margin-top:4px"><a href="https://www.thetwentyminutevc.com/" target="_blank" style="color:var(--accent2);font-size:11px">→ 20vc.com</a></p>
+        </div>
+        <div style="padding:12px;background:var(--surface2);border-radius:8px">
+          <div style="font-size:12px;font-weight:700;color:var(--red)">Sequoia "Training Data"</div>
+          <p style="font-size:12px;color:var(--text2);margin-top:4px">Sonya Huang & Pat Grady主持。Vercel CEO讨论AI软件创作民主化、Hugging Face CEO讨论社区驱动机器人。</p>
+          <p style="margin-top:4px"><a href="https://sequoiacap.com/series/training-data/" target="_blank" style="color:var(--accent2);font-size:11px">→ Training Data</a></p>
+        </div>
+        <div style="padding:12px;background:var(--surface2);border-radius:8px">
+          <div style="font-size:12px;font-weight:700;color:var(--text)">TWIML AI (Sam Charrington)</div>
+          <p style="font-size:12px;color:var(--text2);margin-top:4px">每周技术深度：2026 AI趋势、推理模型演进、具身智能、产品级扩散LLM。面向工程实践。</p>
+          <p style="margin-top:4px"><a href="https://twimlai.com/podcast/twimlai" target="_blank" style="color:var(--accent2);font-size:11px">→ twimlai.com</a></p>
+        </div>
+      </div>
+    </div></div>
+  </div>
+
+  <!-- US Podcast Key Themes -->
+  <div class="insight" style="margin-top:16px">
+    <div class="label">美国播客核心共识（2025-2026）</div>
+    <div class="chart-bar" style="margin-top:10px">
+      <div class="bar-row"><div class="bar-label" style="width:110px">Agent落地</div><div class="bar-track"><div class="bar-fill grad-green" style="width:95%">2025炒作 → 2026实际部署</div></div></div>
+      <div class="bar-row"><div class="bar-label" style="width:110px">推理模型</div><div class="bar-track"><div class="bar-fill grad-cyan" style="width:88%">Scaling Laws受限后的关键前沿</div></div></div>
+      <div class="bar-row"><div class="bar-label" style="width:110px">算力瓶颈</div><div class="bar-track"><div class="bar-fill grad-orange" style="width:82%">基础设施=核心竞争壁垒</div></div></div>
+      <div class="bar-row"><div class="bar-label" style="width:110px">模型商品化</div><div class="bar-track"><div class="bar-fill grad-purple" style="width:78%">数据/工作流成为新护城河</div></div></div>
+      <div class="bar-row"><div class="bar-label" style="width:110px">95%项目失败</div><div class="bar-track"><div class="bar-fill grad-red" style="width:70%">企业AI落地远比想象的难</div></div></div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ===== 中国核心播客 ===== -->
+<section id="pod-cn">
+<div class="container">
+  <div class="section-header">
+    <h2><span class="icon">🇨🇳</span> 中国核心播客与深度内容</h2>
+    <p>中国AI产业的创始人访谈、深度媒体、投资人观点、视频解读。覆盖播客、公众号、B站、深度报道。</p>
+  </div>
+
+  <!-- 晚点LatePost -->
+  <div class="collapsible open">
+    <div class="collapsible-header" onclick="toggle(this)"><span>🎙️ 晚点LatePost · LateTalk系列（中国科技深度报道标杆）</span><span class="arrow">▶</span></div>
+    <div class="collapsible-body"><div class="inner">
+      <p style="font-size:13px;color:var(--text2)">中国科技领域最受尊敬的深度媒体之一。LateTalk播客系列直接对话创始人和决策者，调查式报道质量极高。</p>
+
+      <div style="margin:14px 0;padding:14px;background:var(--surface2);border-radius:8px;border-left:3px solid var(--green)">
+        <div style="font-size:12px;font-weight:700;color:var(--green)">杨植麟（月之暗面/Kimi创始人） · 2025-2026</div>
+        <p style="font-size:13px;margin-top:6px">Kimi K2 Thinking在多项基准上超越GPT-5/Claude 4.5。公司现金储备超千亿元人民币。中国AI创业公司中估值增长最快。</p>
+      </div>
+
+      <div style="margin:10px 0;padding:14px;background:var(--surface2);border-radius:8px;border-left:3px solid var(--cyan)">
+        <div style="font-size:12px;font-weight:700;color:var(--cyan)">王小川（百川智能创始人） · 2025-2026</div>
+        <p style="font-size:13px;margin-top:6px">AI医疗方向的深度探索。与北京儿童医院等合作，定位"AI医生"赛道。在垂直领域找到差异化路径。</p>
+      </div>
+
+      <div style="margin:10px 0;padding:14px;background:var(--surface2);border-radius:8px;border-left:3px solid var(--orange)">
+        <div style="font-size:12px;font-weight:700;color:var(--orange)">朱啸虎（金沙江创投） · AI投资观点 · 2025-2026</div>
+        <p style="font-size:13px;margin-top:6px">"AI没有护城河"——最具争议的观点之一。认为GTM（市场进入能力）比技术本身更重要。引发行业热议。</p>
+      </div>
+
+      <p style="margin-top:8px"><a href="https://www.latepost.com/" target="_blank" style="color:var(--accent2);font-size:11px">→ latepost.com</a></p>
+    </div></div>
+  </div>
+
+  <!-- 硅谷101 -->
+  <div class="collapsible">
+    <div class="collapsible-header" onclick="toggle(this)"><span>🎙️ 硅谷101 · 泓君主持（中美AI桥梁，3亿+播放）</span><span class="arrow">▶</span></div>
+    <div class="collapsible-body"><div class="inner">
+      <p style="font-size:13px;color:var(--text2)">泓君主持，中美科技深度访谈。累计播放量超3亿，是中文世界了解硅谷AI生态的核心窗口。</p>
+
+      <div style="margin:14px 0;padding:14px;background:var(--surface2);border-radius:8px;border-left:3px solid var(--accent2)">
+        <div style="font-size:12px;font-weight:700;color:var(--accent2)">中美AI产业链对比 · 系列专题</div>
+        <p style="font-size:13px;margin-top:6px">深入对比中美在芯片（NVIDIA vs 华为昇腾）、模型（OpenAI vs DeepSeek）、应用（ChatGPT vs Kimi/豆包）各层的差异与竞争态势。</p>
+      </div>
+
+      <div style="margin:10px 0;padding:14px;background:var(--surface2);border-radius:8px;border-left:3px solid var(--green)">
+        <div style="font-size:12px;font-weight:700;color:var(--green)">李开复（零一万物/创新工场） · 2025</div>
+        <p style="font-size:13px;margin-top:6px">"2025是AI-First应用爆发元年"。Agent经济的定位与中国创业机会。</p>
+      </div>
+    </div></div>
+  </div>
+
+  <!-- 极客公园 & 36氪 -->
+  <div class="collapsible">
+    <div class="collapsible-header" onclick="toggle(this)"><span>🎙️ 极客公园 / 36氪 / 量子位 / 机器之心（科技媒体矩阵）</span><span class="arrow">▶</span></div>
+    <div class="collapsible-body"><div class="inner">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px;margin:10px 0">
+        <div style="padding:12px;background:var(--surface2);border-radius:8px">
+          <div style="font-size:12px;font-weight:700;color:var(--accent2)">极客公园 · IF大会</div>
+          <p style="font-size:12px;color:var(--text2);margin-top:4px">年度创新大会设AI专场。创始人一手演讲和对话，商业化落地案例密集。</p>
+          <p style="margin-top:4px"><a href="https://www.geekpark.net/" target="_blank" style="color:var(--accent2);font-size:11px">→ geekpark.net</a></p>
+        </div>
+        <div style="padding:12px;background:var(--surface2);border-radius:8px">
+          <div style="font-size:12px;font-weight:700;color:var(--orange)">36氪</div>
+          <p style="font-size:12px;color:var(--text2);margin-top:4px">中国科技创业覆盖面最广。企业AI支出超级报告，融资动态实时追踪。</p>
+          <p style="margin-top:4px"><a href="https://36kr.com/" target="_blank" style="color:var(--accent2);font-size:11px">→ 36kr.com</a></p>
+        </div>
+        <div style="padding:12px;background:var(--surface2);border-radius:8px">
+          <div style="font-size:12px;font-weight:700;color:var(--green)">量子位</div>
+          <p style="font-size:12px;color:var(--text2);margin-top:4px">AI实时资讯+产业研究报告。具身智能市场规模：2025年9.15万亿元。技术与商业并重。</p>
+          <p style="margin-top:4px"><a href="https://www.qbitai.com/" target="_blank" style="color:var(--accent2);font-size:11px">→ qbitai.com</a></p>
+        </div>
+        <div style="padding:12px;background:var(--surface2);border-radius:8px">
+          <div style="font-size:12px;font-weight:700;color:var(--cyan)">机器之心</div>
+          <p style="font-size:12px;color:var(--text2);margin-top:4px">学术级AI深度分析，论文解读+产业落地。中文世界技术深度最高的AI媒体之一。</p>
+          <p style="margin-top:4px"><a href="https://www.jiqizhixin.com/" target="_blank" style="color:var(--accent2);font-size:11px">→ jiqizhixin.com</a></p>
+        </div>
+      </div>
+    </div></div>
+  </div>
+
+  <!-- 核心创始人/投资人观点 -->
+  <div class="collapsible">
+    <div class="collapsible-header" onclick="toggle(this)"><span>🎙️ 核心创始人与投资人观点汇总（2025-2026）</span><span class="arrow">▶</span></div>
+    <div class="collapsible-body"><div class="inner">
+
+      <div style="margin:10px 0;padding:14px;background:var(--surface2);border-radius:8px;border-left:3px solid var(--red)">
+        <div style="font-size:12px;font-weight:700;color:var(--red)">李彦宏 · 百度Create 2025</div>
+        <p style="font-size:13px;margin-top:6px">从模型训练全面转向AI应用。2026年商业化目标明确。百度AI收入已占通用业务的<strong>43%</strong>（Q4）。</p>
+      </div>
+
+      <div style="margin:10px 0;padding:14px;background:var(--surface2);border-radius:8px;border-left:3px solid var(--cyan)">
+        <div style="font-size:12px;font-weight:700;color:var(--cyan)">梁汝波 · 字节跳动</div>
+        <p style="font-size:13px;margin-top:6px">2025年AI投入$15-16亿。豆包日活跃用户过千万，全面布局Agent。从DeepMind等机构挖角高端人才。</p>
+      </div>
+
+      <div style="margin:10px 0;padding:14px;background:var(--surface2);border-radius:8px;border-left:3px solid var(--accent2)">
+        <div style="font-size:12px;font-weight:700;color:var(--accent2)">张磊 · 高瓴资本</div>
+        <p style="font-size:13px;margin-top:6px">重仓两条线：<strong>AI for Science</strong>（药物发现、材料科学）+ <strong>具身智能/机器人</strong>。长期视角，关注产业底层变革。</p>
+      </div>
+
+      <div style="margin:10px 0;padding:14px;background:var(--surface2);border-radius:8px;border-left:3px solid var(--green)">
+        <div style="font-size:12px;font-weight:700;color:var(--green)">智谱AI · 2025.12 递交IPO</div>
+        <p style="font-size:13px;margin-top:6px">招股书显示营收30亿元、增速130%。中国AI创业公司中首个冲刺IPO。</p>
+      </div>
+    </div></div>
+  </div>
+
+  <!-- B站 / 视频 -->
+  <div class="collapsible">
+    <div class="collapsible-header" onclick="toggle(this)"><span>🎙️ B站 / 视频平台AI深度内容</span><span class="arrow">▶</span></div>
+    <div class="collapsible-body"><div class="inner">
+      <div style="margin:10px 0;padding:14px;background:var(--surface2);border-radius:8px;border-left:3px solid var(--accent2)">
+        <div style="font-size:12px;font-weight:700;color:var(--accent2)">林亦LYi · B站 · 300万粉丝 / 3亿+播放</div>
+        <p style="font-size:13px;margin-top:6px">中文世界AI科普与深度解读的头部创作者。覆盖LLM原理、产品对比、产业分析，面向大众但不失深度。</p>
+      </div>
+      <div style="margin:10px 0;padding:14px;background:var(--surface2);border-radius:8px;border-left:3px solid var(--green)">
+        <div style="font-size:12px;font-weight:700;color:var(--green)">万物生长FM</div>
+        <p style="font-size:13px;margin-top:6px">专题：AI×医疗、AI×教育。垂直领域AI落地的深度讨论。</p>
+      </div>
+    </div></div>
+  </div>
+
+  <!-- China Podcast Key Themes -->
+  <div class="insight" style="margin-top:16px">
+    <div class="label">中国AI播客核心主题（2025-2026）</div>
+    <div class="chart-bar" style="margin-top:10px">
+      <div class="bar-row"><div class="bar-label" style="width:110px">Agent元年</div><div class="bar-track"><div class="bar-fill grad-green" style="width:92%">所有主流玩家转向推理+Agent</div></div></div>
+      <div class="bar-row"><div class="bar-label" style="width:110px">AI无护城河</div><div class="bar-track"><div class="bar-fill grad-orange" style="width:80%">GTM能力 > 技术本身（朱啸虎论）</div></div></div>
+      <div class="bar-row"><div class="bar-label" style="width:110px">医疗+机器人</div><div class="bar-track"><div class="bar-fill grad-cyan" style="width:85%">具身智能市场达万亿级</div></div></div>
+      <div class="bar-row"><div class="bar-label" style="width:110px">应用>模型</div><div class="bar-track"><div class="bar-fill grad-purple" style="width:88%">字节/百度从训练转向落地</div></div></div>
+      <div class="bar-row"><div class="bar-label" style="width:110px">政策加速</div><div class="bar-track"><div class="bar-fill grad-red" style="width:75%">"AI+制造"最具体的政府承诺</div></div></div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ============================================================ -->
+<!--  PART 4: 数据来源                                              -->
+<!-- ============================================================ -->
+
+<section id="sources" class="sources">
+<div class="container">
+  <div class="section-header">
+    <h2><span class="icon">📚</span> 数据来源与参考文献</h2>
+    <p>按主题分类，包含原文链接。数据截至2026年4月。</p>
+  </div>
+
+  <div class="collapsible">
+    <div class="collapsible-header" onclick="toggle(this)"><span>能源与电力</span><span class="arrow">▶</span></div>
+    <div class="collapsible-body"><div class="inner"><ul>
+      <li><a href="https://www.iea.org/reports/energy-and-ai/energy-demand-from-ai" target="_blank">IEA - Energy Demand from AI</a></li>
+      <li><a href="https://www.gartner.com/en/newsroom/press-releases/2025-11-17-gartner-says-electricity-demand-for-data-centers-to-grow-16-percent-in-2025-and-double-by-2030" target="_blank">Gartner - 数据中心电力需求预测</a></li>
+      <li><a href="https://www.morganstanley.com/ideas/ai-energy-demand-infrastructure" target="_blank">Morgan Stanley - Powering the AI Revolution</a></li>
+      <li><a href="https://www.morganstanley.com/insights/articles/powering-ai-energy-market-outlook-2026" target="_blank">Morgan Stanley - Energy Market Outlook 2026</a></li>
+      <li><a href="https://finance.yahoo.com/news/morgan-stanley-sees-20-shortage-135922617.html" target="_blank">Morgan Stanley - 20% US Power Shortage</a></li>
+      <li><a href="https://www.spglobal.com/energy/en/news-research/latest-news/electric-power/101425-data-center-grid-power-demand-to-rise-22-in-2025-nearly-triple-by-2030" target="_blank">S&P Global - Data Center Grid Power Demand</a></li>
+      <li><a href="https://www.constellationenergy.com/news/2026/02/constellation-reports-fourth-quarter-and-full-year-2025-results.html" target="_blank">Constellation Energy - FY2025 Results</a></li>
+    </ul></div></div>
+  </div>
+
+  <div class="collapsible">
+    <div class="collapsible-header" onclick="toggle(this)"><span>芯片与半导体</span><span class="arrow">▶</span></div>
+    <div class="collapsible-body"><div class="inner"><ul>
+      <li><a href="https://nvidianews.nvidia.com/news/nvidia-announces-financial-results-for-third-quarter-fiscal-2026" target="_blank">NVIDIA - Q3 FY2026 Financial Results</a></li>
+      <li><a href="https://investor.tsmc.com/english/quarterly-results/2025/q4" target="_blank">TSMC - Q4 2025 Quarterly Results</a></li>
+      <li><a href="https://www.cnbc.com/2026/01/28/asml-q4-2025-earnings-report.html" target="_blank">CNBC - ASML Q4 2025 Earnings</a></li>
+      <li><a href="https://mlq.ai/research/ai-chips/" target="_blank">MLQ - AI Chips Market Analysis</a></li>
+      <li><a href="https://www.statista.com/statistics/1425087/data-center-segment-revenue-nvidia-amd-intel/" target="_blank">Statista - Data Center Chip Revenue</a></li>
+    </ul></div></div>
+  </div>
+
+  <div class="collapsible">
+    <div class="collapsible-header" onclick="toggle(this)"><span>数据中心与基础设施</span><span class="arrow">▶</span></div>
+    <div class="collapsible-body"><div class="inner"><ul>
+      <li><a href="https://www.datacenterdynamics.com/en/news/q3-2025-colo-results-equinix-digital-realty-american-tower-and-iron-mountain/" target="_blank">DCD - Q3 2025 Colo Results</a></li>
+      <li><a href="https://bebeez.eu/2026/03/10/data-center-colo-results-q4-2025-digital-realty-equinix-iron-mountain-american-tower/" target="_blank">BeBeez - Q4 2025 Data Center Results</a></li>
+      <li><a href="https://investors.arista.com/Communications/Press-Releases-and-Events/Press-Release-Detail/2025/Arista-Networks-Inc--Reports-Third-Quarter-2025-Financial-Results/default.aspx" target="_blank">Arista Networks - Q3 2025 Results</a></li>
+      <li><a href="https://www.nextplatform.com/2025/08/12/big-ai-wave-will-lift-arista-to-10-billion-two-years-early/" target="_blank">Next Platform - Arista AI Wave</a></li>
+    </ul></div></div>
+  </div>
+
+  <div class="collapsible">
+    <div class="collapsible-header" onclick="toggle(this)"><span>云平台与基础模型</span><span class="arrow">▶</span></div>
+    <div class="collapsible-body"><div class="inner"><ul>
+      <li><a href="https://omdia.tech.informa.com/pr/2026/mar/global-cloud-infrastructure-spending-rose-29percent-in-q4-2025-as-hyperscalers-scaled-ai-infrastructure-investment" target="_blank">Omdia - Q4 2025 Cloud Spending</a></li>
+      <li><a href="https://sacra.com/c/openai/" target="_blank">Sacra - OpenAI Revenue & Valuation</a></li>
+      <li><a href="https://sacra.com/c/anthropic/" target="_blank">Sacra - Anthropic Revenue & Valuation</a></li>
+      <li><a href="https://www.rdworldonline.com/facing-14b-losses-in-2026-openai-is-now-seeking-100b-in-funding-but-can-it-ever-turn-a-profit/" target="_blank">R&D World - OpenAI $14B Losses</a></li>
+      <li><a href="https://www.roic.ai/news/openais-chatgpt-surpasses-900-million-weekly-users-50-million-paying-subscribers-02-27-2026" target="_blank">ROIC - ChatGPT 900M Weekly Users</a></li>
+      <li><a href="https://www.goldmansachs.com/insights/articles/why-ai-companies-may-invest-more-than-500-billion-in-2026" target="_blank">Goldman Sachs - AI Investment $500B+</a></li>
+    </ul></div></div>
+  </div>
+
+  <div class="collapsible">
+    <div class="collapsible-header" onclick="toggle(this)"><span>机构研究与行业报告</span><span class="arrow">▶</span></div>
+    <div class="collapsible-body"><div class="inner"><ul>
+      <li><a href="https://sequoiacap.com/article/ais-600b-question/" target="_blank">Sequoia Capital - AI's $600B Question</a></li>
+      <li><a href="https://sequoiacap.com/article/ai-in-2025/" target="_blank">Sequoia Capital - AI in 2025</a></li>
+      <li><a href="https://www.goldmansachs.com/insights/articles/will-the-1-trillion-of-generative-ai-investment-pay-off" target="_blank">Goldman Sachs - Will $1T of GenAI Investment Pay Off?</a></li>
+      <li><a href="https://www.goldmansachs.com/insights/articles/ai-infrastructure-stocks-poised-to-be-next-phase" target="_blank">Goldman Sachs - AI Infrastructure Next Phase</a></li>
+      <li><a href="https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-state-of-ai" target="_blank">McKinsey - The State of AI in 2025</a></li>
+      <li><a href="https://www.a16z.news/p/big-ideas-2026-part-1" target="_blank">a16z - Big Ideas 2026</a></li>
+      <li><a href="https://fourweekmba.com/ai-value-chain/" target="_blank">FourWeekMBA - AI Value Chain: 7 Layers</a></li>
+      <li><a href="https://www.tanayj.com/p/the-gross-margin-debate-in-ai" target="_blank">Tanay Jaipuria - AI Gross Margins 2025</a></li>
+      <li><a href="https://medium.com/b8125-fall2025/where-the-money-really-flows-in-the-ai-boom-mapping-the-profit-pools-of-the-new-tech-value-chain-6fc349dec155" target="_blank">Medium - Where Money Flows in AI Boom</a></li>
+    </ul></div></div>
+  </div>
+
+  <div class="collapsible">
+    <div class="collapsible-header" onclick="toggle(this)"><span>中国AI产业链</span><span class="arrow">▶</span></div>
+    <div class="collapsible-body"><div class="inner">
+      <p style="font-size:13px;color:var(--text2);margin-bottom:12px">按可信度和深度排序的高质量数据来源体系：</p>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>类别</th><th>来源</th><th>说明</th><th>可信度</th></tr></thead>
+          <tbody>
+            <tr><td rowspan="3"><strong>公司财报</strong></td><td>港股/A股年报</td><td>百度、阿里云、腾讯、中芯国际、寒武纪等一手财务数据</td><td><span class="tag tag-green">最高</span></td></tr>
+            <tr><td>IPO招股书</td><td>智谱AI（2025.12递交）、地平线等新上市公司详细业务数据</td><td><span class="tag tag-green">最高</span></td></tr>
+            <tr><td>季度业绩说明会</td><td>管理层对AI业务的一手解读</td><td><span class="tag tag-green">最高</span></td></tr>
+            <tr><td rowspan="3"><strong>券商研报</strong></td><td>中信建投 · "AI新纪元"</td><td>AI产业链全景分析，覆盖芯片→应用全栈</td><td><span class="tag tag-green">高</span></td></tr>
+            <tr><td>中金公司 · "中金点睛"</td><td>具身智能/人形机器人研究，AI平台深度</td><td><span class="tag tag-green">高</span></td></tr>
+            <tr><td>华泰证券</td><td>Agent经济投资机会、算力产业链分析</td><td><span class="tag tag-green">高</span></td></tr>
+            <tr><td rowspan="3"><strong>行业数据库</strong></td><td>IDC中国</td><td>2024年中国AI市场747亿元；2028年预测超$1,000亿</td><td><span class="tag tag-green">高</span></td></tr>
+            <tr><td>艾瑞咨询</td><td>智算市场5,097亿元（2023），同比增长41%</td><td><span class="tag tag-blue">较高</span></td></tr>
+            <tr><td>前瞻产业研究院</td><td>多模态大模型市场预测至2030年</td><td><span class="tag tag-blue">较高</span></td></tr>
+            <tr><td rowspan="2"><strong>政策文件</strong></td><td>工信部</td><td>"人工智能+制造"行动计划（2026.01），2027年核心目标</td><td><span class="tag tag-green">最高</span></td></tr>
+            <tr><td>科技部 / 国务院</td><td>"AI+"国家战略指导意见（2025）</td><td><span class="tag tag-green">最高</span></td></tr>
+            <tr><td rowspan="3"><strong>高质量媒体</strong></td><td>晚点LatePost</td><td>最深度的中国科技调查报道</td><td><span class="tag tag-green">高</span></td></tr>
+            <tr><td>财新 / 第一财经</td><td>宏观视角的产业分析，政策解读权威</td><td><span class="tag tag-green">高</span></td></tr>
+            <tr><td>36氪 / 量子位 / 机器之心</td><td>科技创业覆盖、AI实时资讯、学术级深度分析</td><td><span class="tag tag-blue">较高</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div></div>
+  </div>
+
+  <div class="collapsible">
+    <div class="collapsible-header" onclick="toggle(this)"><span>AI应用与消费端</span><span class="arrow">▶</span></div>
+    <div class="collapsible-body"><div class="inner"><ul>
+      <li><a href="https://markets.financialcontent.com/stocks/article/marketminute-2026-4-1-softwares-spring-awakening-tech-giants-surge-as-ai-monetization-silences-the-skeptics" target="_blank">MarketMinute - Software's Spring Awakening</a></li>
+      <li><a href="https://www.deloitte.com/us/en/insights/industry/technology/technology-media-and-telecom-predictions/2026/saas-ai-agents.html" target="_blank">Deloitte - SaaS Meets AI Agents 2026</a></li>
+      <li><a href="https://www.businessofapps.com/data/chatgpt-statistics/" target="_blank">Business of Apps - ChatGPT Statistics</a></li>
+      <li><a href="https://backlinko.com/chatgpt-stats" target="_blank">Backlinko - ChatGPT Statistics 2026</a></li>
+    </ul></div></div>
+  </div>
+
+  <p style="margin-top:24px;color:var(--text2);font-size:12px;text-align:center">
+    本报告仅供学习研究参考，不构成投资建议。数据来源于公开信息，可能存在滞后或误差。<br>
+    报告生成：2026年4月6日 | 版本 v1.0 | 持续研究专题
+  </p>
+</div>
+</section>
+
+</div><!-- /main-content -->
+</div><!-- /page-wrap -->
+
+<script>
+function toggle(el) {
+  el.parentElement.classList.toggle('open');
+}
+function toggleSidebar() {
+  document.getElementById('sidebar').classList.toggle('open');
+  document.getElementById('sidebarOverlay').classList.toggle('open');
+}
+
+// Active nav tracking
+const sections = document.querySelectorAll('section[id]');
+const navItems = document.querySelectorAll('.nav-item[href]');
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(s => {
+    if (window.scrollY >= s.offsetTop - 100) current = s.id;
+  });
+  navItems.forEach(n => {
+    n.classList.remove('active');
+    if (n.getAttribute('href') === '#' + current) n.classList.add('active');
+  });
+});
+
+// Close sidebar on nav click (mobile)
+navItems.forEach(n => {
+  n.addEventListener('click', () => {
+    if (window.innerWidth <= 900) {
+      document.getElementById('sidebar').classList.remove('open');
+      document.getElementById('sidebarOverlay').classList.remove('open');
+    }
+  });
+});
+</script>
+</body>
+</html>
